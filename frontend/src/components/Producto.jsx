@@ -21,38 +21,42 @@ const Producto = (props) => {
     <>
       <div className="card-container">  
           <div className="info-container">
-            <div className="img-container">
-                <Link to={`/producto/${props.producto._id}`}>
-                  <img src={props.producto.imagen} variant="top" />
-                </Link>
-            </div>
-            <div className="text-container">
-                <Link to={`/producto/${props.producto._id}`}>
-                  {props.producto.nombre}
-                </Link>
-                <div className="price-container">
-                  <p>${props.producto.precio}</p>
+                <div className="img-container">
+                    <Link to={`/producto/${props.producto._id}`}>
+                      <img src={props.producto.imagen} variant="top" />
+                    </Link>
+                    <button className="btn-card">
+                            <Link to={`/producto/${props.producto._id}`}>
+                              Ver producto
+                            </Link>
+                    </button>
                 </div>
-                <div className="addcart-container">
-                  {props.cart.some((p) => p.item._id === props.producto._id) ? (
-                    <Button
-                    onClick={() => props.removeFromCart(props.producto)}
-                    variant="danger"
-                    className="btn-block"
-                    type="button"
-                    >
-                      Remove from Cart
-                    </Button>
-                  ) : (
-                    <Button
-                    onClick={() => props.addToCart(props.producto, props.user._id)}
-                    className="btn-block"
-                    type="button"
-                    disabled={!props.producto.contadorStock}
-                    >
-                      {!props.producto.contadorStock ? "Out of Stock" : "Add to Cart"}
-                    </Button>
-                  )}
+            <div className="text-container">
+                <p>
+                  {props.producto.nombre}
+                </p>
+                <div className="price-card_container">
+                    <div className="price-container">
+                      <p>${props.producto.precio}</p>
+                    </div>
+                    <div className="addcart-container">
+                      {props.cart.some((p) => p.item._id === props.producto._id) ? (
+                        <button
+                        onClick={() => props.removeFromCart(props.producto)}
+                        className="btn-card"
+                        >
+                          Remove from Cart
+                        </button>
+                      ) : (
+                        <button
+                        onClick={() => props.addToCart(props.producto, props.user._id)}
+                        className="btn-card"
+                        disabled={!props.producto.contadorStock}
+                        >
+                          {!props.producto.contadorStock ? "Out of Stock" : "Add to Cart"}
+                        </button>
+                      )}
+                    </div>
                 </div>
             </div>
             <div className="fav-container">
