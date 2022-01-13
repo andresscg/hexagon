@@ -1,6 +1,7 @@
 import axios from "axios"
 import {toast} from "react-toastify"
 const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
+const tokenAuth = rootUrl + "auth"
 const loginUrl = rootUrl + "user/login"
 const registerUrl = rootUrl + "user/register"
 const allUsers = rootUrl + "user/modificar"
@@ -100,7 +101,7 @@ const authAction = {
     return async (dispatch, getState) => {
       const token = localStorage.getItem("token")
       try {
-        const response = await axios.get("http://localhost:4000/api/auth", {
+        const response = await axios.get(tokenAuth, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -1,15 +1,9 @@
 import {Link} from "react-router-dom"
-import Chart from "../Chart/Chart"
 import "./AdminProducts.css"
-import {Publish} from "@material-ui/icons"
-import store from "../../../../redux/store/store"
-import {DataGrid} from "@mui/x-data-grid"
-import {DeleteOutline} from "@material-ui/icons"
 import {useEffect, useState} from "react"
-import {connect, useDispatch} from "react-redux"
-import {productRows} from "./dummyData"
+import {connect} from "react-redux"
 
-import authAction from "../../../../redux/actions/authAction"
+import productoAction from "../../../../redux/actions/productoAction"
 import {Table} from "react-bootstrap"
 import ListProduct from "./ListProduct"
 
@@ -17,29 +11,33 @@ function AdminProducts(props) {
   const [data, setData] = useState([])
   useEffect(() => {
     props
-      .getUsers()
-      .then((res) => setData(res.data.response))
+      .fetchearProductos()
+      .then((res) => setData(res.respuesta))
       .catch((error) => console.log(error))
   }, [])
 
   console.log(data)
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.length > 1 &&
-          data.map((user, index) => {
-            return <ListProduct user={user} key={index} />
-          })}
-      </tbody>
-    </Table>
+    <>
+      <Link to="newproduct">New Product</Link>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Buttons</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.length > 1 &&
+            data.map((user, index) => {
+              return <ListProduct user={user} key={index} />
+            })}
+        </tbody>
+      </Table>
+    </>
   )
 }
 
@@ -50,7 +48,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  getUsers: authAction.getUsers,
+  fetchearProductos: productoAction.fetchearProductos,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminProducts)
