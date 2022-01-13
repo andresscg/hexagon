@@ -15,7 +15,6 @@ const Productos = (props) => {
         <h1>Nuestros productos</h1>
         <div className="container-all_filtros">
           <div className="container-filtros">
-            <p>ACA VAN LOS FILTROS</p>
             {<FormControl
               onChange={(e) => props.filtro(e.target.value.toLowerCase().trim())}
               placeholder="FIND YOUR PRODUCT"
