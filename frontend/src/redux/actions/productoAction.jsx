@@ -6,13 +6,14 @@ const tokenHeader = {
     Authorization: "Bearer " + token,
   },
 }
-const rootUrl = "http://localhost:4000/api/"
-const addProduct = rootUrl + "productos"
+const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
+const addorGetProduct = rootUrl + "productos"
+const like = addorGetProduct + "/like/"
 
 const productoAction = {
   fetchearProductos: () => {
     return async (dispatch, getState) => {
-      const response = await axios.get("http://localhost:4000/api/productos")
+      const response = await axios.get(addorGetProduct)
       dispatch({
         type: "FETCH_PRODUCTOS",
         payload: {productos: response.data.respuesta},
@@ -25,7 +26,7 @@ const productoAction = {
   fetchUnProducto: (id) => {
     return (dispatch, getState) => {
       axios
-        .get("http://localhost:4000/api/productos/" + id)
+        .get(addorGetProduct + id)
         .then((respuesta) =>
           dispatch({type: "FETCH_UN_PRODUCTO", payload: respuesta.data})
         )
@@ -37,7 +38,7 @@ const productoAction = {
     return async () => {
       try {
         const response = await axios.put(
-          `http://localhost:4000/api/productos/like/` + id,
+          like + id,
           {idUsuario},
           {
             headers: {
@@ -55,7 +56,7 @@ const productoAction = {
     return async () => {
       try {
         const response = await axios.post(
-          addProduct,
+          addorGetProduct,
           {imagen, nombre, descripcion, marca, categoria, stock},
           tokenHeader
         )
