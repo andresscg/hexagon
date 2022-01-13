@@ -1,4 +1,4 @@
-import {Routes, Route, BrowserRouter} from "react-router-dom"
+import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom"
 import {useSelector} from "react-redux"
 import Productos from "../pages/Productos"
 import PaginaProducto from "../pages/PaginaProducto"
@@ -14,11 +14,10 @@ import AdminProducts from "../components/AdminPanel/AdminHome/AdminProducts/Admi
 import AdminHome from "../components/AdminPanel/AdminHome/AdminHome"
 import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProduct/NewProduct"
 import CartScreen from "../pages/CartScreen"
-import state from "../redux/store/store"
-
+import store from "../redux/store/store"
 export default function router() {
-  const Admin = state.getState().authReducer.user?.admin
-  const IsLoading = state.getState().authReducer.isLoading
+  const admin = store.getState().authReducer.user.admin
+  const isLoading = store.getState().authReducer.isLoading
 
   return (
     <>
@@ -30,9 +29,9 @@ export default function router() {
           <Route path="/shop" element={<Productos />} />
           <Route path="/shop/:id" element={<PaginaProducto />} />
           <Route path="/cart" element={<CartScreen />} />
-          {IsLoading ? (
+          {isLoading ? (
             <Route exact path="/" element={<Home />} />
-          ) : Admin ? (
+          ) : admin ? (
             <Route element={<AdminPanel />}>
               <Route exact path="admin" element={<AdminHome />} />
               <Route path="admin/products" element={<AdminProducts />} />

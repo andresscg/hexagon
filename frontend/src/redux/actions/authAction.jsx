@@ -1,6 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
-const rootUrl = "http://localhost:4000/api/"
+const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
 const loginUrl = rootUrl + "user/login"
 const registerUrl = rootUrl + "user/register"
 const allUsers = rootUrl + "user/modificar"
