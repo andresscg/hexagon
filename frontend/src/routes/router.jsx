@@ -4,7 +4,7 @@ import Productos from "../pages/Productos"
 import PaginaProducto from "../pages/PaginaProducto"
 import Home from "../pages/Home"
 import Navbar from "../components/Navbar"
-import Footer from '../components/Footer'
+import Footer from "../components/Footer"
 import AdminPanel from "../components/AdminPanel/AdminPanel"
 import About from "../pages/About"
 import Shop from "../pages/Shop"
@@ -14,9 +14,10 @@ import AdminProducts from "../components/AdminPanel/AdminHome/AdminProducts/Admi
 import AdminHome from "../components/AdminPanel/AdminHome/AdminHome"
 import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProduct/NewProduct"
 import CartScreen from "../pages/CartScreen"
+import store from "../redux/store/store"
 export default function router() {
-  const admin = useSelector((state) => state.authReducer.user?.admin)
-  const isLoading = useSelector((state) => state.authReducer.isLoading)
+  const admin = store.getState().authReducer.user.admin
+  const isLoading = store.getState().authReducer.isLoading
 
   return (
     <>
@@ -25,8 +26,8 @@ export default function router() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/page" element={<Page />} />
-          <Route path="productos" element={<Productos />} />
-          <Route path="producto/:id" element={<PaginaProducto />} />
+          <Route path="/shop" element={<Productos />} />
+          <Route path="/shop/:id" element={<PaginaProducto />} />
           <Route path="/cart" element={<CartScreen />} />
           {isLoading ? (
             <Route exact path="/" element={<Home />} />

@@ -5,10 +5,12 @@
 
   /* COLORS */
   --white: #ffff;
-  --primary: #fb9728;
-  --secondary: #662a88;
+  --primary: rgb(251, 152, 40);
+  --secondary: #8d237e;
+  --secondary-dark: #662a88;
   --secondary-light: #e1b0f9;
   --third: #ef2f56;
+  --blue: rgb(68, 52, 148);
   --primarySoft: #f7dcbd;
 }
 

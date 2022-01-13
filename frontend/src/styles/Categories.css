@@ -15,7 +15,11 @@
 }
 
 .bg-blue {
-  /*background-image: linear-gradient(rgba(68, 52, 148, 0.7), rgba(68, 52, 148, 0.5)), url(../../assets/phones.jpg);*/
+  background-image: linear-gradient(
+      rgba(68, 52, 148, 0.7),
+      rgba(68, 52, 148, 0.5)
+    ),
+    url("https://cdn.tmobile.com/content/dam/t-mobile/ntm/generic/pattern-abstract/full/bg-heroFull-multiple_phones_aerial.desktop.jpg");
 }
 .bg-pink {
   background-image: linear-gradient(
