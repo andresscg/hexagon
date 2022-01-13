@@ -1,0 +1,33 @@
+.modal-title {
+  font-family: var(--headings-font)!important;
+  text-transform: none !important;
+  text-align: center!important;
+  color: var(--secondary-light) !important;
+}
+
+.modal-header {
+  border-bottom: 2px solid var(--secondary)!important;
+}
+
+.modal-content {
+  background-color: var(--third)!important;
+  border-radius: 20px;
+}
+
+.login-body, .register-body {
+  padding: 30px 40px;
+}
+
+.btn-primary {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  background-color: var(--secondary);
+  font-family: var(--headings-font);
+  color: var(--secondary-light);
+  font-size: 20px;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-light);
+  color: var(--secondary);
+}
