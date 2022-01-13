@@ -12,21 +12,6 @@ const Producto = (props) => {
 
   const likeDislikeProduct = async () => {
     setLikeIcon(false)
-    if (!token) {
-      alert("Loagueate para meter el like")
-      // Toast.fire({
-      //     icon: 'error',
-      //     title: "You need to be logged in to like"
-      // })
-    } else {
-      let response = await props.likeDislike(
-        token,
-        props.producto._id,
-        props.user._id
-      )
-      setlikeProduct(response)
-    }
-    setLikeIcon(true)
   }
 
   let likes = likeProducts.includes(props.user && props.user._id) ? "❤" : "🤍"
