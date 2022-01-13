@@ -13,8 +13,13 @@ import {
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
+import {useState} from "react"
 
 const PaginaProducto = (props) => {
+  const stateCart = useContext(Cart)
+  const [state, dispatch] = stateCart
+  const {cart} = state
+
   let {id} = useParams()
 
   useEffect(() => {
@@ -73,26 +78,30 @@ const PaginaProducto = (props) => {
                 </Row>
               </ListGroupItem>
 
-              {/* {props.producto.contadorStock > 0 && (
-                            <ListGroup.Item>
-                              <Row>
-                                <Col>Cantidad</Col>
-                                <Col>
-                                <Form.Control as='select' value={qty} onChange={(e)=> setQty(e.target.value)}>
-                           
-                                  {[...Array(props.producto.contadorStock).keys()].map(x => (
-                                    <option key={x + 1} value={x + 1}>
-                                    {x + 1}
-                                    </option>
-                                  ) )}
-                                </Form.Control>
-                                </Col>
-                              </Row>
+              {props.producto.contadorStock > 0 && (
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Cantidad</Col>
+                    <Col>
+                      <Form.Control
+                        as="select"
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(props.producto.contadorStock).keys()].map(
+                          (x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          )
+                        )}
+                      </Form.Control>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              )}
 
-                            </ListGroup.Item>
-                          )} */}
-
-              {/* <ListGroupItem>
+              <ListGroupItem>
                 {cart.some((p) => p._id === props.producto._id) ? (
                   <Button
                     onClick={() => {
@@ -124,7 +133,7 @@ const PaginaProducto = (props) => {
                       : "Add to Cart"}
                   </Button>
                 )}
-              </ListGroupItem> */}
+              </ListGroupItem>
             </ListGroup>
           </Card>
         </Col>

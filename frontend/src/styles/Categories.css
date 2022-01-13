@@ -1,3 +1,51 @@
+.primary {
+  background-color: var(--primary);
+}
+
+.secondary {
+  background-color: var(--secondary);
+}
+
+.third {
+  background-color: var(--third);
+}
+
+.blue {
+  background-color: var(--blue);
+}
+
+.bg-blue {
+  /*background-image: linear-gradient(rgba(68, 52, 148, 0.7), rgba(68, 52, 148, 0.5)), url(../../assets/phones.jpg);*/
+}
+.bg-pink {
+  background-image: linear-gradient(
+      rgba(239, 47, 85, 0.7),
+      rgba(239, 47, 85, 0.5)
+    ),
+    url("https://cdn.thewirecutter.com/wp-content/media/2021/06/workout-headphones-2048px-2091.jpg?auto=webp&quality=60&crop=1.91:1&width=1200");
+}
+.bg-orange {
+  background-image: linear-gradient(
+      rgba(251, 151, 40, 0.7),
+      rgba(251, 151, 40, 0.5)
+    ),
+    url("https://custom.casecompany.world/uploads/choice/collection-3D.png");
+}
+.bg-purple {
+  background-image: linear-gradient(
+      rgba(141, 35, 126, 0.7),
+      rgba(141, 35, 126, 0.5)
+    ),
+    url("https://www.isy-online.eu/fileadmin/user_upload/isy/Kategorien/01_Kategorie.png");
+}
+
+.cards__name {
+  color: var(--white);
+  font-family: var(--text-font);
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+
 .categories-deco {
   width: 100%;
   height: 30px;
@@ -6,7 +54,7 @@
 
 .categories-container {
   width: 100%;
-  height: 50vh;
+  min-height: 70vh;
   background: rgb(120, 27, 172);
   background: radial-gradient(
     circle,
@@ -17,4 +65,39 @@
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  padding-bottom: 50px;
+}
+
+.categories__title {
+  text-align: center;
+  padding: 20px 0;
+  font-family: var(--headings-font);
+  color: var(--white);
+  font-size: 30px;
+  letter-spacing: 0.5px;
+}
+
+.categories__cards {
+  display: grid;
+  height: inherit;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.categories__cards--title,
+.categories__cards--img {
+  width: 25%;
+  height: 250px;
+  width: 100%;
+}
+
+.categories__cards--title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories__cards--img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

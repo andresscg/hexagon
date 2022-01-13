@@ -1,9 +1,10 @@
-import {Routes, Route, BrowserRouter} from "react-router-dom"
+import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom"
 import {useSelector} from "react-redux"
 import Productos from "../pages/Productos"
 import PaginaProducto from "../pages/PaginaProducto"
 import Home from "../pages/Home"
 import Navbar from "../components/Navbar"
+import Footer from '../components/Footer'
 import AdminPanel from "../components/AdminPanel/AdminPanel"
 import About from "../pages/About"
 import Shop from "../pages/Shop"
@@ -13,11 +14,9 @@ import AdminProducts from "../components/AdminPanel/AdminHome/AdminProducts/Admi
 import AdminHome from "../components/AdminPanel/AdminHome/AdminHome"
 import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProduct/NewProduct"
 import CartScreen from "../pages/CartScreen"
-import state from "../redux/store/store"
-
 export default function router() {
-  const Admin = state.getState().authReducer.user?.admin
-  const IsLoading = state.getState().authReducer.isLoading
+  const admin = useSelector((state) => state.authReducer.user?.admin)
+  const isLoading = useSelector((state) => state.authReducer.isLoading)
 
   return (
     <>
@@ -29,9 +28,9 @@ export default function router() {
           <Route path="productos" element={<Productos />} />
           <Route path="producto/:id" element={<PaginaProducto />} />
           <Route path="/cart" element={<CartScreen />} />
-          {IsLoading ? (
+          {isLoading ? (
             <Route exact path="/" element={<Home />} />
-          ) : Admin ? (
+          ) : admin ? (
             <Route element={<AdminPanel />}>
               <Route exact path="admin" element={<AdminHome />} />
               <Route path="admin/products" element={<AdminProducts />} />
@@ -50,6 +49,7 @@ export default function router() {
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )

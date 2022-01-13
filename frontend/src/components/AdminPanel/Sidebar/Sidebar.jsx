@@ -21,7 +21,7 @@ export default function Sidebar() {
         <div className="sidebar-menu">
           <h3 className="sidebar-title">Dashboard</h3>
           <ul className="sidebar-list">
-            <Link to="/admin" className="sidebar-list__link">
+            <Link to="/" className="sidebar-list__link">
               <li className="sidebar-list__item--active">
                 <LineStyle className="sidebar-icon" />
                 Home
@@ -40,7 +40,7 @@ export default function Sidebar() {
         <div className="sidebar-menu">
           <h3 className="sidebar-title">Quick Menu</h3>
           <ul className="sidebar-list">
-            <Link to="admin/users" className="sidebar-list__link">
+            <Link to="/users" className="sidebar-list__link">
               <li className="sidebar-list__item">
                 <PermIdentity className="sidebar-icon" />
                 Users

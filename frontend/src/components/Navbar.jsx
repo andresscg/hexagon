@@ -1,18 +1,17 @@
-import React, {useEffect, useContext} from "react"
-import {Nav, Dropdown, Badge, Button} from "react-bootstrap"
-import {FaShoppingCart} from "react-icons/fa"
-import {AiFillDelete} from "react-icons/ai"
+import React, {useEffect} from "react"
 import "../styles/Navbar.css"
-import Logout from "./Login/Logout"
 import {Link} from "react-router-dom"
 import "../styles/Navbar.css"
+
 import modalAction from "../redux/actions/modalAction"
 import {connect} from "react-redux"
 import authAction from "../redux/actions/authAction"
-import {DropdownButton} from "react-bootstrap"
+import {Badge, Button, Dropdown, DropdownButton, Nav} from "react-bootstrap"
 import LikedProducts from "./likedProducts"
 import EmailVerification from "./EmailVerification"
 import cartAction from "../redux/actions/cartAction"
+import {FaShoppingCart} from "react-icons/fa"
+import {AiFillDelete} from "react-icons/ai"
 
 const Navbar = (props) => {
   useEffect(() => {
@@ -23,13 +22,10 @@ const Navbar = (props) => {
   return (
     <>
       <div className="nav-container">
-        <img src="./assets/logo.png" alt="logo" className="nav__logo" />
+        <img src="../../assets/logo.png" alt="logo" className="nav__logo" />
         <div className="nav__menu--navigation">
           <Link to="/" className="nav__menu--item">
             Home
-          </Link>
-          <Link to="/about" className="nav__menu--item">
-            About
           </Link>
           <Link to="/shop" className="nav__menu--item">
             Shop
@@ -101,7 +97,7 @@ const Navbar = (props) => {
           </Dropdown>
         </Nav>
       </div>
-      <div className="nav__menu--sign">
+      {/* <div className="nav__menu--sign">
         {!props.isLoading && props.isAuth ? (
           <>
             <button onClick={() => props.logout()}>LOGOUT</button>
@@ -119,17 +115,18 @@ const Navbar = (props) => {
         )}
       </div>
       <DropdownButton id="dropdown-basic-button" title="Favorites">
-        {props.productos.map((producto, index) => (
+        {props.productos?.map((producto, index) => (
           <LikedProducts key={index} producto={producto} />
         ))}
       </DropdownButton>
       <Link className="btn btn-dark" to="/Productos">
         productos
-      </Link>
+      </Link> */}
     </>
   )
 }
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     user: state.authReducer.user,
     isAuth: state.authReducer.isAuth,
