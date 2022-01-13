@@ -18,7 +18,7 @@
   padding: 30px 40px;
 }
 
-.btn-primary {
+.btns-primary {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
   background-color: var(--secondary);
@@ -27,7 +27,88 @@
   font-size: 20px;
 }
 
-.btn-primary:hover {
+.btns-primary:hover {
   background-color: var(--secondary-light);
   color: var(--secondary);
+}
+
+.btns-primary:active{
+  background-color: var(--secondary);
+  color: var(--secondary-light);
+}
+
+.login-title, .register-title { 
+  font-family: var(--headings-font);
+  color: var(--white);
+  text-align: center;
+}
+
+.login-subtitle, .register-subtitle{
+  font-family: var(--text-font);
+  color: var(--secondary-light);
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.btn-login, .btn-signup {
+  margin-right: 10px;
+  padding: 5px 2px;
+  border: 3px solid var(--secondary-dark);
+  border-radius: 10px;
+  font-family: var(--text-font);
+}
+
+.btn-login::placeholder {
+  font-family: var(--headings-font);
+  color: var(--primary)
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-submit {
+  margin-top: 10px;
+  width: 50%;
+  margin-bottom: 5px;
+  padding: 10px 0;
+  background-color: #2b2a4a;
+  color: var(--secondary-light);
+  font-family: var(--text-font);
+  border: 2px solid var(--secondary);
+  border-radius: 15px;
+}
+
+.btn-submit:hover {
+  background-color: var(--secondary-light);
+  color: #2b2a4a;
+}
+
+.sing-google {
+  font-family: var(--headings-font);
+  color: var(--white);
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2px 0;
+  align-items: center;
+}
+
+.input-group label {
+  font-family: var(--headings-font);
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.register-btns {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }

@@ -4,6 +4,7 @@ import Productos from "../pages/Productos"
 import PaginaProducto from "../pages/PaginaProducto"
 import Home from "../pages/Home"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import AdminPanel from "../components/AdminPanel/AdminPanel"
 import About from "../pages/About"
 import Shop from "../pages/Shop"
@@ -26,8 +27,8 @@ export default function router() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/page" element={<Page />} />
-          <Route path="productos" element={<Productos />} />
-          <Route path="producto/:id" element={<PaginaProducto />} />
+          <Route path="/shop" element={<Productos />} />
+          <Route path="/shop/:id" element={<PaginaProducto />} />
           <Route path="/cart" element={<CartScreen />} />
           {IsLoading ? (
             <Route exact path="/" element={<Home />} />
@@ -50,6 +51,7 @@ export default function router() {
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )

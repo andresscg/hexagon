@@ -42,10 +42,10 @@ function Register(props) {
   return (
     <div className="register-body">
       <h3 className="register-title">Make an account</h3>
-      <p className="register-subtitle">Im a subtitle</p>
+      <p className="register-subtitle">If you don't have an account, create a new one!</p>
       <form className="register-form" onSubmit={handleRegister}>
         <div className="register-inputs">
-          <div className="input-group__name">
+          <div className="input-group">
             <label htmlFor="name">Name</label>
             <input
               required
@@ -58,7 +58,7 @@ function Register(props) {
             ></input>
           </div>
 
-          <div className="input-group__lastname">
+          <div className="input-group">
             <label htmlFor="lastname">Lastname</label>
             <input
               type="text"
@@ -70,7 +70,7 @@ function Register(props) {
               required
             ></input>
           </div>
-          <div className="input-group__email">
+          <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -80,7 +80,7 @@ function Register(props) {
               required
             ></input>
           </div>
-          <div className="input-group__password">
+          <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -92,7 +92,7 @@ function Register(props) {
               required
             ></input>
           </div>
-          <div className="input-group__photo">
+          <div className="input-group">
             <label htmlFor="photo">Photo</label>
             <input
               type="string"
@@ -102,7 +102,7 @@ function Register(props) {
               required
             ></input>
           </div>
-          <div className="input-group__country">
+          <div className="input-group ">
             <label htmlFor="country">Country</label>
             <select
               type="text"
@@ -122,19 +122,21 @@ function Register(props) {
             </select>
           </div>
         </div>
-        <input
-          type="submit"
-          className="register-btn__submit"
-          value="Register"
-        />
-        <GoogleLogin
-          clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
-          buttonText="Sign Up with Google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          className="google-btn"
-          cookiePolicy={"single_host_origin"}
-        />
+        <div className="register-btns">
+          <input
+            type="submit"
+            className="btn-submit"
+            value="Register"
+          />
+          <GoogleLogin
+            clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
+            buttonText="Sign Up with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            className="google-btn"
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
       </form>
     </div>
   )

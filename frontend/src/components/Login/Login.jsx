@@ -23,38 +23,43 @@ function Login(props) {
       {/* <img src="??" alt="" className="login-image" /> */}
       <div className="login-bg">
         <div className="login-form">
-          <h2 className="login-title">Login in</h2>
-          <p className="login-subtitle">Im a subtitle</p>
-          <form onSubmit={handleLogin}>
-            <input
-              type="text"
-              className="btn-login"
-              placeholder="Email"
-              ref={email}
-              required={true}
-            />
-            <input
-              type="password"
-              className="btn-login"
-              placeholder="Password"
-              ref={password}
-              required={true}
-            />
+          <h2 className="login-title">Log in</h2>
+          <p className="login-subtitle">If you already have an account, sign in!</p>
+          <form onSubmit={handleLogin} className="form-container">
+            <div className="form__inputs">
+              <input
+                type="text"
+                className="btn-login"
+                placeholder="Email"
+                ref={email}
+                required={true}
+              />
+              <input
+                type="password"
+                className="btn-login"
+                placeholder="Password"
+                ref={password}
+                required={true}
+              />
+            </div>
             <button type="submit" className="btn-submit">
               Login
             </button>
-          </form>
+            <p className="sing-google">
+              Or You Can:
+            </p>
           <GoogleLogin
             clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
-            buttonText="Sign Up with Google"
+            buttonText="Sign In with Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             className="google-btn"
             cookiePolicy={"single_host_origin"}
           />
+          </form>
         </div>
       </div>
-      <button onClick={() => props.tokenVerify()}>Token</button>
+      {/* <button onClick={() => props.tokenVerify()}>Token</button> */}
     </div>
   )
 }
