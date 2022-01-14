@@ -1,5 +1,5 @@
-import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom"
-import {connect, useSelector} from "react-redux"
+import {Routes, Route, BrowserRouter} from "react-router-dom"
+import {connect} from "react-redux"
 import Productos from "../pages/Productos"
 import PaginaProducto from "../pages/PaginaProducto"
 import Home from "../pages/Home"
@@ -14,6 +14,7 @@ import AdminProducts from "../components/AdminPanel/AdminHome/AdminProducts/Admi
 import AdminHome from "../components/AdminPanel/AdminHome/AdminHome"
 import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProduct/NewProduct"
 import CartScreen from "../pages/CartScreen"
+import Filters from "../components/Filters/Filters"
 
 function router(props) {
   const admin = props.user.admin
@@ -50,6 +51,7 @@ function router(props) {
           <Route path="about" element={<About />} />
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="filters" element={<Filters />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

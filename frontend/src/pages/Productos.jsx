@@ -11,30 +11,33 @@ const Productos = (props) => {
 
   return (
     <>
-      <div className="container-all_productos">
+      <div className="container-all__productos">
         <h1>Nuestros productos</h1>
-        <div className="container-all_filtros">
+        <div className="container-all__filtros">
           <div className="container-filtros">
-            <p>ACA VAN LOS FILTROS</p>
-            {<FormControl
-              onChange={(e) => props.filtro(e.target.value.toLowerCase().trim())}
-              placeholder="FIND YOUR PRODUCT"
-              aria-describedby="inputGroup-sizing-sm"
-            />}
+            {
+              <FormControl
+                onChange={(e) =>
+                  props.filtro(e.target.value.toLowerCase().trim())
+                }
+                placeholder="FIND YOUR PRODUCT"
+                aria-describedby="inputGroup-sizing-sm"
+              />
+            }
           </div>
-        <div className="productos-container">
-          { props.auxiliar.length > 0 
-          ?
-          props.auxiliar.map((producto) => (
-            <div key={producto._id} className="prod-container">
-              <Producto producto={producto} />
-            </div>
-          )):
-          <div className="noexiste-container">
-            Lo sentimos, el producto que estás buscando no existe. 😪
+          <div className="productos-container">
+            {props.auxiliar.length > 0 ? (
+              props.auxiliar.map((producto) => (
+                <div key={producto._id} className="prod-container">
+                  <Producto producto={producto} />
+                </div>
+              ))
+            ) : (
+              <div className="noexiste-container">
+                Lo sentimos, el producto que estás buscando no existe. 😪
+              </div>
+            )}
           </div>
-          }
-        </div>
         </div>
       </div>
     </>
