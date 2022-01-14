@@ -13,11 +13,13 @@
 }
 
 .producto-informacion__container{
+    
     margin: 1rem 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    
 }
 
 .producto-imagen__container{
@@ -38,6 +40,9 @@
 }
 
 .producto-informacion{
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    background-color: rgba(240, 255, 240, 0.158);
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -50,7 +55,7 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-start;
-    width: 40vw;
+    max-width: 40vw;
 }
 
 .pricing{
@@ -65,4 +70,9 @@
 
 .fila p{
     padding: .5rem;
+}
+.addcart-btn__container{
+    margin: .5rem;
+    display: flex;
+    justify-content: center;
 }

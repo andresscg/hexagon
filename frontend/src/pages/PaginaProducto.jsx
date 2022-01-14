@@ -86,7 +86,7 @@ const PaginaProducto = (props) => {
                         </div>
                       </div> 
                   )}
-                  <ListGroupItem>
+                  <div className="addcart-btn__container">
                     {props.cart.some((p) => p._id === props.producto._id) ? (
                       <Button
                         /* onClick={() => } */
@@ -110,7 +110,7 @@ const PaginaProducto = (props) => {
                           : "Add to Cart"}
                       </Button>
                     )}
-                  </ListGroupItem>
+                  </div>
                 </ListGroup>
               </Card>
             </div>
