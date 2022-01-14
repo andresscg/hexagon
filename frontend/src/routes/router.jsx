@@ -1,5 +1,5 @@
-import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom"
-import {useSelector} from "react-redux"
+import {Routes, Route, BrowserRouter} from "react-router-dom"
+import {connect} from "react-redux"
 import Productos from "../pages/Productos"
 import PaginaProducto from "../pages/PaginaProducto"
 import Home from "../pages/Home"
@@ -14,10 +14,12 @@ import AdminProducts from "../components/AdminPanel/AdminHome/AdminProducts/Admi
 import AdminHome from "../components/AdminPanel/AdminHome/AdminHome"
 import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProduct/NewProduct"
 import CartScreen from "../pages/CartScreen"
-import store from "../redux/store/store"
-export default function router() {
-  const admin = store.getState().authReducer.user.admin
-  const isLoading = store.getState().authReducer.isLoading
+import Filters from "../components/Filters/Filters"
+
+function router(props) {
+  const admin = props.user.admin
+  console.log(admin)
+  const isLoading = props.isLoading
 
   return (
     <>
@@ -49,9 +51,18 @@ export default function router() {
           <Route path="about" element={<About />} />
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="filters" element={<Filters />} />
+          <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
       </BrowserRouter>
     </>
   )
 }
+
+const mapStateToProps = (state) => ({
+  user: state.authReducer.user,
+  isLoading: state.authReducer.isLoading,
+})
+
+export default connect(mapStateToProps)(router)

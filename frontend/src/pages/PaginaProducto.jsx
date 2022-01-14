@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react"
+import React, {useEffect} from "react"
 import {useParams} from "react-router"
 import {
   Row,
@@ -8,7 +8,6 @@ import {
   Card,
   Button,
   ListGroupItem,
-  Form,
 } from "react-bootstrap"
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
@@ -24,7 +23,7 @@ const PaginaProducto = (props) => {
 
   useEffect(() => {
     props.fetchUnProducto(id)
-  }, [])
+  })
 
   return (
     <>
@@ -83,7 +82,7 @@ const PaginaProducto = (props) => {
                   <Row>
                     <Col>Cantidad</Col>
                     <Col>
-                      <Form.Control
+                      {/* <Form.Control
                         as="select"
                         value={qty}
                         onChange={(e) => setQty(e.target.value)}
@@ -95,21 +94,16 @@ const PaginaProducto = (props) => {
                             </option>
                           )
                         )}
-                      </Form.Control>
+                      </Form.Control> */}
                     </Col>
                   </Row>
                 </ListGroup.Item>
               )}
 
               <ListGroupItem>
-                {cart.some((p) => p._id === props.producto._id) ? (
+                {props.cart.some((p) => p._id === props.producto._id) ? (
                   <Button
-                    onClick={() => {
-                      dispatch({
-                        type: "REMOVE_FROM_CART",
-                        payload: props.producto,
-                      })
-                    }}
+                    /* onClick={() => } */
                     variant="danger"
                     className="btn-block"
                     type="button"
@@ -118,12 +112,9 @@ const PaginaProducto = (props) => {
                   </Button>
                 ) : (
                   <Button
-                    onClick={() => {
-                      dispatch({
-                        type: "ADD_TO_CART",
-                        payload: props.producto,
-                      })
-                    }}
+                    /* onClick={() => {
+                      
+                    }} */
                     className="btn-block"
                     type="button"
                     disabled={!props.producto.contadorStock}
@@ -145,6 +136,7 @@ const PaginaProducto = (props) => {
 const mapStateToProps = (state) => {
   return {
     producto: state.productoReducer.producto,
+    cart: state.cartReducer.cart,
   }
 }
 const mapDispatchToProps = {

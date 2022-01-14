@@ -5,13 +5,14 @@ import {connect} from "react-redux"
 import {useEffect} from "react"
 import UsersLG from "./Users/UsersLG/UsersLG"
 import UsersSM from "./Users/UsersSM/UsersSM"
+
 function AdminHome(props) {
   console.log(props.usersByDate)
   useEffect(() => {
     props.getUsersByDate()
   }, [])
   return (
-    <div style={{flex: 4, paddingTop: '15vh', backgroundColor: 'gray'}}>
+    <div style={{flex: 4, paddingTop: "15vh", backgroundColor: "gray"}}>
       <button onClick={props.getUsersByDate}>USERS</button>
       <AdminContent />
       <Chart
