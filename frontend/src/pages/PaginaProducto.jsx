@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react"
+import React, {useEffect} from "react"
 import {useParams} from "react-router"
 import {
   Row,
@@ -8,7 +8,6 @@ import {
   Card,
   Button,
   ListGroupItem,
-  Form,
 } from "react-bootstrap"
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
@@ -19,7 +18,7 @@ const PaginaProducto = (props) => {
 
   useEffect(() => {
     props.fetchUnProducto(id)
-  }, [])
+  })
 
   return (
     <>

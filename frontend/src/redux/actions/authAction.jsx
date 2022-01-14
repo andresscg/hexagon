@@ -86,10 +86,7 @@ const authAction = {
             payload: {authError: response.data.errors},
           })
           response.data.errors.isArray
-            ? response.data.errors.map((err) => {
-                console.log(err.message)
-                toast.error(err.message)
-              })
+            ? response.data.errors.map((err) => toast.error(err.message))
             : toast.error(response.data.errors)
         }
       } catch (error) {
