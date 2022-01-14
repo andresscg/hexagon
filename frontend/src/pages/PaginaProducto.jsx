@@ -116,7 +116,7 @@ const PaginaProducto = (props) => {
             </div>
         </div>
       </div>
-      <p className="btn btn-dark" onClick={() => window.history.back()}>
+      <p className="btn btn-primary" onClick={() => window.history.back()}>
         Back
       </p>
     </div>

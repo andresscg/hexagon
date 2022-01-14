@@ -13,6 +13,7 @@
 }
 
 .producto-informacion__container{
+    margin: 1rem 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -40,7 +41,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    width: 55vw;
+    width: 40vw;
     margin: 0 1rem;
     min-height: 100%;
 }
@@ -48,6 +49,12 @@
 .pricing-container{
     display: flex;
     flex-flow: column nowrap;
+    align-items: flex-start;
+    width: 40vw;
+}
+
+.pricing{
+    width: 100%;
 }
 
 .fila{
