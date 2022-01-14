@@ -12,7 +12,7 @@ const Productos = (props) => {
   return (
     <>
       <div className="container-all__productos">
-        <h1>Nuestros productos</h1>
+        <h1>Our Products</h1>
         <div className="container-all__filtros">
           <div className="container-filtros">
             {

@@ -7,7 +7,7 @@ const tokenHeader = {
   },
 }
 const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
-const addorGetProduct = rootUrl + "productos"
+const addorGetProduct = rootUrl + "productos/"
 const like = addorGetProduct + "/like/"
 
 const productoAction = {
