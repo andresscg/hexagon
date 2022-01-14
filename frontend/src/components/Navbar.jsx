@@ -67,24 +67,24 @@ const Navbar = (props) => {
         {props.token && (
           <Nav>
             <Dropdown>
-              <Dropdown.Toggle>
+              <Dropdown.Toggle className="shopping__cart">
                 <FaShoppingCart color="white" fontSize="25px" />
-                <Badge>{props.cart.length}</Badge>
+                <Badge className="cart__number">{props.cart.length}</Badge>
               </Dropdown.Toggle>
               <Dropdown.Menu style={{minWidth: 370}}>
                 {props.cart.length > 0 ? (
                   <>
                     {props.cart.map((prod) => (
-                      <span className="cartitem" key={prod._id}>
+                      <div className="cartItem" key={prod.item._id}>
                         <img
-                          src={prod.imagen}
+                          src={prod.item.imagen}
                           className="cartItemImg"
-                          alt={prod.nombre}
+                          alt={prod.item.nombre}
                         />
 
                         <div className="cartItemDetail">
-                          <span>{prod.nombre}</span>
-                          <span>${prod.precio}</span>
+                          <span>{prod.item.nombre}</span>
+                          <span>${prod.item.precio}</span>
                         </div>
 
                         <AiFillDelete
@@ -94,7 +94,7 @@ const Navbar = (props) => {
                             props.removeFromCart(prod)
                           }}
                         />
-                      </span>
+                      </div>
                     ))}
                     <Link to="/cart">
                       <Button style={{width: "95%", margin: "0 10px"}}>
@@ -139,7 +139,7 @@ const Navbar = (props) => {
   )
 }
 const mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
   return {
     user: state.authReducer.user,
     isAuth: state.authReducer.isAuth,
