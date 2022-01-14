@@ -1,13 +1,13 @@
 import React, {useEffect} from "react"
 import Producto from "../components/Producto"
-import {FormControl} from "react-bootstrap"
+import {Row, Col, Container, InputGroup, FormControl} from "react-bootstrap"
 import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
 
 const Productos = (props) => {
   useEffect(() => {
     props.listaProductos()
-  })
+  }, [])
 
   return (
     <>
@@ -15,7 +15,6 @@ const Productos = (props) => {
         <h1>Nuestros productos</h1>
         <div className="container-all__filtros">
           <div className="container-filtros">
-            <p>ACA VAN LOS FILTROS</p>
             {
               <FormControl
                 onChange={(e) =>

@@ -12,8 +12,15 @@ import {AiFillDelete} from "react-icons/ai"
 import {connect} from "react-redux"
 import Calificacion from "../components/Calificacion"
 import cartAction from "../redux/actions/cartAction"
+import Paypal from "../components/Paypal"
 
 const CartScreen = (props) => {
+  const [paypal, setPaypal] = useState(false)
+  let fecha = new Date()
+
+  const validar = () => {
+    setPaypal(true)
+  }
   const [total, setTotal] = useState()
   useEffect(() => {
     setTotal(
@@ -86,6 +93,33 @@ const CartScreen = (props) => {
           {" "}
           Proceed to Checkout
         </Button>
+      </div>
+      <div className="filters summary container d-flex flex-column">
+        <h3>¿Como pagáras?</h3>
+        <span className="title">Subtotal ({props.cart.length}) items</span>
+        <span style={{fontWeight: 700, fontSIze: 20}}> Total:${total}</span>
+        <div className="d-flex flex-row gap-5">
+          <label htmlFor="debito">Debito</label>
+          <input type="radio" id="debito" name="formapago" onClick />
+          <label htmlFor="tarjeta">Tarjeta</label>
+          <input type="radio" id="tarjeta" name="formapago" />
+          <label htmlFor="paypal">Paypal</label>
+          <input type="radio" id="paypal" name="formapago" />
+        </div>
+        <Button
+          className="my-4"
+          type="button"
+          onClick={validar}
+          disabled={props.cart.length === 0}
+        >
+          Proceed to Checkout
+        </Button>
+        {paypal && (
+          <Paypal
+            description={`Compra del dia ${fecha.toLocaleDateString()}en Hexagon`}
+            total={total}
+          />
+        )}
       </div>
     </div>
   )

@@ -19,64 +19,66 @@ const Producto = (props) => {
 
   return (
     <>
-      <div className="card-container">  
-          <div className="info-container">
-                <div className="img-container">
-                    <Link to={`/producto/${props.producto._id}`}>
-                      <img src={props.producto.imagen} variant="top" />
-                    </Link>
-                    <button className="btn-card">
-                            <Link to={`/producto/${props.producto._id}`}>
-                              Ver producto
-                            </Link>
-                    </button>
-                </div>
-            <div className="text-container">
-                <p>
-                  {props.producto.nombre}
-                </p>
-                <div className="price-card_container">
-                    <div className="price-container">
-                      <p>${props.producto.precio}</p>
-                    </div>
-                    <div className="addcart-container">
-                      {props.cart.some((p) => p.item._id === props.producto._id) ? (
-                        <button
-                        onClick={() => props.removeFromCart(props.producto)}
-                        className="btn-card"
-                        >
-                          Remove from Cart
-                        </button>
-                      ) : (
-                        <button
-                        onClick={() => props.addToCart(props.producto, props.user._id)}
-                        className="btn-card"
-                        disabled={!props.producto.contadorStock}
-                        >
-                          {!props.producto.contadorStock ? "Out of Stock" : "Add to Cart"}
-                        </button>
-                      )}
-                    </div>
-                </div>
-            </div>
-            <div className="fav-container">
-                <div className="like-container">
-                  <p>{likeProducts.length}</p>
+      <div className="card-container">
+        <div className="info-container">
+          <div className="img-container">
+            <Link to={`/shop/${props.producto._id}`}>
+              <img src={props.producto.imagen} variant="top" />
+            </Link>
+            <button className="btn-card">
+              <Link to={`/shop/${props.producto._id}`}>Ver producto</Link>
+            </button>
+          </div>
+          <div className="text-container">
+            <Link to={`/shop/${props.producto._id}`}>
+              <p className="text-container__title">{props.producto.nombre}</p>
+            </Link>
+            <div className="price-card__container">
+              <div className="price-container">
+                <p>${props.producto.precio}</p>
+              </div>
+              <div className="addcart-container">
+                {props.cart.some((p) => p.item._id === props.producto._id) ? (
                   <button
-                    className="boton-like"
-                    onClick={likeIcon ? likeDislikeProduct : null}
+                    onClick={() => props.removeFromCart(props.producto)}
+                    className="btn-card"
                   >
-                    <p className="like">{likes}</p>
+                    Remove from Cart
                   </button>
-                </div>
-                <div className="reseña-container">
-                  <Calificacion
-                    value={props.producto.calificacion}
-                    text={`${props.producto.numReseñas} reseñas`}
-                  />
-                </div>
+                ) : (
+                  <button
+                    onClick={() =>
+                      props.addToCart(props.producto, props.user._id)
+                    }
+                    className="btn-card"
+                    disabled={!props.producto.contadorStock}
+                  >
+                    {!props.producto.contadorStock
+                      ? "Out of Stock"
+                      : "Add to Cart"}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
+          <div className="fav-container">
+            <div className="like-container">
+              <p>{likeProducts.length}</p>
+              <button
+                className="boton-like"
+                onClick={likeIcon ? likeDislikeProduct : null}
+              >
+                <p className="like">{likes}</p>
+              </button>
+            </div>
+            <div className="reseña-container">
+              <Calificacion
+                value={props.producto.calificacion}
+                text={`${props.producto.numReseñas} reseñas`}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
