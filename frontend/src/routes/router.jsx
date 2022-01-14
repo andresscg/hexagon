@@ -1,10 +1,10 @@
 import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom"
-import {connect, useSelector} from "react-redux"
+import {useSelector} from "react-redux"
 import Productos from "../pages/Productos"
 import PaginaProducto from "../pages/PaginaProducto"
 import Home from "../pages/Home"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
+import Footer from '../components/Footer'
 import AdminPanel from "../components/AdminPanel/AdminPanel"
 import About from "../pages/About"
 import Shop from "../pages/Shop"
@@ -14,11 +14,9 @@ import AdminProducts from "../components/AdminPanel/AdminHome/AdminProducts/Admi
 import AdminHome from "../components/AdminPanel/AdminHome/AdminHome"
 import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProduct/NewProduct"
 import CartScreen from "../pages/CartScreen"
-
-function router(props) {
-  const admin = props.user.admin
-  console.log(admin)
-  const isLoading = props.isLoading
+export default function router() {
+  const admin = useSelector((state) => state.authReducer.user?.admin)
+  const isLoading = useSelector((state) => state.authReducer.isLoading)
 
   return (
     <>
@@ -27,8 +25,8 @@ function router(props) {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/page" element={<Page />} />
-          <Route path="/shop" element={<Productos />} />
-          <Route path="/shop/:id" element={<PaginaProducto />} />
+          <Route path="productos" element={<Productos />} />
+          <Route path="producto/:id" element={<PaginaProducto />} />
           <Route path="/cart" element={<CartScreen />} />
           {isLoading ? (
             <Route exact path="/" element={<Home />} />
@@ -50,17 +48,9 @@ function router(props) {
           <Route path="about" element={<About />} />
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
       </BrowserRouter>
     </>
   )
 }
-
-const mapStateToProps = (state) => ({
-  user: state.authReducer.user,
-  isLoading: state.authReducer.isLoading,
-})
-
-export default connect(mapStateToProps)(router)

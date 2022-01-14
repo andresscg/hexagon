@@ -8,8 +8,6 @@ import cartAction from "./redux/actions/cartAction"
 import {connect} from "react-redux"
 import {useEffect} from "react"
 
-import {CartProvider} from "react-use-cart"
-
 function App(props) {
   /* useEffect(() => {
     console.log(props.cart)
@@ -21,11 +19,9 @@ function App(props) {
   }, [props.cart])
   return (
     <>
-      <CartProvider>
-        <ToastContainer />
-        <LoginModal />
-        <Router />
-      </CartProvider>
+      <ToastContainer />
+      <LoginModal />
+      <Router />
     </>
   )
 }

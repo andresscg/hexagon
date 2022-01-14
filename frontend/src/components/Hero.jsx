@@ -14,7 +14,7 @@ const Hero = () => {
         </p>
         <Link to="/shop" className="heroInfo__btn">Go Shopping!</Link>
       </div>
-      <img src="/assets/hero-img.svg" alt="Phone Image" className='heroImg'/>
+      <img src="../../assets/hero-img.svg" alt="Phone Image" className='heroImg'/>
     </div>
   )
 }

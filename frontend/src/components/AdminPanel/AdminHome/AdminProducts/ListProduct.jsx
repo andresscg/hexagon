@@ -1,15 +1,6 @@
-import React, {useState} from "react"
-import {Button} from "react-bootstrap"
-import {BiShow, BiHide} from "react-icons/bi"
-import {FaEdit} from "react-icons/fa"
-import {MdOutlineHideSource} from "react-icons/md"
-import {RiDeleteBin5Fill} from "react-icons/ri"
+import React from "react"
 
 export default function ListProduct({user, index}) {
-  const [show, setShow] = useState(false)
-  const content = user.descripcion
-  const toShow = content ? content.substring(0, 50) : ""
-  console.log(toShow)
   return (
     <tr>
       <td>

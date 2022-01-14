@@ -23,9 +23,9 @@ function LoginModal(props) {
         </Modal.Header>
         {props.registerLogin ? <Login /> : <Register />}
 
-        <button className="btn btns-primary"onClick={props.HandleLoginRegisterModal}>
+        <Button onClick={props.HandleLoginRegisterModal}>
           {props.registerLogin ? "Registration" : "Login"}
-        </button>
+        </Button>
       </Modal>
     </div>
   )

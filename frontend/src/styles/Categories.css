@@ -15,32 +15,16 @@
 }
 
 .bg-blue {
-  background-image: linear-gradient(
-      rgba(68, 52, 148, 0.7),
-      rgba(68, 52, 148, 0.5)
-    ),
-    url("https://cdn.tmobile.com/content/dam/t-mobile/ntm/generic/pattern-abstract/full/bg-heroFull-multiple_phones_aerial.desktop.jpg");
+  background-image: linear-gradient(rgba(68, 52, 148, 0.7), rgba(68, 52, 148, 0.5)), url(../../assets/phones.jpg);
 }
 .bg-pink {
-  background-image: linear-gradient(
-      rgba(239, 47, 85, 0.7),
-      rgba(239, 47, 85, 0.5)
-    ),
-    url("https://cdn.thewirecutter.com/wp-content/media/2021/06/workout-headphones-2048px-2091.jpg?auto=webp&quality=60&crop=1.91:1&width=1200");
+  background-image: linear-gradient(rgba(239, 47, 85, 0.7), rgba(239, 47, 85, 0.5)), url('https://cdn.thewirecutter.com/wp-content/media/2021/06/workout-headphones-2048px-2091.jpg?auto=webp&quality=60&crop=1.91:1&width=1200');
 }
 .bg-orange {
-  background-image: linear-gradient(
-      rgba(251, 151, 40, 0.7),
-      rgba(251, 151, 40, 0.5)
-    ),
-    url("https://custom.casecompany.world/uploads/choice/collection-3D.png");
+  background-image: linear-gradient(rgba(251, 151, 40, 0.7), rgba(251, 151, 40, 0.5)), url('https://custom.casecompany.world/uploads/choice/collection-3D.png');
 }
 .bg-purple {
-  background-image: linear-gradient(
-      rgba(141, 35, 126, 0.7),
-      rgba(141, 35, 126, 0.5)
-    ),
-    url("https://www.isy-online.eu/fileadmin/user_upload/isy/Kategorien/01_Kategorie.png");
+  background-image: linear-gradient(rgba(141, 35, 126, 0.7), rgba(141, 35, 126, 0.5)), url('https://www.isy-online.eu/fileadmin/user_upload/isy/Kategorien/01_Kategorie.png');
 }
 
 .cards__name {
@@ -87,20 +71,19 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.categories__cards--title,
-.categories__cards--img {
+.categories__cards--title, .categories__cards--img {
   width: 25%;
   height: 250px;
   width: 100%;
 }
 
-.categories__cards--title {
+.categories__cards--title{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.categories__cards--img {
+.categories__cards--img{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

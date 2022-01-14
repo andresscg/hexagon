@@ -13,8 +13,13 @@ import {
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
+import {useState} from "react"
 
 const PaginaProducto = (props) => {
+  const stateCart = useContext(Cart)
+  const [state, dispatch] = stateCart
+  const {cart} = state
+
   let {id} = useParams()
 
   useEffect(() => {
@@ -78,7 +83,7 @@ const PaginaProducto = (props) => {
                   <Row>
                     <Col>Cantidad</Col>
                     <Col>
-                      {/* <Form.Control
+                      <Form.Control
                         as="select"
                         value={qty}
                         onChange={(e) => setQty(e.target.value)}
@@ -90,16 +95,21 @@ const PaginaProducto = (props) => {
                             </option>
                           )
                         )}
-                      </Form.Control> */}
+                      </Form.Control>
                     </Col>
                   </Row>
                 </ListGroup.Item>
               )}
 
               <ListGroupItem>
-                {props.cart.some((p) => p._id === props.producto._id) ? (
+                {cart.some((p) => p._id === props.producto._id) ? (
                   <Button
-                    /* onClick={() => } */
+                    onClick={() => {
+                      dispatch({
+                        type: "REMOVE_FROM_CART",
+                        payload: props.producto,
+                      })
+                    }}
                     variant="danger"
                     className="btn-block"
                     type="button"
@@ -108,9 +118,12 @@ const PaginaProducto = (props) => {
                   </Button>
                 ) : (
                   <Button
-                    /* onClick={() => {
-                      
-                    }} */
+                    onClick={() => {
+                      dispatch({
+                        type: "ADD_TO_CART",
+                        payload: props.producto,
+                      })
+                    }}
                     className="btn-block"
                     type="button"
                     disabled={!props.producto.contadorStock}
@@ -132,7 +145,6 @@ const PaginaProducto = (props) => {
 const mapStateToProps = (state) => {
   return {
     producto: state.productoReducer.producto,
-    cart: state.cartReducer.cart,
   }
 }
 const mapDispatchToProps = {

@@ -1,25 +1,24 @@
 .modal-title {
-  font-family: var(--headings-font) !important;
+  font-family: var(--headings-font)!important;
   text-transform: none !important;
-  text-align: center !important;
+  text-align: center!important;
   color: var(--secondary-light) !important;
 }
 
 .modal-header {
-  border-bottom: 2px solid var(--secondary) !important;
+  border-bottom: 2px solid var(--secondary)!important;
 }
 
 .modal-content {
-  background-color: var(--third) !important;
+  background-color: var(--third)!important;
   border-radius: 20px;
 }
 
-.login-body,
-.register-body {
+.login-body, .register-body {
   padding: 30px 40px;
 }
 
-.btns-primary {
+.btn-primary {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
   background-color: var(--secondary);
@@ -28,33 +27,25 @@
   font-size: 20px;
 }
 
-.btns-primary:hover {
+.btn-primary:hover {
   background-color: var(--secondary-light);
   color: var(--secondary);
 }
 
-.btns-primary:active {
-  background-color: var(--secondary);
-  color: var(--secondary-light);
-}
-
-.login-title,
-.register-title {
+.login-title, .register-title { 
   font-family: var(--headings-font);
   color: var(--white);
   text-align: center;
 }
 
-.login-subtitle,
-.register-subtitle {
+.login-subtitle, .register-subtitle{
   font-family: var(--text-font);
   color: var(--secondary-light);
   padding-bottom: 15px;
   text-align: center;
 }
 
-.btn-login,
-.btn-signup {
+.btn-login, .btn-signup {
   margin-right: 10px;
   padding: 5px 2px;
   border: 3px solid var(--secondary-dark);
@@ -64,7 +55,7 @@
 
 .btn-login::placeholder {
   font-family: var(--headings-font);
-  color: var(--primary);
+  color: var(--primary)
 }
 
 .form-container {
