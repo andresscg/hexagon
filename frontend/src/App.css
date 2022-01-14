@@ -130,8 +130,8 @@ a {
 .img-container img {
   margin-top: 2rem;
   max-width: 150px;
-  max-height: 200px;
-  object-fit: cover;
+  height: 200px;
+  object-fit: contain;
 }
 
 .text-container {
