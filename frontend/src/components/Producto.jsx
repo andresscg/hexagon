@@ -38,7 +38,7 @@ const Producto = (props) => {
               <img src={props.producto.imagen} variant="top" />
             </Link>
             <button className="btn-card">
-              <Link to={`/shop/${props.producto._id}`}>Ver producto</Link>
+              <Link to={`/shop/${props.producto._id}`}>See Details</Link>
             </button>
           </div>
           <div className="text-container">

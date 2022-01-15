@@ -21,7 +21,7 @@ const PaginaProducto = (props) => {
   })
 
   return (
-    <>
+    <div className="producto-container">
       <p className="btn btn-dark" onClick={() => window.history.back()}>
         Regresar
       </p>
@@ -124,7 +124,7 @@ const PaginaProducto = (props) => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
   )
 }
 
