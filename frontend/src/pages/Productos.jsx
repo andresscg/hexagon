@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
 import Producto from "../components/Producto"
-import {Row, Col, Container, InputGroup, FormControl} from "react-bootstrap"
 import {connect} from "react-redux"
+
 import productoAction from "../redux/actions/productoAction"
 
 const Productos = (props) => {
@@ -14,7 +14,7 @@ const Productos = (props) => {
       <div className="container-all__productos">
         <h1>Nuestros productos</h1>
         <div className="container-all__filtros">
-          <div className="container-filtros">
+          {/* <div className="container-filtros">
             {
               <FormControl
                 onChange={(e) =>
@@ -24,7 +24,7 @@ const Productos = (props) => {
                 aria-describedby="inputGroup-sizing-sm"
               />
             }
-          </div>
+          </div> */}
           <div className="productos-container">
             {props.auxiliar.length > 0 ? (
               props.auxiliar.map((producto) => (

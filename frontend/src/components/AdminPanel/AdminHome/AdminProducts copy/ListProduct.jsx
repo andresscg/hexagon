@@ -10,7 +10,6 @@ export default function ListProduct({user, index}) {
   const [show, setShow] = useState(false)
   const content = user.descripcion
   const toShow = content ? content.substring(0, 50) : ""
-  console.log(toShow)
   return (
     <tr>
       <td>{user.imagen}</td>

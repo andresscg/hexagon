@@ -18,7 +18,6 @@ import Filters from "../components/Filters/Filters"
 
 function router(props) {
   const admin = props.user.admin
-  console.log(admin)
   const isLoading = props.isLoading
 
   return (

@@ -11,11 +11,6 @@ import {useEffect} from "react"
 import {CartProvider} from "react-use-cart"
 
 function App(props) {
-  /* useEffect(() => {
-    console.log(props.cart)
-    if (props.cart.length === 0) props.refreshCart(localStorage.getItem("cart"))
-  }, []) */
-
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(props.cart))
   }, [props.cart])

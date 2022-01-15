@@ -4,12 +4,24 @@ import {Link} from "react-router-dom"
 import productoAction from "../redux/actions/productoAction"
 import cartAction from "../redux/actions/cartAction"
 import {connect} from "react-redux"
-import {Button} from "react-bootstrap"
+import {useCart} from "react-use-cart"
 
 const Producto = (props) => {
+  const {addItem, removeItem, items} = useCart()
+
+  const producto = {
+    id: props.producto._id,
+    price: props.producto.precio,
+    image: props.producto.imagen,
+    product: props.producto.nombre,
+    stock: props.producto.contadorStock,
+    rating: props.producto.calificacion,
+  }
+
   const [likeIcon, setLikeIcon] = useState(true)
   const [likeProducts, setlikeProduct] = useState(props.producto.likes)
 
+  console.log(items)
   const likeDislikeProduct = async () => {
     setLikeIcon(false)
   }
@@ -38,18 +50,16 @@ const Producto = (props) => {
                 <p>${props.producto.precio}</p>
               </div>
               <div className="addcart-container">
-                {props.cart.some((p) => p.item._id === props.producto._id) ? (
+                {items.some((p) => p.id === producto.id) ? (
                   <button
-                    onClick={() => props.removeFromCart(props.producto)}
+                    onClick={() => removeItem(producto.id)}
                     className="btn-card"
                   >
                     Remove from Cart
                   </button>
                 ) : (
                   <button
-                    onClick={() =>
-                      props.addToCart(props.producto, props.user._id)
-                    }
+                    onClick={() => addItem(producto)}
                     className="btn-card"
                     disabled={!props.producto.contadorStock}
                   >

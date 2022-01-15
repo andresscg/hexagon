@@ -18,7 +18,6 @@ const productoAction = {
         type: "FETCH_PRODUCTOS",
         payload: {productos: response.data.respuesta},
       })
-      console.log(response)
       return response.data
     }
   },
@@ -34,7 +33,6 @@ const productoAction = {
   },
 
   likeDislike: (token, id, idUsuario) => {
-    console.log(token)
     return async () => {
       try {
         const response = await axios.put(
@@ -60,7 +58,6 @@ const productoAction = {
           {imagen, nombre, descripcion, marca, categoria, stock},
           tokenHeader
         )
-        console.log(response)
       } catch (error) {
         console.log(error)
       }

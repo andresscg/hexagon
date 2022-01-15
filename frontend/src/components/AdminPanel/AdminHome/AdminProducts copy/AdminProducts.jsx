@@ -21,7 +21,6 @@ function AdminProducts(props) {
       .catch((error) => console.log(error))
   }, [])
 
-  console.log(data)
   return (
     <>
       <Link to="newproduct">New Product</Link>

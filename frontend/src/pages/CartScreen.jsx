@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import {
   Button,
   Col,
@@ -9,62 +9,56 @@ import {
   Row,
 } from "react-bootstrap"
 import {AiFillDelete} from "react-icons/ai"
-import {connect} from "react-redux"
 import Calificacion from "../components/Calificacion"
-import cartAction from "../redux/actions/cartAction"
 import Paypal from "../components/Paypal"
+import {useCart} from "react-use-cart"
+import {useNavigate} from "react-router-dom"
 
-const CartScreen = (props) => {
+export default function CartScreen(props) {
+  const {removeItem, items, totalItems, updateItemQuantity, cartTotal} =
+    useCart()
+
+  let navigate = useNavigate()
+  totalItems === 0 && navigate("/shop", {replace: true})
+
+  console.log(items)
+
   const [paypal, setPaypal] = useState(false)
   let fecha = new Date()
 
   const validar = () => {
     setPaypal(true)
   }
-  const [total, setTotal] = useState()
-  useEffect(() => {
-    setTotal(
-      props.cart.reduce(
-        (acc, curr) => acc + Number(curr.item.precio) * curr.qty,
-        0
-      )
-    )
-  }, [props.cart])
 
   return (
     <div className="home">
       <h2>Cart Items</h2>
-      <div className="productContainer">
-        <ListGroup key={props.cart._id}>
-          {props.cart.map((prop) => (
-            <ListGroupItem key={prop.item._id}>
+      <div className="productContainer" style={{zIndex: -100}}>
+        <ListGroup>
+          {items.map((prop) => (
+            <ListGroupItem key={prop.id}>
               <Row>
                 <Col md={2}>
-                  <Image
-                    src={prop.item.imagen}
-                    alt={prop.item.nombre}
-                    fluid
-                    rounded
-                  />
+                  <Image src={prop.image} alt={prop.product} fluid rounded />
                 </Col>
                 <Col md={2}>
-                  <span>{prop.item.nombre}</span>
+                  <span>{prop.product}</span>
                 </Col>
                 <Col md={2}>
-                  <span>${prop.item.precio}</span>
+                  <span>{prop.price}</span>
                 </Col>
                 <Col md={2}>
-                  <Calificacion rating={prop.item.calificacion} />
+                  <Calificacion value={prop.rating} />
                 </Col>
                 <Col md={2}>
                   <Form.Control
                     as="select"
-                    value={prop.qty}
+                    value={prop.quantity}
                     onChange={(e) => {
-                      props.changeCartQty(prop.item._id, e.target.value)
+                      updateItemQuantity(prop.id, Number(e.target.value))
                     }}
                   >
-                    {[...Array(prop.item.contadorStock).keys()].map((x) => (
+                    {[...Array(prop.stock).keys()].map((x) => (
                       <option key={x + 1}>{x + 1}</option>
                     ))}
                   </Form.Control>
@@ -72,7 +66,7 @@ const CartScreen = (props) => {
                 <Col md={2}>
                   <Button
                     onClick={() => {
-                      props.removeFromCart(prop)
+                      removeItem(prop.id)
                     }}
                     variant="light"
                     className="btn-block"
@@ -87,17 +81,20 @@ const CartScreen = (props) => {
         </ListGroup>
       </div>
       <div className="filters summary">
-        <span className="title">Subtotal ({props.cart.length}) items</span>
-        <span style={{fontWeight: 700, fontSIze: 20}}> Total:${total}</span>
-        <Button type="button" disabled={props.cart.length === 0}>
+        <span className="title">Subtotal ({totalItems}) items</span>
+        <span style={{fontWeight: 700, fontSIze: 20}}>
+          {" "}
+          Total: &#36;{cartTotal}
+        </span>
+        <Button type="button" disabled={totalItems === 0}>
           {" "}
           Proceed to Checkout
         </Button>
       </div>
       <div className="filters summary container d-flex flex-column">
         <h3>¿Como pagáras?</h3>
-        <span className="title">Subtotal ({props.cart.length}) items</span>
-        <span style={{fontWeight: 700, fontSIze: 20}}> Total:${total}</span>
+        <span className="title">Subtotal ({totalItems}) items</span>
+        <span style={{fontWeight: 700, fontSIze: 20}}> Total:{cartTotal}</span>
         <div className="d-flex flex-row gap-5">
           <label htmlFor="debito">Debito</label>
           <input type="radio" id="debito" name="formapago" onClick />
@@ -110,30 +107,17 @@ const CartScreen = (props) => {
           className="my-4"
           type="button"
           onClick={validar}
-          disabled={props.cart.length === 0}
+          disabled={totalItems === 0}
         >
           Proceed to Checkout
         </Button>
         {paypal && (
           <Paypal
             description={`Compra del dia ${fecha.toLocaleDateString()}en Hexagon`}
-            total={total}
+            total={cartTotal}
           />
         )}
       </div>
     </div>
   )
 }
-
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cartReducer.cart,
-  }
-}
-
-const mapDispatchToProps = {
-  removeFromCart: cartAction.removeFromCart,
-  changeCartQty: cartAction.changeCartQty,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartScreen)

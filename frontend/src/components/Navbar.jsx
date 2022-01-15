@@ -1,20 +1,18 @@
-import React, {useEffect, useContext} from "react"
+import React, {useEffect} from "react"
 import {Nav, Dropdown, Badge, Button} from "react-bootstrap"
 import {FaShoppingCart} from "react-icons/fa"
 import {AiFillDelete} from "react-icons/ai"
 import "../styles/Navbar.css"
-import Logout from "./Login/Logout"
 import {Link} from "react-router-dom"
 import "../styles/Navbar.css"
 import modalAction from "../redux/actions/modalAction"
 import {connect} from "react-redux"
 import authAction from "../redux/actions/authAction"
-import {DropdownButton} from "react-bootstrap"
-import LikedProducts from "./likedProducts"
-import EmailVerification from "./EmailVerification"
 import cartAction from "../redux/actions/cartAction"
+import {useCart} from "react-use-cart"
 
 const Navbar = (props) => {
+  const {removeItem, totalItems, items} = useCart()
   useEffect(() => {
     if (!props.token) {
       props.tokenVerify()
@@ -22,7 +20,7 @@ const Navbar = (props) => {
   }, [props.isLoading, props.token])
   return (
     <>
-      <div className="nav-container">
+      <div className="nav-container" style={{zIndex: 100}}>
         <img src="../../assets/logo.png" alt="logo" className="nav__logo" />
         <div className="nav__menu--navigation">
           <Link to="/" className="nav__menu--item">
@@ -64,82 +62,56 @@ const Navbar = (props) => {
             <Link to={"/admin"}>Admin</Link>
           )}
         </div>
-        {props.token && (
-          <Nav>
-            <Dropdown>
-              <Dropdown.Toggle>
-                <FaShoppingCart color="white" fontSize="25px" />
-                <Badge>{props.cart.length}</Badge>
-              </Dropdown.Toggle>
-              <Dropdown.Menu style={{minWidth: 370}}>
-                {props.cart.length > 0 ? (
-                  <>
-                    {props.cart.map((prod) => (
-                      <span className="cartitem" key={prod._id}>
-                        <img
-                          src={prod.imagen}
-                          className="cartItemImg"
-                          alt={prod.nombre}
-                        />
 
-                        <div className="cartItemDetail">
-                          <span>{prod.nombre}</span>
-                          <span>${prod.precio}</span>
-                        </div>
+        <Nav>
+          <Dropdown>
+            <Dropdown.Toggle>
+              <FaShoppingCart color="white" fontSize="25px" />
+              <Badge>{totalItems}</Badge>
+            </Dropdown.Toggle>
+            <Dropdown.Menu style={{minWidth: 370}}>
+              {totalItems ? (
+                <>
+                  {items.map((prod) => (
+                    <span className="cartitem" key={prod.id}>
+                      <img
+                        src={prod.image}
+                        className="cartItemImg"
+                        alt={prod.product}
+                        width={100}
+                      />
 
-                        <AiFillDelete
-                          fontSize="20px"
-                          style={{cursor: "pointer"}}
-                          onClick={() => {
-                            props.removeFromCart(prod)
-                          }}
-                        />
-                      </span>
-                    ))}
-                    <Link to="/cart">
-                      <Button style={{width: "95%", margin: "0 10px"}}>
-                        Go To Cart
-                      </Button>
-                    </Link>
-                  </>
-                ) : (
-                  <span style={{padding: 10}}>Cart is Empty</span>
-                )}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav>
-        )}
+                      <div className="cartItemDetail">
+                        <span>{prod.product}</span>
+                        <span>{prod.price}</span>
+                      </div>
+
+                      <AiFillDelete
+                        fontSize="20px"
+                        style={{cursor: "pointer"}}
+                        onClick={() => {
+                          removeItem(prod.id)
+                        }}
+                      />
+                    </span>
+                  ))}
+                  <Link to="/cart">
+                    <Button style={{width: "95%", margin: "0 10px"}}>
+                      Go To Cart
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <span style={{padding: 10}}>Cart is Empty</span>
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Nav>
       </div>
-      {/* <div className="nav__menu--sign">
-        {!props.isLoading && props.isAuth ? (
-          <>
-            <button onClick={() => props.logout()}>LOGOUT</button>
-            <img src={props.user.photo} width={50} heigth={50} />
-          </>
-        ) : (
-          <button onClick={() => props.showCloseModal()}>Login/Register</button>
-        )}
-
-        {!props.isLoading && props.isAuth && props.user?.admin && (
-          <Link to={"/admin"}>Admin</Link>
-        )}
-        {!props.isLoading && props.isAuth && !props.user?.EmailVerification && (
-          <EmailVerification />
-        )}
-      </div>
-      <DropdownButton id="dropdown-basic-button" title="Favorites">
-        {props.productos?.map((producto, index) => (
-          <LikedProducts key={index} producto={producto} />
-        ))}
-      </DropdownButton>
-      <Link className="btn btn-dark" to="/Productos">
-        productos
-      </Link> */}
     </>
   )
 }
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     user: state.authReducer.user,
     isAuth: state.authReducer.isAuth,

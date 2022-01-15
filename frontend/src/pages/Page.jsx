@@ -32,7 +32,6 @@ function Page() {
           <button
             onClick={() => {
               addItem(p)
-              console.log(items)
               updateItemQuantity(p.id, p.quantity + 500)
               setCartMetadata({user: 1})
             }}

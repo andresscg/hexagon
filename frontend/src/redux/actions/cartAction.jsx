@@ -26,7 +26,6 @@ const cartAction = {
   refreshCart: (products) => {
     return (dispatch, getState) => {
       const productsParse = JSON.parse(products)
-      console.log(productsParse)
       dispatch({
         type: "REFRESH_CART",
         payload: productsParse,

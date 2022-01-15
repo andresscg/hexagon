@@ -19,10 +19,8 @@ const authAction = {
     return async (dispatch, getState) => {
       try {
         const response = await axios.post(loginUrl, {email, password})
-        console.log(response)
         if (response.data.success) {
           getState().modalReducer.showModal = false
-          console.log(response)
           localStorage.setItem("token", response.data.token)
           dispatch({
             type: "auth@@USER",
@@ -64,7 +62,6 @@ const authAction = {
           photo,
           country,
         })
-        console.log(response)
         if (response.data.success && !response.data.errors) {
           getState().modalReducer.showModal = false
           localStorage.setItem("token", response.data.response.token)
@@ -103,7 +100,6 @@ const authAction = {
             Authorization: `Bearer ${token}`,
           },
         })
-        console.log(response)
         dispatch({
           type: "auth@@GET_USER_SUCCESS",
           payload: {
@@ -137,7 +133,6 @@ const authAction = {
   getUsers: () => {
     return async (dispatch, getState) => {
       const response = await axios.get(allUsers)
-      console.log(response)
       dispatch({type: "auth@@ALL_USERS", payload: response.data.response})
       return response
     }
@@ -145,7 +140,6 @@ const authAction = {
   getUsersByDate: () => {
     return async (dispatch, getState) => {
       const response = await axios.get(allUsersByDate)
-      console.log(response)
       dispatch({
         type: "auth@@ALL_USERS_BY_DATE",
         payload: response.data,

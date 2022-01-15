@@ -1,0 +1,31 @@
+.shop__container {
+  background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
+  padding: 15vh 0 20px 30px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.shop__top-bar {
+  display: flex;
+  justify-content: flex-end;
+  grid-column: 1 / 6;
+  grid-row: 1;
+}
+.shop__side-bar {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1;
+  grid-row: 2 / 3;
+}
+.shop__content {
+  overflow-y: scroll;
+  grid-column: 2 / 7;
+  grid-row: 2 / 3;
+}
+
+.shop__top-bar--sort {
+  display: flex;
+  height: min-content;
+  gap: 10px;
+}
