@@ -13,11 +13,7 @@ import {useCart} from "react-use-cart"
 
 const Navbar = (props) => {
   const {removeItem, totalItems, items} = useCart()
-  useEffect(() => {
-    if (!props.token) {
-      props.tokenVerify()
-    }
-  }, [props.isLoading, props.token])
+
   return (
     <>
       <div className="nav-container" style={{zIndex: 100}}>
@@ -81,9 +77,12 @@ const Navbar = (props) => {
                         width={100}
                       />
 
-                      <div className="cartItemDetail">
+                      <div className="cartItemDetail" style={{gap: 10}}>
                         <span>{prod.product}</span>
                         <span>{prod.price}</span>
+                        <span style={{backgroundColor: "#000000"}}>
+                          {prod.quantity}
+                        </span>
                       </div>
 
                       <AiFillDelete

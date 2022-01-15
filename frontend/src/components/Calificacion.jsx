@@ -2,8 +2,6 @@ import React from "react"
 import {BsStarFill, BsStarHalf, BsStar} from "react-icons/bs"
 
 const Calificacion = ({value, text, color}) => {
-  console.log(value)
-
   return (
     <div className="calificacion">
       <span style={{color}}>

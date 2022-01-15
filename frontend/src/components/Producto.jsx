@@ -21,7 +21,6 @@ const Producto = (props) => {
   const [likeIcon, setLikeIcon] = useState(true)
   const [likeProducts, setlikeProduct] = useState(props.producto.likes)
 
-  console.log(items)
   const likeDislikeProduct = async () => {
     setLikeIcon(false)
   }

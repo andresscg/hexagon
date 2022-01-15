@@ -17,7 +17,7 @@ import CartScreen from "../pages/CartScreen"
 import Filters from "../components/Filters/Filters"
 
 function router(props) {
-  const admin = props.user.admin
+  const admin = props.user?.admin || false
   const isLoading = props.isLoading
 
   return (

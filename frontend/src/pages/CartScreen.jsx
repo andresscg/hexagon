@@ -15,8 +15,14 @@ import {useCart} from "react-use-cart"
 import {useNavigate} from "react-router-dom"
 
 export default function CartScreen(props) {
-  const {removeItem, items, totalItems, updateItemQuantity, cartTotal} =
-    useCart()
+  const {
+    emptyCart,
+    removeItem,
+    items,
+    totalItems,
+    updateItemQuantity,
+    cartTotal,
+  } = useCart()
 
   let navigate = useNavigate()
   totalItems === 0 && navigate("/shop", {replace: true})
@@ -86,9 +92,14 @@ export default function CartScreen(props) {
           {" "}
           Total: &#36;{cartTotal}
         </span>
-        <Button type="button" disabled={totalItems === 0}>
-          {" "}
-          Proceed to Checkout
+
+        <Button
+          className="my-4"
+          type="button"
+          onClick={emptyCart}
+          disabled={totalItems === 0}
+        >
+          Borrar carrito
         </Button>
       </div>
       <div className="filters summary container d-flex flex-column">
@@ -111,6 +122,7 @@ export default function CartScreen(props) {
         >
           Proceed to Checkout
         </Button>
+
         {paypal && (
           <Paypal
             description={`Compra del dia ${fecha.toLocaleDateString()}en Hexagon`}
