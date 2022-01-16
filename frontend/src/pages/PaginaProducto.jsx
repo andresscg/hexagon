@@ -12,7 +12,7 @@ import {
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
-import '../styles/Producto.css'
+import '../styles/paginaProducto.css'
 
 const PaginaProducto = (props) => {
   let {id} = useParams()
