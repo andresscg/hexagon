@@ -1,5 +1,4 @@
 import React, {useRef, useEffect} from "react"
-import {useNavigate} from "react-router-dom"
 import {toast} from "react-toastify"
 // vendedor: sb-jpljg11313263@business.example.com
 // Password: >z7cl->A

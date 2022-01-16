@@ -20,6 +20,7 @@ const authAction = {
       try {
         const response = await axios.post(loginUrl, {email, password})
         if (response.data.success) {
+          console.log("guardate")
           localStorage.setItem("token", response.data.token)
           console.log(response)
           getState().modalReducer.showModal = false
@@ -115,7 +116,6 @@ const authAction = {
         const token =
           localStorage.getItem("token") || getState().authReducer.token
         if (token) {
-          localStorage.removeItem("token")
           dispatch({
             type: "auth@@GET_USER_FAIL",
             payload: {user: null, token: null, authError: error.message},
