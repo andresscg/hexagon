@@ -1,19 +1,11 @@
 import React, {useEffect, useState} from "react"
 import {useParams} from "react-router"
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  ListGroupItem,
-  Form,
-} from "react-bootstrap"
+import {ListGroup, Card, Button, Form} from "react-bootstrap"
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
 import {useCart} from "react-use-cart"
+import "../styles/paginaProducto.css"
 
 const PaginaProducto = (props) => {
   let {id} = useParams()
@@ -36,15 +28,12 @@ const PaginaProducto = (props) => {
   })
 
   return (
-    <div className="producto-container">
-      <p className="btn btn-dark" onClick={() => window.history.back()}>
-        Regresar
-      </p>
-      <Row>
-        <Col md={6}>
-          <Image src={producto.image} alt={producto.product} fluid />
-        </Col>
-        <Col md={3}>
+    <div className="producto-pagina__container">
+      <div className="producto-informacion__container">
+        <div className="producto-imagen__container">
+          <img src={producto.image} alt={producto.product} />
+        </div>
+        <div className="producto-informacion">
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h3>{producto.product}</h3>
@@ -60,30 +49,24 @@ const PaginaProducto = (props) => {
               Descripcion: {props.producto.descripcion}
             </ListGroup.Item>
           </ListGroup>
-        </Col>
-        <Col md={3}>
-          <Card>
-            <ListGroup variant="flush">
-              <ListGroupItem>
-                <Row>
-                  <Col>Price:</Col>
-                  <Col>
+          <div className="pricing-container">
+            <Card className="pricing">
+              <ListGroup variant="flush">
+                <div className="fila">
+                  <p>Price:</p>
+                  <p>
                     <strong>$ {producto.price}</strong>
-                  </Col>
-                </Row>
-              </ListGroupItem>
-              <ListGroupItem>
-                <Row>
-                  <Col>Estado:</Col>
-                  <Col>{producto.stock > 0 ? "In Stock" : "out of stock"}</Col>
-                </Row>
-              </ListGroupItem>
+                  </p>
+                </div>
+                <div className="fila">
+                  <p>Estado:</p>
+                  <p>{producto.stock > 0 ? "In Stock" : "out of stock"}</p>
+                </div>
 
-              {props.producto.contadorStock > 0 && (
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Cantidad</Col>
-                    <Col>
+                {props.producto.contadorStock > 0 && (
+                  <div className="fila">
+                    <p>Cantidad</p>
+                    <div>
                       <Form.Control
                         as="select"
                         value={qty}
@@ -95,38 +78,38 @@ const PaginaProducto = (props) => {
                           </option>
                         ))}
                       </Form.Control>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              )}
-
-              <ListGroupItem>
-                {items.some((p) => p.id === producto.id) ? (
-                  <Button
-                    onClick={() => removeItem(producto.id)}
-                    variant="danger"
-                    className="btn-block"
-                    type="button"
-                  >
-                    Remove from Cart
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => addItem(producto, qty)}
-                    className="btn-block"
-                    type="button"
-                    disabled={!props.producto.contadorStock}
-                  >
-                    {!props.producto.contadorStock
-                      ? "Out of Stock"
-                      : "Add to Cart"}
-                  </Button>
+                    </div>
+                  </div>
                 )}
-              </ListGroupItem>
-            </ListGroup>
-          </Card>
-        </Col>
-      </Row>
+
+                <div className="addcart-btn__container">
+                  {items.some((p) => p.id === producto.id) ? (
+                    <Button
+                      onClick={() => removeItem(producto.id)}
+                      variant="danger"
+                      className="btn-block"
+                      type="button"
+                    >
+                      Remove from Cart
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => addItem(producto, qty)}
+                      className="btn-block"
+                      type="button"
+                      disabled={!props.producto.contadorStock}
+                    >
+                      {!props.producto.contadorStock
+                        ? "Out of Stock"
+                        : "Add to Cart"}
+                    </Button>
+                  )}
+                </div>
+              </ListGroup>
+            </Card>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

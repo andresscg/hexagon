@@ -1,5 +1,7 @@
 .shop__container {
   background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 15vh 0 20px 30px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);

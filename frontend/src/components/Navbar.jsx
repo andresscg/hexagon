@@ -61,15 +61,15 @@ const Navbar = (props) => {
 
         <Nav>
           <Dropdown>
-            <Dropdown.Toggle>
+            <Dropdown.Toggle className="shopping__cart">
               <FaShoppingCart color="white" fontSize="25px" />
-              <Badge>{totalItems}</Badge>
+              <Badge className="cart__number">{totalItems}</Badge>
             </Dropdown.Toggle>
             <Dropdown.Menu style={{minWidth: 370}}>
               {totalItems ? (
                 <>
                   {items.map((prod) => (
-                    <span className="cartitem" key={prod.id}>
+                    <span className="cartItem" key={prod.id}>
                       <img
                         src={prod.image}
                         className="cartItemImg"

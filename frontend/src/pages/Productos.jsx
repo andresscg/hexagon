@@ -3,6 +3,7 @@ import Producto from "../components/Producto"
 import {connect} from "react-redux"
 
 import productoAction from "../redux/actions/productoAction"
+import '../styles/Producto.css'
 
 const Productos = (props) => {
   useEffect(() => {
