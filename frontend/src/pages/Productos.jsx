@@ -9,13 +9,24 @@ import "../styles/Producto.css"
 const Productos = (props) => {
   useEffect(() => {
     props.filters()
-  }, [props.min, props.max, props.search, props.sort])
+  }, [
+    props.min,
+    props.max,
+    props.search,
+    props.sort,
+    props.categories,
+    props.brands,
+  ])
 
   return (
     <>
       <div className="container-all__productos">
         <div className="container-all__filtros">
-          <div className="productos-container">
+          <div
+            className={
+              props.grid ? "productos-container grid" : "productos-container"
+            }
+          >
             {props.auxiliar.length > 0 ? (
               props.auxiliar.map((producto) => (
                 <div key={producto._id} className="prod-container">
@@ -38,8 +49,11 @@ const mapStateToProps = (state) => {
   return {
     min: state.productoReducer.min,
     max: state.productoReducer.max,
+
     search: state.productoReducer.search,
     sort: state.productoReducer.sort,
+    categories: state.productoReducer.categories,
+    brands: state.productoReducer.brands,
     auxiliar: state.productoReducer.filtered,
   }
 }

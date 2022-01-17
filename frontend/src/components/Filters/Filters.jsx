@@ -1,15 +1,18 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import productoAction from "../../redux/actions/productoAction"
 import {connect} from "react-redux"
 import "../../styles/Filters.css"
 import "../../styles/ShopContainer.css"
 import SideBarDrawer from "./SideBarDrawer"
 import Productos from "../../pages/Productos"
-import {FormControl} from "react-bootstrap"
+import {Button, FormControl} from "react-bootstrap"
 import useWindowDimensions from "../../hooks/useWindowDimensions"
 import SideBarFilter from "./SideBarFilter"
+import {BsFillGrid3X3GapFill} from "react-icons/bs"
+import {FaList} from "react-icons/fa"
 
 function Filters(props) {
+  const [grid, setGrid] = useState(false)
   const {width} = useWindowDimensions()
   useEffect(() => {
     !props.auxiliar[1] && props.listaProductos()
@@ -36,9 +39,19 @@ function Filters(props) {
               sort={props.sortProductos}
             />
           )}
+          <div className="shop__top-bar--sort">
+            <p onClick={() => setGrid(false)}>Ver en lista</p>
+            <Button onClick={() => setGrid(false)}>
+              <FaList onClick={() => setGrid(false)} />
+            </Button>
+            <p onClick={() => setGrid(true)}>Ver en grilla</p>
+            <Button onClick={() => setGrid(true)}>
+              <BsFillGrid3X3GapFill onClick={() => setGrid(true)} />
+            </Button>
+          </div>
         </div>
         <div className="shop__content">
-          <Productos products={props.sorted} />
+          <Productos products={props.sorted} grid={grid} />
         </div>
       </div>
     </div>

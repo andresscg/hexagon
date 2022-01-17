@@ -6,8 +6,6 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
 import SortIcon from "@mui/icons-material/Sort"
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
 import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
-import {BsFillGrid3X3GapFill} from "react-icons/bs"
-import {FaList} from "react-icons/fa"
 
 export default function SideBarFilter(props) {
   const [sortName, setSortName] = useState(false)
@@ -84,13 +82,6 @@ export default function SideBarFilter(props) {
             style={{cursor: "pointer"}}
             onClick={() => handleSort("like")}
           />
-        </div>
-
-        <div className="shop__top-bar--sort">
-          <p>Ver en lista</p>
-          <FaList />
-          <p>Ver en grilla</p>
-          <BsFillGrid3X3GapFill />
         </div>
       </>
     </>
