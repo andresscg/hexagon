@@ -10,29 +10,35 @@ import useWindowDimensions from "../../hooks/useWindowDimensions"
 import SideBarFilter from "./SideBarFilter"
 
 function Filters(props) {
-  const {height, width} = useWindowDimensions()
-  console.log(width)
+  const {width} = useWindowDimensions()
   useEffect(() => {
-    props.fetchearProductos()
+    !props.auxiliar[1] && props.listaProductos()
+    props.search("")
   }, [])
 
   return (
     <div className="shop__main">
       <FormControl
-        onChange={(e) => props.filtro(e.target.value.toLowerCase().trim())}
+        onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
         placeholder="FIND YOUR PRODUCT"
         aria-describedby="inputGroup-sizing-sm"
       />
       <div className="shop__container" style={{height: "100vh"}}>
         <div className="shop__side-bar">
           {width >= 1300 ? (
-            <SideBarFilter productos={props.productos} />
+            <SideBarFilter
+              productos={props.productos}
+              sort={props.sortProductos}
+            />
           ) : (
-            <SideBarDrawer productos={props.productos} filtro={props.filtro} />
+            <SideBarDrawer
+              productos={props.productos}
+              sort={props.sortProductos}
+            />
           )}
         </div>
         <div className="shop__content">
-          <Productos />
+          <Productos products={props.sorted} />
         </div>
       </div>
     </div>
@@ -40,14 +46,17 @@ function Filters(props) {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     productos: state.productoReducer.productos,
+    auxiliar: state.productoReducer.filtered,
   }
 }
 
 const mapDispatchToProps = {
-  fetchearProductos: productoAction.fetchearProductos,
-  filtro: productoAction.filtro,
+  listaProductos: productoAction.fetchearProductos,
+  search: productoAction.search,
+  sortProductos: productoAction.sortProductos,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters)

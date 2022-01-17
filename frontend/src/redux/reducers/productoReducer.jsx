@@ -2,7 +2,11 @@ const initialState = {
   productos: [],
   auxiliar: [],
   producto: [],
-  searched: [],
+  min: 0,
+  max: 1,
+  search: "",
+  sort: (a, b) => a.nombre.localeCompare(b.nombre),
+  filtered: [],
 }
 
 const productoReducer = (state = initialState, action) => {
@@ -12,7 +16,7 @@ const productoReducer = (state = initialState, action) => {
         ...state,
         productos: action.payload.productos,
         auxiliar: action.payload.productos,
-        searched: action.payload.productos,
+        filtered: action.payload.productos,
         producto: action.payload.productos,
       }
 
@@ -22,16 +26,36 @@ const productoReducer = (state = initialState, action) => {
         producto: action.payload.respuesta,
         success: action.payload.success,
       }
+
+    case "RANGE_PRICE":
+      return {
+        ...state,
+        min: action.payload.min,
+        max: action.payload.max,
+      }
     case "SEARCH":
       return {
         ...state,
-        searched: state.auxiliar.filter((producto) =>
-          producto.nombre
-            .toLowerCase()
-            .includes(action.payload.search.toLowerCase())
-        ),
+        search: action.payload.search,
       }
+    case "SORT":
+      return {
+        ...state,
+        sort: action.payload,
+      }
+    case "FILTERS":
+      const ranged = state.productos.filter(
+        (a) => a.precio >= state.min && a.precio <= state.max
+      )
+      const sorted = ranged.slice().sort(state.sort)
 
+      const filtered = sorted.filter((producto) =>
+        producto.nombre.toLowerCase().includes(state.search.toLowerCase())
+      )
+      return {
+        ...state,
+        filtered: filtered,
+      }
     default:
       return state
   }

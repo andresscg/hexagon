@@ -4,9 +4,22 @@ import {Link} from "react-router-dom"
 import productoAction from "../redux/actions/productoAction"
 import {connect} from "react-redux"
 import {useCart} from "react-use-cart"
+import Swal from "sweetalert2"
 
 const Producto = (props) => {
   const {addItem, removeItem, items} = useCart()
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer)
+      toast.addEventListener("mouseleave", Swal.resumeTimer)
+    },
+  })
 
   const producto = {
     id: props.producto._id,
@@ -22,6 +35,16 @@ const Producto = (props) => {
 
   const likeDislikeProduct = async () => {
     setLikeIcon(false)
+    if (!props.isAuth) {
+      Toast.fire({
+        icon: "error",
+        title: "You need to be logged in to like",
+      })
+    } else {
+      let response = await props.likeDislike(props.producto._id, props.user._id)
+      setlikeProduct(response)
+    }
+    setLikeIcon(true)
   }
 
   let likes = likeProducts.includes(props.user && props.user._id) ? "❤" : "🤍"
@@ -94,6 +117,7 @@ const Producto = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    isAuth: state.authReducer.isAuth,
     user: state.authReducer.user,
   }
 }

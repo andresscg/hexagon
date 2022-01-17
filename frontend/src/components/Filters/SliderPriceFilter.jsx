@@ -1,13 +1,20 @@
 import {Slider} from "@mui/material"
 import {Box} from "@mui/system"
-import React, {useState} from "react"
+import {connect} from "react-redux"
 
-export default function SliderPriceFilter(props) {
+import React, {useEffect, useState} from "react"
+import productoAction from "../../redux/actions/productoAction"
+function SliderPriceFilter(props) {
+  useEffect(() => {
+    props.rangePrice(maxPrice, minPrice)
+  }, [])
   const maxPrice = props.productos.sort((b, a) => a.precio - b.precio)[0].precio
   const minPrice = props.productos.sort((a, b) => a.precio - b.precio)[0].precio
   const [value1, setValue1] = useState([minPrice, maxPrice])
 
   const handleChange1 = (event, newValue, activeThumb) => {
+    props.rangePrice(value1[1], value1[0])
+
     if (!Array.isArray(newValue)) {
       return
     }
@@ -36,3 +43,8 @@ export default function SliderPriceFilter(props) {
     </div>
   )
 }
+
+const mapDispatchToProps = {
+  rangePrice: productoAction.rangePrice,
+}
+export default connect(null, mapDispatchToProps)(SliderPriceFilter)

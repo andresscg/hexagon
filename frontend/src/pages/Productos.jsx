@@ -1,3 +1,4 @@
+import {max} from "moment"
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import Producto from "../components/Producto"
@@ -7,16 +8,16 @@ import "../styles/Producto.css"
 
 const Productos = (props) => {
   useEffect(() => {
-    props.listaProductos()
-  }, [])
+    props.filters()
+  }, [props.min, props.max, props.search, props.sort])
 
   return (
     <>
       <div className="container-all__productos">
         <div className="container-all__filtros">
           <div className="productos-container">
-            {props.searched.length > 0 ? (
-              props.searched.map((producto) => (
+            {props.auxiliar.length > 0 ? (
+              props.auxiliar.map((producto) => (
                 <div key={producto._id} className="prod-container">
                   <Producto producto={producto} />
                 </div>
@@ -35,13 +36,17 @@ const Productos = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    searched: state.productoReducer.searched,
+    min: state.productoReducer.min,
+    max: state.productoReducer.max,
+    search: state.productoReducer.search,
+    sort: state.productoReducer.sort,
+    auxiliar: state.productoReducer.filtered,
   }
 }
 
 const mapDispatchToProps = {
   listaProductos: productoAction.fetchearProductos,
-  filtro: productoAction.filtro,
+  filters: productoAction.filters,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productos)
