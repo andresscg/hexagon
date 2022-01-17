@@ -27,7 +27,7 @@ function router(props) {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/page" element={<Page />} />
-          <Route path="/shop" element={<Productos />} />
+          <Route path="/shop" element={<Filters />} />
           <Route path="/shop/:id" element={<PaginaProducto />} />
           <Route path="/cart" element={<CartScreen />} />
           {isLoading ? (
@@ -47,10 +47,9 @@ function router(props) {
           ) : (
             <Route path="about" element={<About />} />
           )}
-          <Route path="about" element={<About />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="filters" element={<Filters />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
