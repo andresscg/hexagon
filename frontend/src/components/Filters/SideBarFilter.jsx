@@ -5,8 +5,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
 import {FaSortAlphaDownAlt} from "react-icons/fa"
 import {FaSortAlphaDown} from "react-icons/fa"
-import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
-import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
+import { AiFillLike, AiFillDislike } from "react-icons/ai"
 
 export default function SideBarFilter(props) {
   const [sortName, setSortName] = useState(false)
