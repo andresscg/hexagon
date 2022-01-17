@@ -24,38 +24,38 @@ const {
 } = productosController
 
 const contactEmail = nodemailer.createTransport({
-  service: 'gmail',
-  auth:{
-    user: 'andresolakase29@gmail.com',
-    pass: process.env.EMAIL_PASS
+  service: "Gmail",
+  auth: {
+    user: "andresolakase29@gmail.com",
+    pass: process.env.EMAIL_PASS,
+  },
+})
+
+contactEmail.verify((err) => {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log("Ready to send")
   }
 })
 
-contactEmail.verify(err => {
-  if(err){
-    console.log(err);
-  }else {
-    console.log('Ready to send')
-  }
-})
-
-router.route('/contact').post((req, res) => {
+router.route("/contact").post((req, res) => {
   const {name, email, message} = req.body
   const mail = {
     from: name,
-    to: 'useremailverifyHexagon@gmail.com',
-    subject: 'Contact Form Submission',
+    to: "useremailverifyHexagon@gmail.com",
+    subject: "Contact Form Submission",
     html: `
       <p>Name: ${name}</p>
       <p>Email: ${email}</p>
       <p>Message: ${message}</p>
-    `
+    `,
   }
   contactEmail.sendMail(mail, (error) => {
-    if(error){
-      res.json({status: 'Error sending maiil'})
-    }else{
-      res.json({status: 'Message sent!'})
+    if (error) {
+      res.json({status: "Error sending maiil"})
+    } else {
+      res.json({status: "Message sent!"})
     }
   })
 })
