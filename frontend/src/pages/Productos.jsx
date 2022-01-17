@@ -1,31 +1,32 @@
+import {max} from "moment"
 import React, {useEffect} from "react"
-import Producto from "../components/Producto"
-import {Row, Col, Container, InputGroup, FormControl} from "react-bootstrap"
 import {connect} from "react-redux"
+import Producto from "../components/Producto"
 import productoAction from "../redux/actions/productoAction"
+
+import "../styles/Producto.css"
 
 const Productos = (props) => {
   useEffect(() => {
-    props.listaProductos()
-  }, [])
+    props.filters()
+  }, [
+    props.min,
+    props.max,
+    props.search,
+    props.sort,
+    props.categories,
+    props.brands,
+  ])
 
   return (
     <>
       <div className="container-all__productos">
-        <h1>Nuestros productos</h1>
         <div className="container-all__filtros">
-          <div className="container-filtros">
-            {
-              <FormControl
-                onChange={(e) =>
-                  props.filtro(e.target.value.toLowerCase().trim())
-                }
-                placeholder="FIND YOUR PRODUCT"
-                aria-describedby="inputGroup-sizing-sm"
-              />
+          <div
+            className={
+              props.grid ? "productos-container grid" : "productos-container"
             }
-          </div>
-          <div className="productos-container">
+          >
             {props.auxiliar.length > 0 ? (
               props.auxiliar.map((producto) => (
                 <div key={producto._id} className="prod-container">
@@ -34,7 +35,7 @@ const Productos = (props) => {
               ))
             ) : (
               <div className="noexiste-container">
-                Lo sentimos, el producto que estás buscando no existe. 😪
+                Sorry, the product you are looking for does not exist. 😪
               </div>
             )}
           </div>
@@ -46,14 +47,20 @@ const Productos = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auxiliar: state.productoReducer.auxiliar,
-    cart: state.cartReducer.cart,
+    min: state.productoReducer.min,
+    max: state.productoReducer.max,
+
+    search: state.productoReducer.search,
+    sort: state.productoReducer.sort,
+    categories: state.productoReducer.categories,
+    brands: state.productoReducer.brands,
+    auxiliar: state.productoReducer.filtered,
   }
 }
 
 const mapDispatchToProps = {
   listaProductos: productoAction.fetchearProductos,
-  filtro: productoAction.filtro,
+  filters: productoAction.filters,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productos)

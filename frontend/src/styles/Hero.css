@@ -71,3 +71,16 @@
   right: 0;
   left: 0;
 }
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1200px){
+  .heroInfo__heading{
+    font-size: 48px;
+  }
+  .heroInfo__subtitle{
+    font-size: 18px;
+  }
+  .heroInfo__btn{
+    font-size: 20px;
+  }
+}

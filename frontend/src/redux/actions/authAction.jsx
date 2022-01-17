@@ -19,11 +19,11 @@ const authAction = {
     return async (dispatch, getState) => {
       try {
         const response = await axios.post(loginUrl, {email, password})
-        console.log(response)
         if (response.data.success) {
-          getState().modalReducer.showModal = false
-          console.log(response)
+          console.log("guardate")
           localStorage.setItem("token", response.data.token)
+          console.log(response)
+          getState().modalReducer.showModal = false
           dispatch({
             type: "auth@@USER",
             payload: {
@@ -64,7 +64,6 @@ const authAction = {
           photo,
           country,
         })
-        console.log(response)
         if (response.data.success && !response.data.errors) {
           getState().modalReducer.showModal = false
           localStorage.setItem("token", response.data.response.token)
@@ -96,14 +95,14 @@ const authAction = {
   },
   tokenVerify: () => {
     return async (dispatch, getState) => {
-      const token = localStorage.getItem("token")
+      const token =
+        localStorage.getItem("token") || getState().authReducer.token
       try {
         const response = await axios.get(tokenAuth, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
-        console.log(response)
         dispatch({
           type: "auth@@GET_USER_SUCCESS",
           payload: {
@@ -113,8 +112,9 @@ const authAction = {
           },
         })
       } catch (error) {
+        const token =
+          localStorage.getItem("token") || getState().authReducer.token
         if (token) {
-          /* localStorage.removeItem("token") */
           dispatch({
             type: "auth@@GET_USER_FAIL",
             payload: {user: null, token: null, authError: error.message},
@@ -137,7 +137,6 @@ const authAction = {
   getUsers: () => {
     return async (dispatch, getState) => {
       const response = await axios.get(allUsers)
-      console.log(response)
       dispatch({type: "auth@@ALL_USERS", payload: response.data.response})
       return response
     }
@@ -145,7 +144,6 @@ const authAction = {
   getUsersByDate: () => {
     return async (dispatch, getState) => {
       const response = await axios.get(allUsersByDate)
-      console.log(response)
       dispatch({
         type: "auth@@ALL_USERS_BY_DATE",
         payload: response.data,

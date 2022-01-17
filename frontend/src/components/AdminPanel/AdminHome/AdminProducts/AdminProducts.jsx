@@ -9,14 +9,13 @@ import ListProduct from "./ListProduct"
 
 function AdminProducts(props) {
   const [data, setData] = useState([])
-  useEffect(() => {
+  /* useEffect(() => {
     props
       .fetchearProductos()
       .then((res) => setData(res.respuesta))
       .catch((error) => console.log(error))
-  }, [])
+  }, []) */
 
-  console.log(data)
   return (
     <>
       <Link to="newproduct">New Product</Link>

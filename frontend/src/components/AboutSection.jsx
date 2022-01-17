@@ -27,7 +27,7 @@ const AboutSection = () => {
               />
             </div>
             <div className="feature">
-              <div className="feature__name">Great Shipping Prices</div>
+              <div className="feature__name">Great Shipping Times</div>
               <img
                 src="/assets/shipping.svg"
                 alt="Shipping"

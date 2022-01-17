@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import {
   Button,
   Col,
@@ -9,131 +9,158 @@ import {
   Row,
 } from "react-bootstrap"
 import {AiFillDelete} from "react-icons/ai"
-import {connect} from "react-redux"
 import Calificacion from "../components/Calificacion"
-import cartAction from "../redux/actions/cartAction"
 import Paypal from "../components/Paypal"
+import {useCart} from "react-use-cart"
+import {useNavigate} from "react-router-dom"
+import "../styles/CartScreen.css"
 
-const CartScreen = (props) => {
+
+export default function CartScreen(props) {
+  const {
+    emptyCart,
+    removeItem,
+    items,
+    totalItems,
+    updateItemQuantity,
+    cartTotal,
+  } = useCart()
+
+  let navigate = useNavigate()
+  totalItems === 0 && navigate("/shop", {replace: true})
+
+  console.log(items)
+
   const [paypal, setPaypal] = useState(false)
   let fecha = new Date()
 
   const validar = () => {
     setPaypal(true)
   }
-  const [total, setTotal] = useState()
-  useEffect(() => {
-    setTotal(
-      props.cart.reduce(
-        (acc, curr) => acc + Number(curr.item.precio) * curr.qty,
-        0
-      )
-    )
-  }, [props.cart])
 
   return (
     <div className="home">
-      <h2>Cart Items</h2>
-      <div className="productContainer">
-        <ListGroup key={props.cart._id}>
-          {props.cart.map((prop) => (
-            <ListGroupItem key={prop.item._id}>
-              <Row>
+      <h2 className="text-light">Cart Items</h2>
+      <div className="productContainer mx-auto container bg-light text-dark" style={{zIndex: -100}}>
+        <ListGroup>
+          <Row className=" displayNone container mx-auto">
                 <Col md={2}>
-                  <Image
-                    src={prop.item.imagen}
-                    alt={prop.item.nombre}
-                    fluid
-                    rounded
-                  />
+                  </Col>
+                  <Col md={2}>
+                    <p>Product:</p>
+                  </Col>
+                  <Col md={2}>
+                    <p>Price:</p>
+                  </Col>
+                  <Col md={2}>
+                    <p>Rating:</p>
+                  </Col>
+                  <Col md={2}>
+                    <p>Quantity:</p>
+                  </Col>
+                  <Col md={2}>
                 </Col>
-                <Col md={2}>
-                  <span>{prop.item.nombre}</span>
-                </Col>
-                <Col md={2}>
-                  <span>${prop.item.precio}</span>
-                </Col>
-                <Col md={2}>
-                  <Calificacion rating={prop.item.calificacion} />
-                </Col>
-                <Col md={2}>
-                  <Form.Control
-                    as="select"
-                    value={prop.qty}
-                    onChange={(e) => {
-                      props.changeCartQty(prop.item._id, e.target.value)
-                    }}
-                  >
-                    {[...Array(prop.item.contadorStock).keys()].map((x) => (
-                      <option key={x + 1}>{x + 1}</option>
-                    ))}
-                  </Form.Control>
-                </Col>
-                <Col md={2}>
-                  <Button
-                    onClick={() => {
-                      props.removeFromCart(prop)
-                    }}
-                    variant="light"
-                    className="btn-block"
-                    type="button"
-                  >
-                    <AiFillDelete fontSize="20px" />
-                  </Button>
-                </Col>
-              </Row>
-            </ListGroupItem>
+          </Row>
+            {items.map((prop) => (
+              <ListGroupItem key={prop.id}>
+                <Row>
+                  <Col md={2}>
+                    <Image src={prop.image} alt={prop.product} fluid rounded  className="w-25"/>
+                  </Col>
+                  <Col md={2}>
+                    <span>{prop.product}</span>
+                  </Col>
+                  <Col md={2}>
+                    <span>$ {prop.itemTotal}</span>
+                  </Col>
+                  <Col md={2}>
+                    <Calificacion value={prop.rating} />
+                  </Col>
+                  <Col md={1} className="mx-auto p-auto">
+                    <Form.Control
+                      className="w-100"
+                      as="select"
+                      value={prop.quantity}
+                      onChange={(e) => {
+                        updateItemQuantity(prop.id, Number(e.target.value))
+                      }}
+                    >
+                      {[...Array(prop.stock).keys()].map((x) => (
+                        <option key={x + 1}>{x + 1}</option>
+                      ))}
+                    </Form.Control>
+                  </Col>
+                  <Col md={2}>
+                    <Button
+                      onClick={() => {
+                        removeItem(prop.id)
+                      }}
+                      variant="light"
+                      className="btn-block"
+                      type="button"
+                    >
+                      <AiFillDelete fontSize="20px" />
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroupItem>
           ))}
         </ListGroup>
       </div>
-      <div className="filters summary">
-        <span className="title">Subtotal ({props.cart.length}) items</span>
-        <span style={{fontWeight: 700, fontSIze: 20}}> Total:${total}</span>
-        <Button type="button" disabled={props.cart.length === 0}>
+      <div className="filters summary costumize container d-flex flex-column bg-light text-dark">
+        <span className="title">Subtotal ({totalItems}) items</span>
+        <span style={{fontWeight: 700, fontSIze: 20}}>
           {" "}
-          Proceed to Checkout
+          Total: &#36; {cartTotal}
+        </span>
+
+        <Button
+          className="m-auto my-2"
+          type="button"
+          onClick={emptyCart}
+          disabled={totalItems === 0}
+        >
+          Borrar carrito
         </Button>
       </div>
-      <div className="filters summary container d-flex flex-column">
-        <h3>¿Como pagáras?</h3>
-        <span className="title">Subtotal ({props.cart.length}) items</span>
-        <span style={{fontWeight: 700, fontSIze: 20}}> Total:${total}</span>
-        <div className="d-flex flex-row gap-5">
-          <label htmlFor="debito">Debito</label>
-          <input type="radio" id="debito" name="formapago" onClick />
-          <label htmlFor="tarjeta">Tarjeta</label>
-          <input type="radio" id="tarjeta" name="formapago" />
-          <label htmlFor="paypal">Paypal</label>
-          <input type="radio" id="paypal" name="formapago" />
+      <Row className="filters summary d-flex flex-column container mx-auto costumize text-light py-3">
+        <h3 className="text-light">¿Como pagáras?</h3>
+        <div className="d-flex flex-column my-2">
+          <span className="title">Subtotal ({totalItems}) items</span>
+          <span className="text-uppercase fs-4 fw-bold"> Total: ${cartTotal}</span>
         </div>
-        <Button
-          className="my-4"
-          type="button"
-          onClick={validar}
-          disabled={props.cart.length === 0}
-        >
-          Proceed to Checkout
-        </Button>
+        <div className="d-flex justify-content-center gap-1">
+          <div class="form-check d-flex justify-content-center px-1 mx-1">
+            <input type="radio" id="debito" name="formapago" class="form-check-input mx-1" onClick />
+            <label htmlFor="debito" disabled>Debito</label>
+          </div>
+          <div class="form-check d-flex justify-content-center px-1  mx-1">
+            <input  type="radio" id="tarjeta" name="formapago" class="form-check-input mx-1"/>
+            <label htmlFor="tarjeta" disabled>Tarjeta</label>
+          </div>
+          <div class="form-check d-flex justify-content-center px-1  mx-1">
+            <input type="radio" id="paypal" name="formapago" class="form-check-input mx-1" />
+            <label htmlFor="paypal">Paypal</label>
+          </div>
+        </div>
+        <div>
+          <Button
+            className="my-2"
+            type="button"
+            onClick={validar}
+            disabled={totalItems === 0}
+          >
+            Proceed to Checkout
+          </Button>
+        </div>
+
         {paypal && (
           <Paypal
             description={`Compra del dia ${fecha.toLocaleDateString()}en Hexagon`}
-            total={total}
+            total={cartTotal}
           />
         )}
-      </div>
+      </Row>
     </div>
   )
 }
-
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cartReducer.cart,
-  }
-}
-
-const mapDispatchToProps = {
-  removeFromCart: cartAction.removeFromCart,
-  changeCartQty: cartAction.changeCartQty,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartScreen)

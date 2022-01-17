@@ -4,21 +4,18 @@ import "./App.css"
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import LoginModal from "./components/Login/LoginModal"
-import cartAction from "./redux/actions/cartAction"
+import authAction from "./redux/actions/authAction"
 import {connect} from "react-redux"
-import {useEffect} from "react"
-
+import React from "react"
 import {CartProvider} from "react-use-cart"
 
 function App(props) {
-  /* useEffect(() => {
-    console.log(props.cart)
-    if (props.cart.length === 0) props.refreshCart(localStorage.getItem("cart"))
-  }, []) */
+  React.useEffect(() => {
+    if (!props.isAuth) {
+      props.tokenVerify()
+    }
+  }, [props.isLoading, props.isAuth])
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(props.cart))
-  }, [props.cart])
   return (
     <>
       <CartProvider>
@@ -32,12 +29,13 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cartReducer.cart,
+    isLoading: state.authReducer.isLoading,
+    isAuth: state.authReducer.isAuth,
   }
 }
 
 const mapDispatchToProps = {
-  refreshCart: cartAction.refreshCart,
+  tokenVerify: authAction.tokenVerify,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

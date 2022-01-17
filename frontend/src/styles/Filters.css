@@ -1,0 +1,66 @@
+.shop__side-bar, .css-2m9kme-MuiFormControl-root {
+    background-color: rgba(255, 255, 255, 0.707);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 10px 0;;
+    color: white;
+}
+
+.css-2m9kme-MuiFormControl-root p{
+    display: none;
+}
+
+.css-187mznn-MuiSlider-root{
+    color: #8d237e !important;
+}
+
+.shop__main{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop__main input{
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+body::-webkit-scrollbar {
+    color: #511549;          
+  }
+  
+body::-webkit-scrollbar-track {
+    background: #8d237e;       
+  }
+  
+body::-webkit-scrollbar-thumb{
+    background-color: #511549;   
+    border-radius: 5px;      
+    border: none; 
+  }
+
+  @media screen and (max-width:1500px) {
+    .shop__side-bar{
+        background-color: unset;
+    }
+
+    .navbar{
+        background-color: unset;
+    }
+    
+    .css-1oqqzyl-MuiContainer-root{
+        position: fixed;
+        width: 20%;
+        top: 15vh;
+        padding: unset !important;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.387);
+    }
+
+    .navbar-toggler{
+        border-radius: 10px;
+        display: none;
+    }
+
+  }

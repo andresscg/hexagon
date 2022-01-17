@@ -2,16 +2,49 @@ import React, {useState} from "react"
 import Calificacion from "./Calificacion"
 import {Link} from "react-router-dom"
 import productoAction from "../redux/actions/productoAction"
-import cartAction from "../redux/actions/cartAction"
 import {connect} from "react-redux"
-import {Button} from "react-bootstrap"
+import {useCart} from "react-use-cart"
+import Swal from "sweetalert2"
 
 const Producto = (props) => {
+  const {addItem, removeItem, items} = useCart()
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer)
+      toast.addEventListener("mouseleave", Swal.resumeTimer)
+    },
+  })
+
+  const producto = {
+    id: props.producto._id,
+    price: props.producto.precio,
+    image: props.producto.imagen,
+    product: props.producto.nombre,
+    stock: props.producto.contadorStock,
+    rating: props.producto.calificacion,
+  }
+
   const [likeIcon, setLikeIcon] = useState(true)
   const [likeProducts, setlikeProduct] = useState(props.producto.likes)
 
   const likeDislikeProduct = async () => {
     setLikeIcon(false)
+    if (!props.isAuth) {
+      Toast.fire({
+        icon: "error",
+        title: "You need to be logged in to like",
+      })
+    } else {
+      let response = await props.likeDislike(props.producto._id, props.user._id)
+      setlikeProduct(response)
+    }
+    setLikeIcon(true)
   }
 
   let likes = likeProducts.includes(props.user && props.user._id) ? "❤" : "🤍"
@@ -26,7 +59,7 @@ const Producto = (props) => {
               <img src={props.producto.imagen} variant="top" />
             </Link>
             <button className="btn-card">
-              <Link to={`/shop/${props.producto._id}`}>Ver producto</Link>
+              <Link to={`/shop/${props.producto._id}`}>See Details</Link>
             </button>
           </div>
           <div className="text-container">
@@ -38,18 +71,16 @@ const Producto = (props) => {
                 <p>${props.producto.precio}</p>
               </div>
               <div className="addcart-container">
-                {props.cart.some((p) => p.item._id === props.producto._id) ? (
+                {items.some((p) => p.id === producto.id) ? (
                   <button
-                    onClick={() => props.removeFromCart(props.producto)}
+                    onClick={() => removeItem(producto.id)}
                     className="btn-card"
                   >
                     Remove from Cart
                   </button>
                 ) : (
                   <button
-                    onClick={() =>
-                      props.addToCart(props.producto, props.user._id)
-                    }
+                    onClick={() => addItem(producto)}
                     className="btn-card"
                     disabled={!props.producto.contadorStock}
                   >
@@ -86,15 +117,13 @@ const Producto = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    isAuth: state.authReducer.isAuth,
     user: state.authReducer.user,
-    cart: state.cartReducer.cart,
   }
 }
 
 const mapDispatchToProps = {
   likeDislike: productoAction.likeDislike,
-  addToCart: cartAction.addToCart,
-  removeFromCart: cartAction.removeFromCart,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Producto)
