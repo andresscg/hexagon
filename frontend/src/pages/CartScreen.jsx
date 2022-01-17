@@ -13,6 +13,8 @@ import Calificacion from "../components/Calificacion"
 import Paypal from "../components/Paypal"
 import {useCart} from "react-use-cart"
 import {useNavigate} from "react-router-dom"
+import "../styles/CartScreen.css"
+
 
 export default function CartScreen(props) {
   const {
@@ -41,23 +43,42 @@ export default function CartScreen(props) {
       <h2>Cart Items</h2>
       <div className="productContainer" style={{zIndex: -100}}>
         <ListGroup>
+        <Row className="bg-light text-dark">
+              <Col md={2}>
+                </Col>
+                <Col md={2}>
+                  <p>Product:</p>
+                </Col>
+                <Col md={2}>
+                  <p>Price:</p>
+                </Col>
+                <Col md={2}>
+                  <p>Rating:</p>
+                </Col>
+                <Col md={2}>
+                  <p>Quantity:</p>
+                </Col>
+                <Col md={2}>
+                </Col>
+              </Row>
           {items.map((prop) => (
             <ListGroupItem key={prop.id}>
               <Row>
                 <Col md={2}>
-                  <Image src={prop.image} alt={prop.product} fluid rounded />
+                  <Image src={prop.image} alt={prop.product} fluid rounded  className="w-25"/>
                 </Col>
                 <Col md={2}>
                   <span>{prop.product}</span>
                 </Col>
                 <Col md={2}>
-                  <span>{prop.price}</span>
+                  <span>${prop.itemTotal}</span>
                 </Col>
                 <Col md={2}>
                   <Calificacion value={prop.rating} />
                 </Col>
-                <Col md={2}>
+                <Col md={1} className="mx-auto">
                   <Form.Control
+                    className="w-100"
                     as="select"
                     value={prop.quantity}
                     onChange={(e) => {
@@ -69,7 +90,7 @@ export default function CartScreen(props) {
                     ))}
                   </Form.Control>
                 </Col>
-                <Col md={2}>
+                <Col md={1}>
                   <Button
                     onClick={() => {
                       removeItem(prop.id)

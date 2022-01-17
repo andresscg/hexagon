@@ -1,0 +1,14 @@
+.home{
+    padding-top: 12vh;
+    background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
+    color: white;
+    text-align: center;
+}
+
+.home h2, h3{
+    color: white;
+}
+
+select.form-control{
+    border: 1px solid rgb(155, 155, 155);
+}
