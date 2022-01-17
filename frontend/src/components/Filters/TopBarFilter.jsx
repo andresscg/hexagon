@@ -3,16 +3,19 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
 import SortIcon from "@mui/icons-material/Sort"
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
+import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
 import {BsFillGrid3X3GapFill} from "react-icons/bs"
 import {FaList} from "react-icons/fa"
-import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
-export default function TopBarFilter() {
+
+export default function TopBarFilter(props) {
   const [sortName, setSortName] = useState(false)
   const [sortPrice, setSortPrice] = useState(false)
   const [sortLike, setSortLike] = useState(false)
+
   return (
     <>
       <p>Ordernar por:</p>
+
       <div className="shop__top-bar--sort">
         <p style={{cursor: "pointer"}} onClick={() => setSortPrice(!sortPrice)}>
           {sortPrice ? "Menor" : "Mayor"} precio{" "}

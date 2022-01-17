@@ -1,9 +1,9 @@
 import React, {useEffect} from "react"
-import Producto from "../components/Producto"
 import {connect} from "react-redux"
-
+import Producto from "../components/Producto"
 import productoAction from "../redux/actions/productoAction"
-import '../styles/Producto.css'
+
+import "../styles/Producto.css"
 
 const Productos = (props) => {
   useEffect(() => {
@@ -13,22 +13,10 @@ const Productos = (props) => {
   return (
     <>
       <div className="container-all__productos">
-        <h1>Our Products</h1>
         <div className="container-all__filtros">
-          {/* <div className="container-filtros">
-            {
-              <FormControl
-                onChange={(e) =>
-                  props.filtro(e.target.value.toLowerCase().trim())
-                }
-                placeholder="FIND YOUR PRODUCT"
-                aria-describedby="inputGroup-sizing-sm"
-              />
-            }
-          </div> */}
           <div className="productos-container">
-            {props.auxiliar.length > 0 ? (
-              props.auxiliar.map((producto) => (
+            {props.searched.length > 0 ? (
+              props.searched.map((producto) => (
                 <div key={producto._id} className="prod-container">
                   <Producto producto={producto} />
                 </div>
@@ -47,8 +35,7 @@ const Productos = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auxiliar: state.productoReducer.auxiliar,
-    cart: state.cartReducer.cart,
+    searched: state.productoReducer.searched,
   }
 }
 

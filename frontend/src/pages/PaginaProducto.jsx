@@ -117,7 +117,6 @@ const PaginaProducto = (props) => {
 const mapStateToProps = (state) => {
   return {
     producto: state.productoReducer.producto,
-    cart: state.cartReducer.cart,
   }
 }
 const mapDispatchToProps = {

@@ -97,7 +97,6 @@ const authAction = {
     return async (dispatch, getState) => {
       const token =
         localStorage.getItem("token") || getState().authReducer.token
-      console.log(token)
       try {
         const response = await axios.get(tokenAuth, {
           headers: {

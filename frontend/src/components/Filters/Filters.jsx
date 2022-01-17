@@ -3,8 +3,7 @@ import productoAction from "../../redux/actions/productoAction"
 import {connect} from "react-redux"
 import "../../styles/Filters.css"
 import "../../styles/ShopContainer.css"
-import TopBarFilter from "./TopBarFilter"
-import SideBarFilter from "./SideBarFilter"
+import SideBarDrawer from "./SideBarDrawer"
 import Productos from "../../pages/Productos"
 
 function Filters(props) {
@@ -13,12 +12,9 @@ function Filters(props) {
   }, [])
 
   return (
-    <div className="shop__container" style={{height: "100vh", display: "grid"}}>
+    <div className="shop__container" style={{height: "100vh"}}>
       <div className="shop__side-bar">
-        <SideBarFilter productos={props.productos} />
-      </div>
-      <div className="shop__top-bar">
-        <TopBarFilter productos={props.productos} />
+        <SideBarDrawer productos={props.productos} filtro={props.filtro} />
       </div>
       <div className="shop__content">
         <Productos />
@@ -35,6 +31,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchearProductos: productoAction.fetchearProductos,
+  filtro: productoAction.filtro,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters)
