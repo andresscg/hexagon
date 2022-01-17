@@ -12,6 +12,7 @@ import {
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
+import Carrousel from "../components/Carrousel"
 
 const PaginaProducto = (props) => {
   let {id} = useParams()
@@ -22,6 +23,8 @@ const PaginaProducto = (props) => {
 
   return (
     <>
+
+    <Carrousel />
       <p className="btn btn-dark" onClick={() => window.history.back()}>
         Regresar
       </p>
