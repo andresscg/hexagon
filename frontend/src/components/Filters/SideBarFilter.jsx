@@ -65,9 +65,9 @@ export default function SideBarFilter(props) {
         </div>
         <div className="shop__top-bar--sort">
           <p style={{cursor: "pointer"}} onClick={() => handleSort("alf")}>
-            Alphabetically 
+            Alphabetically   
+          {!sortName ? <FaSortAlphaDownAlt /> :  <FaSortAlphaDown />}
           </p>
-          <p className="icon-alpha">{!sortName ? <FaSortAlphaDownAlt /> :  <FaSortAlphaDown />}</p>
         </div>
         <div className="shop__top-bar--sort">
           <p style={{cursor: "pointer"}} onClick={() => handleSort("like")}>
