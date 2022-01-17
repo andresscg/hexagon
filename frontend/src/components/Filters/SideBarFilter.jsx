@@ -71,7 +71,7 @@ export default function SideBarFilter(props) {
         </div>
         <div className="shop__top-bar--sort">
           <p style={{cursor: "pointer"}} onClick={() => handleSort("like")}>
-            {sortLike ? "Menor" : "Mayor"} gustados{" "}
+            {sortLike ? "Less" : "Most"} popular{" "}
             {!sortLike ? <AiFillLike /> : <AiFillDislike />}
           </p>
         </div>
