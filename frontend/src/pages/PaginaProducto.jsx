@@ -4,12 +4,8 @@ import {ListGroup, Card, Button, Form} from "react-bootstrap"
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
-<<<<<<< HEAD
-import Carrousel from "../components/Carrousel"
-=======
 import {useCart} from "react-use-cart"
 import "../styles/paginaProducto.css"
->>>>>>> d353a7672b4c78fb35fc02724ecbef98f15cd5d7
 
 const PaginaProducto = (props) => {
   let {id} = useParams()
