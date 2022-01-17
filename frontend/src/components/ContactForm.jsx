@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
+import React, {useState} from "react"
+import axios from "axios"
+import {toast} from "react-toastify"
 
 const ContactForm = () => {
-  const [status, setStatus] = useState("Submit");
+  const [status, setStatus] = useState("Submit")
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { name, email, message } = e.target.elements;
+    e.preventDefault()
+    const {name, email, message} = e.target.elements
     let details = {
       name: name.value,
       email: email.value,
       message: message.value,
-    };
+    }
     if (Object.values(details).some((value) => value === "")) {
       toast.warn("Ups! All fields are required!", {
         position: "bottom-right",
@@ -22,14 +22,14 @@ const ContactForm = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
     } else {
-      setStatus("Sending...");
+      setStatus("Sending...")
       let response = await axios.post(
-        "http://localhost:4000/api/contact",
+        "https://hexagon-techstore.herokuapp.com/api/contact",
         details
-      );
-      setStatus("Submit");
+      )
+      setStatus("Submit")
       toast.info(response.data.status, {
         position: "bottom-right",
         autoClose: 5000,
@@ -38,12 +38,12 @@ const ContactForm = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        });
-      name.value = '';
-      email.value = '';
-      message.value = '';
+      })
+      name.value = ""
+      email.value = ""
+      message.value = ""
     }
-  };
+  }
 
   return (
     <div className="contactForm-container">
@@ -73,7 +73,7 @@ const ContactForm = () => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ContactForm;
+export default ContactForm

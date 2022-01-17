@@ -32,7 +32,7 @@ const sendEmail = async (email, uniqueString) => {
         height:100px;" src='https://i.imgur.com/GjurQqE.png' alt='logo Hexagon'/>
         <h2 style="text-align:center;  font-size: 1.5rem;">Gracias por registrarte con nosotros!</h2>
         <p style="text-align:center">Con tu cuenta podras:Comprar, comentar dar Likes</p>
-        <p style="text-align:center; font-size: 1.2rem;">Por favor, para verificar tu correo, haz click <a href=http://localhost:4000/api/verify/${uniqueString}>aqui</a>aqui</a></p>
+        <p style="text-align:center; font-size: 1.2rem;">Por favor, para verificar tu correo, haz click <a href=https://hexagon-techstore.herokuapp.com/api/verify/${uniqueString}>aqui</a>aqui</a></p>
     </div>`,
   }
   await transporter.sendMail(mailOptions, function (error, response) {
@@ -216,7 +216,7 @@ const userController = {
     if (user) {
       user.emailVerified = true
       await user.save()
-      res.redirect("http://localhost:3000/")
+      res.redirect("https://hexagon-techstore.herokuapp.com/")
     } else {
       res.json({success: false, response: "Su email no se ha verificado"})
     }
