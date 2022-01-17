@@ -9,6 +9,8 @@ import {
 } from "@mui/material"
 import React from "react"
 import {connect} from "react-redux"
+import {AiFillCloseCircle} from "react-icons/ai"
+
 import productoAction from "../../redux/actions/productoAction"
 
 const ITEM_HEIGHT = 48
@@ -62,14 +64,12 @@ function PhonesFilter({data, name, selectFilter}) {
           ))}
         </Select>
       </FormControl>
-      <p
+      <AiFillCloseCircle
         onClick={() => {
           setSelData([])
           selectFilter(selData, name)
         }}
-      >
-        X
-      </p>
+      />
     </div>
   )
 }
