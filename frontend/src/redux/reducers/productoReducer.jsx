@@ -19,7 +19,7 @@ const productoReducer = (state = initialState, action) => {
         productos: action.payload.productos,
         auxiliar: action.payload.productos,
         filtered: action.payload.productos,
-        producto: action.payload.productos,
+     
       }
 
     case "FETCH_UN_PRODUCTO":
