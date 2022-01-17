@@ -71,7 +71,7 @@ export default function CartScreen(props) {
                   <span>{prop.product}</span>
                 </Col>
                 <Col md={2}>
-                  <span>${prop.itemTotal}</span>
+                  <span>$ {prop.itemTotal}</span>
                 </Col>
                 <Col md={2}>
                   <Calificacion value={prop.rating} />

@@ -45,7 +45,7 @@ const Producto = (props) => {
             </Link>
             <div className="price-card__container">
               <div className="price-container">
-                <p>{props.producto.precio}</p>
+                <p>${props.producto.precio}</p>
               </div>
               <div className="addcart-container">
                 {items.some((p) => p.id === producto.id) ? (

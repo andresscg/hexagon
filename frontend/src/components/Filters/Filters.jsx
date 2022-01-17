@@ -25,7 +25,7 @@ function Filters(props) {
       />
       <div className="shop__container" style={{height: "100vh"}}>
         <div className="shop__side-bar">
-          {width >= 1300 ? (
+          {width >= 1500 ? (
             <SideBarFilter productos={props.productos} />
           ) : (
             <SideBarDrawer productos={props.productos} filtro={props.filtro} />

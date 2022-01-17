@@ -8,7 +8,7 @@
   justify-content: flex-start;
   align-items: center;
   /* background-color: rgb(237, 237, 237); */
-  background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
+  /* background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg); */
 
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -115,7 +115,7 @@
 
 .text-container__title {
   margin: 1rem 0 0 0;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   width: 100%;
   text-transform: uppercase;
   font-family: var(--headings-font);
@@ -129,7 +129,7 @@
 }
 
 .price-container {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 0 0 0.5rem 0;
   font-weight: 400;
   color: var(--secondary);
@@ -155,7 +155,7 @@
   color: var(--secondary-dark);
   font-family: var(--text-font);
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
 }
 
