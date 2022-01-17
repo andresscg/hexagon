@@ -42,30 +42,12 @@ export default function CartScreen(props) {
     <div className="home">
       <h2 className="text-light">Cart Items</h2>
       <div className="productContainer mx-auto container bg-light text-dark" style={{zIndex: -100}}>
-        <ListGroup>
-          <Row className=" displayNone container mx-auto">
-                <Col md={2}>
-                  </Col>
-                  <Col md={2}>
-                    <p>Product:</p>
-                  </Col>
-                  <Col md={2}>
-                    <p>Price:</p>
-                  </Col>
-                  <Col md={2}>
-                    <p>Rating:</p>
-                  </Col>
-                  <Col md={2}>
-                    <p>Quantity:</p>
-                  </Col>
-                  <Col md={2}>
-                </Col>
-          </Row>
+        <ListGroup >
             {items.map((prop) => (
-              <ListGroupItem key={prop.id}>
-                <Row>
+              <ListGroupItem key={prop.id} >
+                <Row className="justify-content-center">
                   <Col md={2}>
-                    <Image src={prop.image} alt={prop.product} fluid rounded  className="w-25"/>
+                    <Image src={prop.image} alt={prop.product} fluid rounded className="product-img"/>
                   </Col>
                   <Col md={2}>
                     <span>{prop.product}</span>
@@ -73,10 +55,7 @@ export default function CartScreen(props) {
                   <Col md={2}>
                     <span>$ {prop.itemTotal}</span>
                   </Col>
-                  <Col md={2}>
-                    <Calificacion value={prop.rating} />
-                  </Col>
-                  <Col md={1} className="mx-auto p-auto">
+                  <Col md={1} className="p-auto" >
                     <Form.Control
                       className="w-100"
                       as="select"
@@ -90,7 +69,7 @@ export default function CartScreen(props) {
                       ))}
                     </Form.Control>
                   </Col>
-                  <Col md={2}>
+                  <Col md={2} >
                     <Button
                       onClick={() => {
                         removeItem(prop.id)
@@ -123,13 +102,13 @@ export default function CartScreen(props) {
           Borrar carrito
         </Button>
       </div>
-      <Row className="filters summary d-flex flex-column container mx-auto costumize text-light py-3">
-        <h3 className="text-light">¿Como pagáras?</h3>
+      <Row className="filters summary d-flex flex-column container mx-auto costumize bg-light text-dark py-3 align-items-center">
+        <h3 className="text-dark">¿Como pagáras?</h3>
         <div className="d-flex flex-column my-2">
           <span className="title">Subtotal ({totalItems}) items</span>
           <span className="text-uppercase fs-4 fw-bold"> Total: ${cartTotal}</span>
         </div>
-        <div className="d-flex justify-content-center gap-1">
+        <div className="d-flex justify-content-center flex-wrap gap-1 wrapping">
           <div class="form-check d-flex justify-content-center px-1 mx-1">
             <input type="radio" id="debito" name="formapago" class="form-check-input mx-1" onClick />
             <label htmlFor="debito" disabled>Debito</label>
