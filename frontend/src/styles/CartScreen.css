@@ -1,14 +1,37 @@
 .home{
     padding-top: 12vh;
     background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
-    color: white;
+    /* color: white; */
     text-align: center;
 }
 
-.home h2, h3{
+/* .home h2, h3{
     color: white;
-}
+} */
 
 select.form-control{
     border: 1px solid rgb(155, 155, 155);
+}
+
+.form-control{
+    padding: .5rem;
+    margin: auto;
+    text-align: center;
+}
+
+.costumize{
+    /* background-color: rgba(42, 42, 42, 0.306); */
+}
+
+@media screen and (max-width:768px) {
+    .displayNone{
+        display: none;
+    }
+    
+    .form-control{
+        width: 5rem !important;
+        margin: auto;
+        text-align: center;
+    }
+    
 }
