@@ -1,9 +1,8 @@
 .shop__side-bar, .css-2m9kme-MuiFormControl-root {
-    background-color: rgba(255, 255, 255, 0.707);
     border-radius: 10px;
     padding: 1rem;
-    margin: 10px 0;;
-    color: white;
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.36);
 }
 
 .shop__side-bar{
@@ -11,7 +10,10 @@
     position: fixed;
     top: 20vh;
     left: 15vw;
-    height: 75%
+    min-height: 56%;
+    display: flex;
+    flex-flow: column nowrap;
+
 }
 
 .filter-contaniner__find{
@@ -57,6 +59,15 @@ body::-webkit-scrollbar-thumb{
         background-color: unset;
     }
 
-   
-
   }
+
+  @media screen and (max-width:1900px) {
+    .shop__side-bar{
+        margin: 1rem 0;
+        position: fixed;
+        top: 12vh;
+        left: 8vw;
+        min-height: 56%;
+  }
+  
+}

@@ -3,11 +3,13 @@ import PhonesFilter from "./PhonesFilter"
 import SliderPriceFilter from "./SliderPriceFilter"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
-import SortIcon from "@mui/icons-material/Sort"
+import {FaSortAlphaDownAlt} from "react-icons/fa"
+import {FaSortAlphaDown} from "react-icons/fa"
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
-import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
 import {BsFillGrid3X3GapFill} from "react-icons/bs"
+import {AiFillDislike, AiFillLike} from "react-icons/ai"
 import {FaList} from "react-icons/fa"
+import "../../styles/sideBarFilter.css"
 
 export default function SideBarFilter(props) {
   const [sortName, setSortName] = useState(false)
@@ -56,34 +58,22 @@ export default function SideBarFilter(props) {
       <>
         <p>Ordernar por:</p>
         <div className="shop__top-bar--sort">
-          <p style={{cursor: "pointer"}} onClick={() => handleSort("alf")}>
-            Alfabeticamente{" "}
-            {!sortName ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
-          </p>
-          <SortByAlphaIcon
-            style={{cursor: "pointer"}}
-            onClick={() => handleSort("alf")}
-          />
-        </div>
-        <div className="shop__top-bar--sort">
           <p style={{cursor: "pointer"}} onClick={() => handleSort("price")}>
-            {sortPrice ? "Menor" : "Mayor"} precio{" "}
+            {sortPrice ? "Lower" : "Higher "} price{" "}
             {!sortPrice ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
           </p>
-          <SortIcon
-            style={{cursor: "pointer"}}
-            onClick={() => handleSort("price")}
-          />
+        </div>
+        <div className="shop__top-bar--sort">
+          <p style={{cursor: "pointer"}} onClick={() => handleSort("alf")}>
+            Alphabetically 
+          </p>
+          <p className="icon-alpha">{!sortName ? <FaSortAlphaDownAlt /> :  <FaSortAlphaDown />}</p>
         </div>
         <div className="shop__top-bar--sort">
           <p style={{cursor: "pointer"}} onClick={() => handleSort("like")}>
             {sortLike ? "Menor" : "Mayor"} gustados{" "}
-            {!sortLike ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+            {!sortLike ? <AiFillLike /> : <AiFillDislike />}
           </p>
-          <ThumbsUpDownIcon
-            style={{cursor: "pointer"}}
-            onClick={() => handleSort("like")}
-          />
         </div>
 
         <div className="shop__top-bar--sort">
