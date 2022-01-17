@@ -56,6 +56,7 @@ export default function CartScreen(props) {
                 <Col md={2}>
                   <Calificacion value={prop.rating} />
                 </Col>
+
                 <Col md={2}>
                   <Form.Control
                     as="select"

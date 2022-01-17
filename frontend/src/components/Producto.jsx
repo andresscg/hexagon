@@ -2,7 +2,6 @@ import React, {useState} from "react"
 import Calificacion from "./Calificacion"
 import {Link} from "react-router-dom"
 import productoAction from "../redux/actions/productoAction"
-import cartAction from "../redux/actions/cartAction"
 import {connect} from "react-redux"
 import {useCart} from "react-use-cart"
 
@@ -46,7 +45,7 @@ const Producto = (props) => {
             </Link>
             <div className="price-card__container">
               <div className="price-container">
-                <p>${props.producto.precio}</p>
+                <p>{props.producto.precio}</p>
               </div>
               <div className="addcart-container">
                 {items.some((p) => p.id === producto.id) ? (
@@ -96,14 +95,11 @@ const Producto = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.authReducer.user,
-    cart: state.cartReducer.cart,
   }
 }
 
 const mapDispatchToProps = {
   likeDislike: productoAction.likeDislike,
-  addToCart: cartAction.addToCart,
-  removeFromCart: cartAction.removeFromCart,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Producto)

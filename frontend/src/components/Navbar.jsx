@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {Nav, Dropdown, Badge, Button} from "react-bootstrap"
 import {FaShoppingCart} from "react-icons/fa"
 import {AiFillDelete} from "react-icons/ai"
@@ -8,7 +8,6 @@ import "../styles/Navbar.css"
 import modalAction from "../redux/actions/modalAction"
 import {connect} from "react-redux"
 import authAction from "../redux/actions/authAction"
-import cartAction from "../redux/actions/cartAction"
 import {useCart} from "react-use-cart"
 
 const Navbar = (props) => {
@@ -117,7 +116,6 @@ const mapStateToProps = (state) => {
     isLoading: state.authReducer.isLoading,
     token: state.authReducer.token,
     productos: state.productoReducer.productos,
-    cart: state.cartReducer.cart,
   }
 }
 
@@ -125,7 +123,6 @@ const mapDispatchToProps = {
   showCloseModal: modalAction.showCloseModal,
   tokenVerify: authAction.tokenVerify,
   logout: authAction.logout,
-  removeFromCart: cartAction.removeFromCart,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

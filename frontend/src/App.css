@@ -19,7 +19,13 @@
   margin: 0;
   padding: 0;
 }
-
+.css-19z1ozs-MuiPaper-root-MuiAppBar-root {
+  position: unset !important;
+  height: fit-content !important;
+}
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+  margin-top: 12vh;
+}
 p {
   margin-bottom: unset !important;
 }

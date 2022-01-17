@@ -2,6 +2,7 @@ const initialState = {
   productos: [],
   auxiliar: [],
   producto: [],
+  searched: [],
 }
 
 const productoReducer = (state = initialState, action) => {
@@ -11,6 +12,7 @@ const productoReducer = (state = initialState, action) => {
         ...state,
         productos: action.payload.productos,
         auxiliar: action.payload.productos,
+        searched: action.payload.productos,
         producto: action.payload.productos,
       }
 
@@ -21,14 +23,13 @@ const productoReducer = (state = initialState, action) => {
         success: action.payload.success,
       }
     case "SEARCH":
-      const filtered = state.productos.filter((producto) =>
-        producto.nombre
-          .toLowerCase()
-          .includes(action.payload.search.toLowerCase())
-      )
       return {
         ...state,
-        auxiliar: filtered,
+        searched: state.auxiliar.filter((producto) =>
+          producto.nombre
+            .toLowerCase()
+            .includes(action.payload.search.toLowerCase())
+        ),
       }
 
     default:
