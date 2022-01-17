@@ -15,7 +15,8 @@ const oauth2Client = new OAuth2(
 )
 
 oauth2Client.setCredentials({
-  refresh_token: "1//04VeFxBn_bk0zCgYIARAAGAQSNwF-L9IrD8Nqa6EWesPTCm1AHZSxKFO1LnvprbEWqBPafxBTUv2_2mAHWUbRULUPucb9I-Cmkto"
+  refresh_token:
+    "1//04VeFxBn_bk0zCgYIARAAGAQSNwF-L9IrD8Nqa6EWesPTCm1AHZSxKFO1LnvprbEWqBPafxBTUv2_2mAHWUbRULUPucb9I-Cmkto",
 })
 const accessToken = oauth2Client.getAccessToken()
 
@@ -37,45 +38,47 @@ const {
 } = productosController
 
 const smtpTransport = nodemailer.createTransport({
-  service: 'gmail',
-  auth:{
+  service: "gmail",
+  auth: {
     type: "OAuth2",
-    user: 'afelipecastillog@gmail.com',
-    clientId: "111498414684-specl4tg3bs5nscj9faknua8im4qhcqi.apps.googleusercontent.com",
+    user: "afelipecastillog@gmail.com",
+    clientId:
+      "111498414684-specl4tg3bs5nscj9faknua8im4qhcqi.apps.googleusercontent.com",
     clientSecret: "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",
-    refreshToken: "1//04VeFxBn_bk0zCgYIARAAGAQSNwF-L9IrD8Nqa6EWesPTCm1AHZSxKFO1LnvprbEWqBPafxBTUv2_2mAHWUbRULUPucb9I-Cmkto",
-    accessToken: accessToken
+    refreshToken:
+      "1//04VeFxBn_bk0zCgYIARAAGAQSNwF-L9IrD8Nqa6EWesPTCm1AHZSxKFO1LnvprbEWqBPafxBTUv2_2mAHWUbRULUPucb9I-Cmkto",
+    accessToken: accessToken,
   },
   tls: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
+  },
+})
+
+smtpTransport.verify((err) => {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log("Ready to send")
   }
 })
 
-smtpTransport.verify(err => {
-  if(err){
-    console.log(err);
-  }else {
-    console.log('Ready to send')
-  }
-})
-
-router.route('/contact').post((req, res) => {
+router.route("/contact").post((req, res) => {
   const {name, email, message} = req.body
   const mail = {
     from: name,
-    to: 'useremailverifyHexagon@gmail.com',
-    subject: 'Contact Form Submission',
+    to: "useremailverifyHexagon@gmail.com",
+    subject: "Contact Form Submission",
     html: `
       <p>Name: ${name}</p>
       <p>Email: ${email}</p>
       <p>Message: ${message}</p>
-    `
+    `,
   }
   smtpTransport.sendMail(mail, (error) => {
-    if(error){
-      res.json({status: 'Error sending maiil'})
-    }else{
-      res.json({status: 'Message sent!'})
+    if (error) {
+      res.json({status: "Error sending maiil"})
+    } else {
+      res.json({status: "Message sent!"})
     }
   })
 })

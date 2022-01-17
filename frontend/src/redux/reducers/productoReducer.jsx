@@ -60,20 +60,18 @@ const productoReducer = (state = initialState, action) => {
         (a) => a.precio >= state.min && a.precio <= state.max
       )
       const sorted = ranged.slice().sort(state.sort)
-      var filt = [1, 2, 3, 4].filter(
-        function (e) {
-          return this.indexOf(e) >= 0
-        },
-        [2, 4]
+      let filteredByCategories = sorted.filter((el) =>
+        state.categories.length > 0
+          ? state.categories.indexOf(el.categoria) >= 0
+          : true
       )
-      console.log(filt)
-      /* const filteredByCategories = sorted.filter((item) =>
-        state.categories.includes(item.categoria)
+      let filteredByBrands = filteredByCategories.filter((el) =>
+        state.brands.length > 0 ? state.brands.indexOf(el.marca) >= 0 : true
       )
-      const filteredByBrands = filteredByCategories.filter((item) =>
-        state.brands.includes(item.marca)
-      ) */
-      const filtered = sorted.filter((producto) =>
+
+      console.log(filteredByBrands)
+
+      const filtered = filteredByBrands.filter((producto) =>
         producto.nombre.toLowerCase().includes(state.search.toLowerCase())
       )
 
