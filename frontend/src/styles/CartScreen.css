@@ -6,9 +6,14 @@
     text-align: center;
 }
 
-/* .home h2, h3{
-    color: white;
-} */
+
+.product-img{
+    width: 150px;
+    height: 150px ;
+    object-fit: contain;
+}
+
+
 
 select.form-control{
     border: 1px solid rgb(155, 155, 155);
@@ -20,19 +25,24 @@ select.form-control{
     text-align: center;
 }
 
-.costumize{
-    /* background-color: rgba(42, 42, 42, 0.306); */
-}
 
 @media screen and (max-width:768px) {
-    .displayNone{
-        display: none;
-    }
     
     .form-control{
         width: 5rem !important;
         margin: auto;
         text-align: center;
     }
+    
+    
+}
+
+@media screen and (max-width:900px) {
+   
+    .wrapping{
+        flex-flow: column nowrap;
+    }
+
+    
     
 }

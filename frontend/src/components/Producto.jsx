@@ -102,12 +102,7 @@ const Producto = (props) => {
                 <p className="like">{likes}</p>
               </button>
             </div>
-            <div className="reseña-container">
-              <Calificacion
-                value={props.producto.calificacion}
-                text={`${props.producto.numReseñas} reseñas`}
-              />
-            </div>
+            
           </div>
         </div>
       </div>

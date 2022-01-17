@@ -18,12 +18,14 @@ function Filters(props) {
 
   return (
     <div className="shop__main">
+      <div className="filter-contaniner__find">
       <FormControl
         onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
         placeholder="FIND YOUR PRODUCT"
         aria-describedby="inputGroup-sizing-sm"
       />
-      <div className="shop__container" style={{height: "100vh"}}>
+      </div>
+      <div className="shop__container">
         <div className="shop__side-bar">
           {width >= 1300 ? (
             <SideBarFilter

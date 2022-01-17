@@ -1,9 +1,24 @@
 .shop__side-bar, .css-2m9kme-MuiFormControl-root {
-    background-color: rgba(255, 255, 255, 0.707);
     border-radius: 10px;
     padding: 1rem;
-    margin: 10px 0;;
-    color: white;
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.36);
+}
+
+.shop__side-bar{
+    margin: 1rem 0;
+    position: fixed;
+    top: 20vh;
+    left: 15vw;
+    min-height: 56%;
+    display: flex;
+    flex-flow: column nowrap;
+
+}
+
+.filter-contaniner__find{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .css-2m9kme-MuiFormControl-root p{
@@ -17,8 +32,7 @@
 .shop__main{
     display: flex;
     flex-flow: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: center
 }
 
 .shop__main input{
@@ -40,27 +54,20 @@ body::-webkit-scrollbar-thumb{
     border: none; 
   }
 
-  @media screen and (max-width:1500px) {
+  @media screen and (max-width:1300px) {
     .shop__side-bar{
         background-color: unset;
     }
 
-    .navbar{
-        background-color: unset;
-    }
-    
-    .css-1oqqzyl-MuiContainer-root{
-        position: fixed;
-        width: 20%;
-        top: 15vh;
-        padding: unset !important;
-        border-radius: 10px;
-        background-color: rgba(255, 255, 255, 0.387);
-    }
-
-    .navbar-toggler{
-        border-radius: 10px;
-        display: none;
-    }
-
   }
+
+  @media screen and (max-width:1900px) {
+    .shop__side-bar{
+        margin: 1rem 0;
+        position: fixed;
+        top: 12vh;
+        left: 8vw;
+        min-height: 56%;
+  }
+  
+}
