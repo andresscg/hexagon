@@ -75,10 +75,11 @@ export default function SideBarFilter(props) {
             {!sortLike ? <AiFillLike /> : <AiFillDislike />}
           </p>
         </div>
-
         <div className="shop__top-bar--sort">
           <p>Ver en lista</p>
           <FaList />
+        </div>
+        <div className="shop__top-bar--sort">
           <p>Ver en grilla</p>
           <BsFillGrid3X3GapFill />
         </div>
