@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {useParams} from "react-router"
+import { Link } from "react-router-dom"
 import {ListGroup, Card, Button, Form} from "react-bootstrap"
 import Calificacion from "../components/Calificacion"
 import {connect} from "react-redux"
@@ -110,6 +111,11 @@ const PaginaProducto = (props) => {
           </div>
         </div>
       </div>
+      <Button >
+          <Link to="/filters" className="text-light">
+            Back to Products
+          </Link>
+      </Button>
     </div>
   )
 }
