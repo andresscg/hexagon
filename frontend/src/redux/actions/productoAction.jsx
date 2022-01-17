@@ -87,6 +87,20 @@ const productoAction = {
       })
     }
   },
+  selectFilter: (data, selector) => {
+    return (dispatch, getState) => {
+      if (selector === "Brands")
+        dispatch({
+          type: "BRANDS",
+          payload: {data: data},
+        })
+      if (selector === "Categories")
+        dispatch({
+          type: "CATEGORIES",
+          payload: {data: data},
+        })
+    }
+  },
   filters: () => {
     return (dispatch) => {
       dispatch({type: "FILTERS"})

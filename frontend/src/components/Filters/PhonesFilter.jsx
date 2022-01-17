@@ -8,6 +8,8 @@ import {
   Select,
 } from "@mui/material"
 import React from "react"
+import {connect} from "react-redux"
+import productoAction from "../../redux/actions/productoAction"
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
@@ -21,7 +23,7 @@ const MenuProps = {
   },
 }
 
-export default function PhonesFilter({data, name}) {
+function PhonesFilter({data, name, selectFilter}) {
   const [selData, setSelData] = React.useState([])
 
   const handleChangeselect = (event) => {
@@ -42,6 +44,7 @@ export default function PhonesFilter({data, name}) {
           multiple
           value={selData}
           onChange={handleChangeselect}
+          onChangeCapture={selectFilter(selData, name)}
           input={<OutlinedInput id="select-multiple-chip" label="Processor" />}
           renderValue={(selected) => (
             <Box sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
@@ -59,7 +62,20 @@ export default function PhonesFilter({data, name}) {
           ))}
         </Select>
       </FormControl>
-      <p onClick={() => setSelData([])}>X</p>
+      <p
+        onClick={() => {
+          setSelData([])
+          selectFilter(selData, name)
+        }}
+      >
+        X
+      </p>
     </div>
   )
 }
+
+const mapDispatchToProps = {
+  selectFilter: productoAction.selectFilter,
+}
+
+export default connect(null, mapDispatchToProps)(PhonesFilter)
