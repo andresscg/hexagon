@@ -2,8 +2,6 @@ import React, {useEffect, useState} from "react"
 import productoAction from "../../redux/actions/productoAction"
 import {connect} from "react-redux"
 import "../../styles/Filters.css"
-import "../../styles/ShopContainer.css"
-import SideBarDrawer from "./SideBarDrawer"
 import Productos from "../../pages/Productos"
 import {Button, FormControl} from "react-bootstrap"
 import useWindowDimensions from "../../hooks/useWindowDimensions"
@@ -21,40 +19,32 @@ function Filters(props) {
 
   return (
     <div className="shop__main">
+      <p>Find what you're looking for:</p>
       <div className="filter-contaniner__find">
-        <FormControl
-          onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
-          placeholder="FIND YOUR PRODUCT"
-          aria-describedby="inputGroup-sizing-sm"
-        />
-      </div>
-      <div className="shop__container">
-        <div className="shop__side-bar">
-          {width >= 1300 ? (
+        <div className="shop__container">
+          <FormControl
+            onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
+            placeholder="FIND YOUR PRODUCT"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <div className="shop__side-bar">
             <SideBarFilter
               productos={props.productos}
               sort={props.sortProductos}
             />
-          ) : (
-            <SideBarDrawer
-              productos={props.productos}
-              sort={props.sortProductos}
-            />
-          )}
+          </div>
           <div className="shop__top-bar--sort">
-            <p onClick={() => setGrid(false)}>Ver en lista</p>
             <Button onClick={() => setGrid(false)}>
               <FaList onClick={() => setGrid(false)} />
             </Button>
-            <p onClick={() => setGrid(true)}>Ver en grilla</p>
             <Button onClick={() => setGrid(true)}>
               <BsFillGrid3X3GapFill onClick={() => setGrid(true)} />
             </Button>
           </div>
         </div>
-        <div className="shop__content">
-          <Productos products={props.sorted} grid={grid} />
-        </div>
+      </div>
+      <div className="shop__content">
+        <Productos products={props.sorted} grid={grid} />
       </div>
     </div>
   )

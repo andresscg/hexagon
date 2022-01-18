@@ -44,15 +44,9 @@ const PaginaProducto = (props) => {
             <ListGroup.Item>
               <h3>{producto.product}</h3>
             </ListGroup.Item>
-            <ListGroup.Item>
-              <Calificacion
-                value={producto.rating}
-                text={`${producto.reviews} reseñas`}
-              />
-            </ListGroup.Item>
             <ListGroup.Item>Price: {producto.price}</ListGroup.Item>
             <ListGroup.Item>
-              Descripcion: {props.producto.descripcion}
+              Description: {props.producto.descripcion}
             </ListGroup.Item>
           </ListGroup>
           <div className="pricing-container">
@@ -65,13 +59,13 @@ const PaginaProducto = (props) => {
                   </p>
                 </div>
                 <div className="fila">
-                  <p>Estado:</p>
+                  <p>Status:</p>
                   <p>{producto.stock > 0 ? "In Stock" : "out of stock"}</p>
                 </div>
 
                 {props.producto.contadorStock > 0 && (
                   <div className="fila">
-                    <p>Cantidad</p>
+                    <p>Quantity</p>
                     <div>
                       <Form.Control
                         as="select"
