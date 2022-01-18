@@ -1,5 +1,7 @@
 import {useState} from "react"
 import {Alert, Button} from "react-bootstrap"
+
+
 export default function EmailVerification() {
   const [show, setShow] = useState(true)
 

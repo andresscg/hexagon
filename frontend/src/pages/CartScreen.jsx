@@ -9,8 +9,6 @@ import {
   Row,
 } from "react-bootstrap"
 import {AiFillDelete} from "react-icons/ai"
-import Calificacion from "../components/Calificacion"
-import Paypal from "../components/Paypal"
 import {useCart} from "react-use-cart"
 import {useNavigate} from "react-router-dom"
 import "../styles/CartScreen.css"
@@ -24,19 +22,13 @@ export default function CartScreen(props) {
     totalItems,
     updateItemQuantity,
     cartTotal,
+    isEmpty,
   } = useCart()
 
   let navigate = useNavigate()
-  totalItems === 0 && navigate("/shop", {replace: true})
+  isEmpty && navigate("/shop", {replace: true})
 
   console.log(items)
-
-  const [paypal, setPaypal] = useState(false)
-  let fecha = new Date()
-
-  const validar = () => {
-    setPaypal(true)
-  }
 
   return (
     <div className="home" style={{backgroundImage: "url(/assets/bg2.webp)"}}>
@@ -121,12 +113,7 @@ export default function CartScreen(props) {
 
         <div>
           <ShippingForm cartTotal={cartTotal} />
-          <Button
-            className="my-2"
-            type="button"
-            onClick={validar}
-            disabled={totalItems === 0}
-          >
+          <Button className="my-2" type="button" disabled={isEmpty}>
             Proceed to Checkout
           </Button>
         </div>

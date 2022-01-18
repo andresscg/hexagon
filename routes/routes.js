@@ -35,6 +35,7 @@ const {
   borrarUnProducto,
   modificarUnProducto,
   comentario,
+  modificarProductos,
 } = productosController
 
 const smtpTransport = nodemailer.createTransport({
@@ -83,7 +84,11 @@ router.route("/contact").post((req, res) => {
   })
 })
 
-router.route("/productos").get(obtenerProductos).post(agregarProducto)
+router
+  .route("/productos")
+  .get(obtenerProductos)
+  .post(agregarProducto)
+  .put(modificarProductos)
 
 router
   .route("/productos/:id")

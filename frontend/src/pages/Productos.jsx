@@ -17,6 +17,9 @@ const Productos = (props) => {
     props.categories,
     props.brands,
   ])
+  useEffect(() => {
+    props.fetchearProductos()
+  }, [])
 
   return (
     <>
@@ -61,6 +64,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   listaProductos: productoAction.fetchearProductos,
   filters: productoAction.filters,
+  fetchearProductos: productoAction.fetchearProductos,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productos)

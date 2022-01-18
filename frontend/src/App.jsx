@@ -8,8 +8,15 @@ import authAction from "./redux/actions/authAction"
 import {connect} from "react-redux"
 import React from "react"
 import {CartProvider} from "react-use-cart"
+import productoAction from "./redux/actions/productoAction"
 
 function App(props) {
+  window.onstorage = () => {
+    console.log("localStorage")
+    props.fetchearProductos()
+    props.filters()
+  }
+
   React.useEffect(() => {
     if (!props.isAuth) {
       props.tokenVerify()
@@ -36,6 +43,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   tokenVerify: authAction.tokenVerify,
+  fetchearProductos: productoAction.fetchearProductos,
+  filters: productoAction.filters,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
