@@ -222,7 +222,7 @@
   .info-container{
     flex-flow: column nowrap;
     height: 100%;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   .text-container{
@@ -243,7 +243,7 @@
 
   .img-container img {
     margin-top: unset;
-    height: 200px;
+    height: 225px;
   }
 
   .price-card__container {
@@ -284,7 +284,8 @@
     margin: unset;
     height: unset;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    width: 90%;
   }
 
   .like-container{
