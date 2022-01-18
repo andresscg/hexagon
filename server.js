@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
   })
 }
-
+/* 
 spdy.createServer(options, app).listen(PORT, (error) => {
   if (error) {
     console.error(error)
@@ -37,6 +37,6 @@ spdy.createServer(options, app).listen(PORT, (error) => {
   } else {
     console.log("Listening on port: " + PORT + ".")
   }
-})
+}) */
 
-/* app.listen(PORT, () => console.log("App listening on port " + PORT)) */
+app.listen(PORT, () => console.log("App listening on port " + PORT))
