@@ -53,17 +53,12 @@ const authAction = {
       }
     }
   },
-  userRegister: (firstName, lastName, password, email, photo, country) => {
+  userRegister: (formData) => {
     return async (dispatch, getState) => {
       try {
-        let response = await axios.post(registerUrl, {
-          firstName,
-          lastName,
-          password,
-          email,
-          photo,
-          country,
-        })
+        console.log(formData)
+        let response = await axios.post('http://localhost:4000/api/user/register', formData)
+        console.log(response)
         if (response.data.success && !response.data.errors) {
           getState().modalReducer.showModal = false
           localStorage.setItem("token", response.data.response.token)
@@ -89,7 +84,7 @@ const authAction = {
           // : toast.error(response.data.errors)
         }
       } catch (error) {
-        console.error(error)
+        console.log(error)
       }
     }
   },

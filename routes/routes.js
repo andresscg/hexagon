@@ -7,6 +7,29 @@ const productosController = require("../controllers/productosController")
 const nodemailer = require("nodemailer")
 const {google} = require("googleapis")
 const OAuth2 = google.auth.OAuth2
+const multer = require("multer")
+const {v4: uuidv4} = require('uuid')
+const path = require("path")
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, 'images')
+  },
+  filename: function(req, file, cb){
+    cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const fileFilter = (req, file, cb) => {
+  const allowedFiles = ['image/jpeg', 'image/png', 'image/jpg']
+  if(allowedFiles.includes(file.mimetype)){
+    cb(null, true)
+  }else{
+    cb(null, false)
+  }
+}
+
+let upload = multer({storage, fileFilter})
 
 const oauth2Client = new OAuth2(
   "111498414684-specl4tg3bs5nscj9faknua8im4qhcqi.apps.googleusercontent.com",
@@ -21,7 +44,7 @@ oauth2Client.setCredentials({
 const accessToken = oauth2Client.getAccessToken()
 
 router.route("/verify/:uniqueString").get(userController.verifyEmail)
-router.route("/user/register").post(validator, userController.newUser)
+router.route("/user/register").post(upload.single('photo'), userController.newUser)
 router.route("/user/login").post(userController.logUser)
 router
   .route("/user/modificar")
