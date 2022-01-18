@@ -166,7 +166,7 @@ body::-webkit-scrollbar-thumb{
         color: white !important;
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1145px) {
         .shop__main{
           padding: unset;
           padding: 15vh 0 0 0 ;
@@ -219,7 +219,7 @@ body::-webkit-scrollbar-thumb{
           display: flex;
         }
 
-        .selectores div p {
+        .cleanUp-container p {
           display: none;
         }
 
