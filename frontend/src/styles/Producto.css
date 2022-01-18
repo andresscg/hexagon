@@ -7,7 +7,7 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 2vh;
+  /* margin-top: 2vh; */
 }
 
 .container-all__productos h1 {
@@ -20,7 +20,7 @@
 }
 
 .container-all__filtros {
-  padding: 10px 30px;
+  padding:  0 30px 10px 30px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -54,7 +54,7 @@
 .noexiste-container {
   padding: 1rem;
   text-align: center;
-  width: 50vw;
+  width: 100%;
   background-color: var(--white);
   margin: 2px 0;
   border-radius: 5px;
