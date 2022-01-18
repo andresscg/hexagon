@@ -4,14 +4,11 @@ import {connect} from "react-redux"
 import "../../styles/Filters.css"
 import Productos from "../../pages/Productos"
 import SliderPriceFilter from "./SliderPriceFilter"
-
 import PhonesFilter from "./PhonesFilter"
-
+import {BiSearchAlt} from "react-icons/bi"
 import {Button, FormControl} from "react-bootstrap"
-import useWindowDimensions from "../../hooks/useWindowDimensions"
 import SideBarFilter from "./SideBarFilter"
-import {BsFillGrid3X3GapFill} from "react-icons/bs"
-import {FaList} from "react-icons/fa"
+
 
 function Filters(props) {
   const categories = [
@@ -20,7 +17,7 @@ function Filters(props) {
 
   const brands = [...new Set(props.productos.map((producto) => producto.marca))]
   const [grid, setGrid] = useState(false)
-  const {width} = useWindowDimensions()
+
   useEffect(() => {
     !props.auxiliar[1] && props.listaProductos()
     props.search("")
@@ -28,40 +25,44 @@ function Filters(props) {
 
   return (
     <div className="shop__main">
-      <p>Find what you're looking for:</p>
-      <div className="filter-contaniner__find">
-        <div className="shop__container">
+      <h2 className="text-light">Find what you're looking for:</h2>
+      <div className="buscador-container">
+        <BiSearchAlt/>
           <FormControl
             onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
             placeholder="FIND YOUR PRODUCT"
             aria-describedby="inputGroup-sizing-sm"
           />
-          <div className="Selectores">
-            <PhonesFilter data={brands} name={"Brands"} />
-            <PhonesFilter data={categories} name={"Categories"} />
+      </div>
+      <div className="filter-contaniner__find">
+        <div className="shop__container">
+          <div className="selectores-container">
+            
+            <div className="selectores">
+              <PhonesFilter data={brands} name={"Brands"} />
+              <label>
+                <p>Price range:</p>
+                {props.productos.length > 0 && (
+                  <SliderPriceFilter productos={props.productos} />
+                )}
+              </label>
+              <PhonesFilter data={categories} name={"Categories"} />
+            </div>
+            <div className="botones-filter">
+              <SideBarFilter
+                productos={props.productos}
+                sort={props.sortProductos}
+              />
           </div>
-          <div className="el rango">
-            <label>
-              <p>Price range:</p>
-              {props.productos.length > 0 && (
-                <SliderPriceFilter productos={props.productos} />
-              )}
-            </label>
           </div>
-          <div style={{display: "flex"}} className="Los botones">
-            <SideBarFilter
-              productos={props.productos}
-              sort={props.sortProductos}
-            />
-          </div>
-          <div>
+          {/* <div className="layout-products">
             <Button onClick={() => setGrid(false)}>
               <FaList onClick={() => setGrid(false)} />
             </Button>
             <Button onClick={() => setGrid(true)}>
               <BsFillGrid3X3GapFill onClick={() => setGrid(true)} />
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="shop__content">

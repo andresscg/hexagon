@@ -8,6 +8,8 @@
     min-height: 80vh;
     display: flex;
     flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
   }
 
 
@@ -15,6 +17,8 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    min-width: 55rem;
+
 }
 
 .css-2m9kme-MuiFormControl-root p{
@@ -46,6 +50,7 @@ body::-webkit-scrollbar-thumb{
 
   .shop__container {
     display: flex;
+    justify-content: center;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
     min-height: 100%;
@@ -60,5 +65,58 @@ body::-webkit-scrollbar-thumb{
     /* overflow-y: scroll; */
   }
   
-  
+  .layout-products{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      align-items: flex-end;
+    margin: 0 0 0 1rem;
+  }
+
+  .layout-products button{
+      border-radius: 20px 20px 0 0;
+      margin: 0 0 -2px  0;
+      font-size: 1.5rem;
+  }
+
+  .botones-filter{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+
+  .botones-filter button{
+    margin: 0 .2rem -2px  0;
+    font-size: 1.5rem;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .selectores{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.129);
+    border-radius: 20px;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+
+  .selectores-container{
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+
+  }
+  .buscador-container,  .buscador-container > svg{
+          display: flex ;
+          justify-content: center;
+          flex-flow: row nowrap;
+          color: white;
+          font-size:  2rem;
+          margin-right: 15px;
+      }
   
