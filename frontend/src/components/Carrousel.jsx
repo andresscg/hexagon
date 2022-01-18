@@ -1,5 +1,5 @@
 
-import {  Card, CardGroup, Carousel } from "react-bootstrap";
+import {  Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
