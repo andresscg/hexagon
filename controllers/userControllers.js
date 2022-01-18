@@ -3,46 +3,10 @@ const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
 const crypto = require("crypto")
+const { sendEmail } = require("../config/emailer")
 
-const sendEmail = async (email, uniqueString) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "useremailverifyhexagon@gmail.com",
-      pass: "Hexagon2022",
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  })
 
-  let sender = "useremailverifyHexagon@gmail.com"
-  let mailOptions = {
-    from: sender,
-    to: email,
-    subject: "Verificacion de email usuario ",
-    html: `
-    <div>
-        <img style="display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100px;
-        height:100px;" src='https://i.imgur.com/GjurQqE.png' alt='logo Hexagon'/>
-        <h2 style="text-align:center;  font-size: 1.5rem;">Gracias por registrarte con nosotros!</h2>
-        <p style="text-align:center">Con tu cuenta podras:Comprar, comentar dar Likes</p>
-        <p style="text-align:center; font-size: 1.2rem;">Por favor, para verificar tu correo, haz click <a href=http://localhost:4000/api/verify/${uniqueString}>aqui</a>aqui</a></p>
-    </div>`,
-  }
-  await transporter.sendMail(mailOptions, function (error, response) {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log("Mensaje enviado")
-    }
-  })
-}
+
 
 const userController = {
   newUser: async (req, res) => {
@@ -50,6 +14,7 @@ const userController = {
 
     try {
       const userExist = await User.findOne({email})
+      
 
       if (userExist) {
         if (google) {
@@ -74,6 +39,7 @@ const userController = {
         let emailVerified = false
 
         const contraseñaHasheada = bcryptjs.hashSync(password, 10)
+  
         const nuevoUsuario = new User({
           firstName,
           lastName,

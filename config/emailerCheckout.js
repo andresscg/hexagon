@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 
 
 
-const sendEmail = async (email, uniqueString) => {
+const sendEmailCheckout = async (email, uniqueString) => {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -27,10 +27,8 @@ const sendEmail = async (email, uniqueString) => {
           margin-left: auto;
           margin-right: auto;
           width: 100px;
-          height:100px;" src='https://i.imgur.com/GjurQqE.png' alt='logo Hexagon'/>
-          <h2 style="text-align:center;  font-size: 1.5rem;">Thank you for registering with us!</h2>
-          <p style="text-align:center">With your account you can: Buy, comment, give Likes</p>
-          <p style="text-align:center; font-size: 1.2rem;">Please, to verify your email, click <a href=http://localhost:4000/api/verify/${uniqueString}>aqui</a>aqui</a></p>
+          height:100px;" src='https://franchiseconceptsinc.com/chicagopictureframes/wp-content/uploads/sites/50/2020/12/Thanks-For-Shopping-With-Us.jpg' alt='logo Hexagon'/>
+          
       </div>`,
     }
     await transporter.sendMail(mailOptions, function (error, response) {
@@ -42,4 +40,4 @@ const sendEmail = async (email, uniqueString) => {
     })
   }
 
-exports.sendEmail = () => sendEmail()
+exports.sendEmail = () => sendEmailCheckout()
