@@ -42,7 +42,7 @@ function Filters(props) {
               data={brands} 
               name={"Brands"}
               sx={{width: 10}} />
-              <div>
+              <div className="selectores-price">
                 <p>Price range:</p>
                 {props.productos.length > 0 && (
                   <SliderPriceFilter productos={props.productos} />
