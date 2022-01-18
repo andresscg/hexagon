@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
 const crypto = require("crypto")
 
+
 const sendEmail = async (email, uniqueString) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -46,7 +47,15 @@ const sendEmail = async (email, uniqueString) => {
 
 const userController = {
   newUser: async (req, res) => {
-    let {firstName, lastName, email, password, google, photo, admin} = req.body
+    // let {firstName, lastName, email, password, google, photo, admin} = req.body
+    console.log(req.file)
+    const firstName = req.body.name
+    const lastName = req.body.lastname
+    const email = req.body.email
+    const password = req.body.password
+    const google = req.body.google
+    const admin = req.body.admin
+    const photo = req.file.filename
 
     try {
       const userExist = await User.findOne({email})
@@ -115,7 +124,7 @@ const userController = {
       }
     } catch (error) {
       console.log(error)
-      res.json({success: false, response: null, errors: errors})
+      res.json({success: false, response: null, errors: 'errors'})
     }
   },
   logUser: async (req, res) => {

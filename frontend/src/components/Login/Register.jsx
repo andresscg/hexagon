@@ -30,25 +30,43 @@ function Register(props) {
       .catch(error => console.log(error))
   })
 
-  const email = useRef()
-  const password = useRef()
-  const name = useRef()
-  const lastname = useRef()
-  const photo = useRef()
-  const country = useRef()
+  // const email = useRef()
+  // const password = useRef()
+  // const name = useRef()
+  // const lastname = useRef()
+  // const country = useRef()
+
+  const [newUser, setNewUser] = useState({
+    email: '',
+    password: '',
+    name: '',
+    lastname: '',
+    photo: '',
+    country: '',
+  })
+
+  const handlePhoto = e => {
+    setNewUser({...newUser, photo: e.target.files[0]})
+  }
+
+  const handleChange = e => {
+    setNewUser({...newUser, [e.target.name]: e.target.value})
+  }
 
   function handleRegister(e) {
     e.preventDefault()
-    if (email.current.value && password.current.value) {
+    console.log(newUser)
+    const formData = new FormData()
+    formData.append('name', newUser.name)
+    formData.append('password', newUser.password)
+    formData.append('lastname', newUser.lastname)
+    formData.append('country', newUser.country)
+    formData.append('photo', newUser.photo)
+    formData.append('email', newUser.email)
+    console.log(formData.get('name'))
+    if (formData.get('email') && formData.get('password')) {
       props.loginPending()
-      let response = props.userRegister(
-        name.current.value,
-        lastname.current.value,
-        password.current.value,
-        email.current.value,
-        photo.current.value,
-        country.current.value
-      )
+      let response = props.userRegister(formData)
       console.log(response)
     }
   }
@@ -56,7 +74,7 @@ function Register(props) {
     <div className="register-body">
       <h3 className="register-title">Make an account</h3>
       <p className="register-subtitle">If you don't have an account, create a new one!</p>
-      <form className="register-form" onSubmit={handleRegister}>
+      <form className="register-form" onSubmit={handleRegister} encType="multipart/form-data">
         <div className="register-inputs">
           <div className="input-group">
             <label htmlFor="name">Name</label>
@@ -64,8 +82,10 @@ function Register(props) {
               required
               type="text"
               id="name"
+              name="name"
               className="btn-signup"
-              ref={name}
+              // ref={name}
+              onChange={handleChange}
               minLength="3"
               maxLength="20"
             ></input>
@@ -76,8 +96,10 @@ function Register(props) {
             <input
               type="text"
               id="lastname"
+              name="lastname"
               className="btn-signup"
-              ref={lastname}
+              onChange={handleChange}
+              // ref={lastname}
               minLength="3"
               maxLength="20"
               required
@@ -88,8 +110,10 @@ function Register(props) {
             <input
               type="email"
               id="email"
+              name="email"
+              onChange={handleChange}
               className="btn-signup"
-              ref={email}
+              // ref={email}
               required
             ></input>
           </div>
@@ -98,8 +122,10 @@ function Register(props) {
             <input
               type="password"
               id="password"
+              name="password"
               className="btn-signup"
-              ref={password}
+              // ref={password}
+              onChange={handleChange}
               minLength="8"
               maxLength="20"
               required
@@ -108,11 +134,12 @@ function Register(props) {
           <div className="input-group">
             <label htmlFor="photo">Photo</label>
             <input
-              type="string"
+              type="file"
               id="photo"
-              className="btn-signup"
-              ref={photo}
-              required
+              name="photo"
+              // className="btn-signup"
+              accept=".png, .jpg, .jpeg"
+              onChange={handlePhoto}
             ></input>
           </div>
           <div className="input-group ">
@@ -120,13 +147,15 @@ function Register(props) {
             <select
               type="text"
               id="country"
+              name="country"
               className="btn-signup"
-              ref={country}
+              // ref={country}
+              onChange={handleChange}
               required
             >
               {usStates.map(state => {
                 return (
-                  <option value={state.name}>{state.name}</option>
+                  <option value={state.name} key={state.key}>{state.name}</option>
                 )
               })}
             </select>
