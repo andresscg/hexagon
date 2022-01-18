@@ -8,6 +8,7 @@ import "../styles/Producto.css"
 
 const Productos = (props) => {
   useEffect(() => {
+    window.scroll(0,0)
     props.filters()
   }, [
     props.min,

@@ -1,4 +1,5 @@
-import React, {useRef, useState} from "react"
+import React, {useRef, useState, useEffect} from "react"
+import axios from "axios"
 import GoogleLogin from "react-google-login"
 import {connect, useDispatch} from "react-redux"
 import authAction from "../../redux/actions/authAction"
@@ -17,6 +18,17 @@ function Register(props) {
       "Google"
     )
   }
+
+  const [usStates, setUsStates] = useState([])
+  useEffect(() => {
+    axios.get('https://datausa.io/api/searchLegacy/?limit=100&dimension=Geography&hierarchy=State&q=')
+      .then(response => setUsStates(response.data.results.sort((a, b) => {
+        if(a.name < b.name) return -1
+        if(a.name > b.name) return 1
+        return 0
+      })))
+      .catch(error => console.log(error))
+  })
 
   const email = useRef()
   const password = useRef()
@@ -104,7 +116,7 @@ function Register(props) {
             ></input>
           </div>
           <div className="input-group ">
-            <label htmlFor="country">Country</label>
+            <label htmlFor="country">State</label>
             <select
               type="text"
               id="country"
@@ -112,14 +124,11 @@ function Register(props) {
               ref={country}
               required
             >
-              <option value="Argentina">Argentina</option>
-              <option value="Bolivia">Bolivia</option>
-              <option value="Paraguay">Paraguay</option>
-              <option value="Brasil">Brasil</option>
-              <option value="Uruguay">Uruguay</option>
-              <option value="Chile">Chile</option>
-              <option value="Ecuador">Ecuador</option>
-              <option value="Peru">Peru</option>
+              {usStates.map(state => {
+                return (
+                  <option value={state.name}>{state.name}</option>
+                )
+              })}
             </select>
           </div>
         </div>

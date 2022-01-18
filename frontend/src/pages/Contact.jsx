@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import ContactForm from '../components/ContactForm'
 import '../styles/ContactPage.css'
 
 const Contact = () => {
+  useEffect(() => {
+    window.scroll(0,0)
+  }, [])
   return (
     <div className="contact-container">
       <h2 className="contact__title">
