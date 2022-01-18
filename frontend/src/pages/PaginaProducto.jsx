@@ -7,10 +7,13 @@ import {connect} from "react-redux"
 import productoAction from "../redux/actions/productoAction"
 import {useCart} from "react-use-cart"
 import "../styles/paginaProducto.css"
+import Carrousel from "../components/Carrousel"
 
 const PaginaProducto = (props) => {
+ 
   let {id} = useParams()
   const [qty, setQty] = useState(1)
+ 
 
   const {addItem, items, removeItem} = useCart()
 
@@ -26,10 +29,12 @@ const PaginaProducto = (props) => {
 
   useEffect(() => {
     props.fetchUnProducto(id)
-  })
+    props.fetchProductos()
+  },[])
 
   return (
     <div className="producto-pagina__container">
+     
       <div className="producto-informacion__container">
         <div className="producto-imagen__container">
           <img src={producto.image} alt={producto.product} />
@@ -109,10 +114,11 @@ const PaginaProducto = (props) => {
               </ListGroup>
             </Card>
           </div>
+      <Carrousel />
         </div>
       </div>
       <Button >
-          <Link to="/filters" className="text-light">
+          <Link to="/shop" className="text-light">
             Back to Products
           </Link>
       </Button>
@@ -127,5 +133,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = {
   fetchUnProducto: productoAction.fetchUnProducto,
+  fetchProductos: productoAction.fetchearProductos,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PaginaProducto)

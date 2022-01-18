@@ -5,6 +5,11 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
 import {FaSortAlphaDownAlt} from "react-icons/fa"
 import {FaSortAlphaDown} from "react-icons/fa"
+import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
+import {BsFillGrid3X3GapFill} from "react-icons/bs"
+import {FaList} from "react-icons/fa"
+import "../../styles/sideBarFilter.css"
+import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
 import { AiFillLike, AiFillDislike } from "react-icons/ai"
 
 export default function SideBarFilter(props) {

@@ -14,7 +14,7 @@ const Footer = () => {
           
           <div className="footer__contact">
             <p className="contact__info">
-              Av. Cabildo 2199, Belgrano, CABA.
+            1230 Peachtree Street, NE. Suite 1900. Atlanta, GA
             </p>
             <p className="footer-copy">
               Hexagon TechStore | 2022, All Rights Reserved.

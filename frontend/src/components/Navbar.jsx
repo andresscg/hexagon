@@ -64,7 +64,7 @@ const Navbar = (props) => {
               <FaShoppingCart color="white" fontSize="25px" />
               <Badge className="cart__number">{totalItems}</Badge>
             </Dropdown.Toggle>
-            <Dropdown.Menu style={{minWidth: 370}}>
+            <Dropdown.Menu style={{minWidth: 370}} className="cart__dropdown">
               {totalItems ? (
                 <>
                   {items.map((prod) => (
@@ -78,8 +78,8 @@ const Navbar = (props) => {
 
                       <div className="cartItemDetail" style={{gap: 10}}>
                         <span>{prod.product}</span>
-                        <span>{prod.price}</span>
-                        <span style={{backgroundColor: "#000000"}}>
+                        <span>${prod.price}</span>
+                        <span>
                           {prod.quantity}
                         </span>
                       </div>

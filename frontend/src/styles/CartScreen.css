@@ -1,11 +1,36 @@
 .home{
-    padding-top: 12vh;
+    padding: 15vh 0 50px;
     background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     /* color: white; */
     text-align: center;
+    /* display: flex; */
+    flex-direction: column;
+    gap: 20px;
 }
 
+.cart-items__container{
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+
+.cart-items__container::-webkit-scrollbar {
+    color: var(--primary);          
+  }
+  
+  .cart-items__container::-webkit-scrollbar-track {
+    background: var(--third);
+    border-radius: 15px;       
+  }
+  
+  .cart-items__container::-webkit-scrollbar-thumb{
+    background-color: var(--primary);   
+    border-radius: 5px;      
+    border: none; 
+  }
 
 .product-img{
     width: 150px;
@@ -13,9 +38,24 @@
     object-fit: contain;
 }
 
+.productContainer, .filters {
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
 
+.productContainer {
+    padding: 15px 0;
+}
 
-select.form-control{
+.trash-btn {
+    background-color: var(--secondary);
+    color: var(--secondary-light);
+    border: 3px solid var(--primary);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.select.form-control{
     border: 1px solid rgb(155, 155, 155);
 }
 

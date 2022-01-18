@@ -2,7 +2,7 @@
   /* FONTS */
   --headings-font: "Poppins", sans-serif;
   --text-font: "Mukta", sans-serif;
-
+ 
   /* COLORS */
   --white: #ffff;
   --primary: #fb9728;
@@ -18,6 +18,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: var(--headings-font);
 }
 .css-19z1ozs-MuiPaper-root-MuiAppBar-root {
   position: unset !important;
@@ -38,3 +39,5 @@ a {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
 }
+
+

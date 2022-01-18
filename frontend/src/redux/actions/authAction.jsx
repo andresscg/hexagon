@@ -24,6 +24,7 @@ const authAction = {
           localStorage.setItem("token", response.data.token)
           console.log(response)
           getState().modalReducer.showModal = false
+          toast.success('Welcome Back!', {position: 'bottom-right'})
           dispatch({
             type: "auth@@USER",
             payload: {
@@ -33,7 +34,7 @@ const authAction = {
             },
           })
         } else {
-          toast.error(response.data.errors)
+          toast.error(response.data.errors, {position: 'bottom-right'})
           dispatch({
             type: "auth@@GET_USER_FAIL",
             payload: {
@@ -43,7 +44,6 @@ const authAction = {
         }
       } catch (error) {
         console.log(error)
-        toast.error("Email or password incorrect!")
         dispatch({
           type: "auth@@GET_USER_FAIL",
           payload: {
@@ -84,9 +84,9 @@ const authAction = {
             type: "auth@@GET_USER_FAIL",
             payload: {authError: response.data.errors},
           })
-          response.data.errors.isArray
-            ? response.data.errors.map((err) => toast.error(err.message))
-            : toast.error(response.data.errors)
+          console.log(response.data)
+            // ? response.data.errors.map((err) => toast.error(err.message))
+            // : toast.error(response.data.errors)
         }
       } catch (error) {
         console.error(error)

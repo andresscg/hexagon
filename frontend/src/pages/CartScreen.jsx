@@ -42,7 +42,7 @@ export default function CartScreen(props) {
     <div className="home">
       <h2 className="text-light">Cart Items</h2>
       <div className="productContainer mx-auto container bg-light text-dark" style={{zIndex: -100}}>
-        <ListGroup >
+        <ListGroup className="cart-items__container" >
             {items.map((prop) => (
               <ListGroupItem key={prop.id} >
                 <Row className="justify-content-center">
@@ -70,16 +70,14 @@ export default function CartScreen(props) {
                     </Form.Control>
                   </Col>
                   <Col md={2} >
-                    <Button
+                    <button
                       onClick={() => {
                         removeItem(prop.id)
                       }}
-                      variant="light"
-                      className="btn-block"
-                      type="button"
+                      className="trash-btn"
                     >
                       <AiFillDelete fontSize="20px" />
-                    </Button>
+                    </button>
                   </Col>
                 </Row>
               </ListGroupItem>
@@ -99,11 +97,11 @@ export default function CartScreen(props) {
           onClick={emptyCart}
           disabled={totalItems === 0}
         >
-          Borrar carrito
+          Clear Cart
         </Button>
       </div>
       <Row className="filters summary d-flex flex-column container mx-auto costumize bg-light text-dark py-3 align-items-center">
-        <h3 className="text-dark">¿Como pagáras?</h3>
+        <h3 className="text-dark">How would you like to pay?</h3>
         <div className="d-flex flex-column my-2">
           <span className="title">Subtotal ({totalItems}) items</span>
           <span className="text-uppercase fs-4 fw-bold"> Total: ${cartTotal}</span>
@@ -111,11 +109,11 @@ export default function CartScreen(props) {
         <div className="d-flex justify-content-center flex-wrap gap-1 wrapping">
           <div class="form-check d-flex justify-content-center px-1 mx-1">
             <input type="radio" id="debito" name="formapago" class="form-check-input mx-1" onClick />
-            <label htmlFor="debito" disabled>Debito</label>
+            <label htmlFor="debito" disabled>Debit</label>
           </div>
           <div class="form-check d-flex justify-content-center px-1  mx-1">
             <input  type="radio" id="tarjeta" name="formapago" class="form-check-input mx-1"/>
-            <label htmlFor="tarjeta" disabled>Tarjeta</label>
+            <label htmlFor="tarjeta" disabled>Credit Card</label>
           </div>
           <div class="form-check d-flex justify-content-center px-1  mx-1">
             <input type="radio" id="paypal" name="formapago" class="form-check-input mx-1" />
