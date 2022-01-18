@@ -1,122 +1,60 @@
 .shop__main {
-    background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    padding: 15vh 0 20px 30px;
-    min-height: 80vh;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-  }
-
-
-.filter-contaniner__find{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    min-width: 55rem;
-
+  background-image: url(../../public/assets/bg2.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 15vh 0 20px 30px;
+  min-height: 80vh;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-.css-2m9kme-MuiFormControl-root p{
-    display: none;
+.filter-contaniner__find {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.css-187mznn-MuiSlider-root{
-    color: #8d237e !important;
+.css-2m9kme-MuiFormControl-root p {
+  display: none;
 }
 
-.shop__main input{
-    margin-bottom: 1rem;
-    width: fit-content;
+.css-187mznn-MuiSlider-root {
+  color: #8d237e !important;
+}
+
+.shop__main input {
+  margin-bottom: 1rem;
+  width: fit-content;
 }
 
 body::-webkit-scrollbar {
-    color: #511549;          
-  }
-  
+  color: #511549;
+}
+
 body::-webkit-scrollbar-track {
-    background: #8d237e;       
-  }
-  
-body::-webkit-scrollbar-thumb{
-    background-color: #511549;   
-    border-radius: 5px;      
-    border: none; 
-  }
+  background: #8d237e;
+}
 
-  .shop__container {
-    display: flex;
-    justify-content: center;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-    min-height: 100%;
-  }
-  
-  .shop__side-bar {
-    display: flex;
-    flex-direction: column;
-  }
-  .shop__content {
-    width: 100%;
-    /* overflow-y: scroll; */
-  }
-  
-  .layout-products{
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: flex-end;
-      align-items: flex-end;
-    margin: 0 0 0 1rem;
-  }
+body::-webkit-scrollbar-thumb {
+  background-color: #511549;
+  border-radius: 5px;
+  border: none;
+}
 
-  .layout-products button{
-      border-radius: 20px 20px 0 0;
-      margin: 0 0 -2px  0;
-      font-size: 1.5rem;
-  }
+.shop__container {
+  display: flex;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  min-height: 100%;
+}
 
-  .botones-filter{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: flex-end;
-  }
-
-
-  .botones-filter button{
-    margin: 0 .2rem -2px  0;
-    font-size: 1.5rem;
-    border-radius: 20px 20px 0 0;
-  }
-
-  .selectores{
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid white;
-    background-color: rgba(255, 255, 255, 0.129);
-    border-radius: 20px;
-    margin: 1rem 0;
-    padding: 1rem;
-  }
-
-  .selectores-container{
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-
-  }
-  .buscador-container,  .buscador-container > svg{
-          display: flex ;
-          justify-content: center;
-          flex-flow: row nowrap;
-          color: white;
-          font-size:  2rem;
-          margin-right: 15px;
-      }
-  
+.shop__side-bar {
+  display: flex;
+  flex-direction: column;
+}
+.shop__content {
+  width: 100%;
+  /* overflow-y: scroll; */
+}
