@@ -28,17 +28,20 @@ function Filters(props) {
       <h2 className="text-light">Find what you're looking for:</h2>
       <div className="buscador-container">
         <BiSearchAlt/>
-          <FormControl
-            onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
-            placeholder="FIND YOUR PRODUCT"
-            aria-describedby="inputGroup-sizing-sm"
-          />
+        <FormControl
+          onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
+          placeholder="FIND YOUR PRODUCT"
+          aria-describedby="inputGroup-sizing-sm"
+        />
       </div>
       <div className="filter-contaniner__find">
         <div className="shop__container">
           <div className="selectores-container">
             <div className="selectores">
-              <PhonesFilter data={brands} name={"Brands"} />
+              <PhonesFilter 
+              data={brands} 
+              name={"Brands"}
+              sx={{width: 10}} />
               <div>
                 <p>Price range:</p>
                 {props.productos.length > 0 && (

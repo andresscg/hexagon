@@ -12,8 +12,6 @@ import {connect} from "react-redux"
 import {AiOutlineClear} from "react-icons/ai"
 import "../../styles/Filters.css"
 import {Button} from "react-bootstrap"
-
-
 import productoAction from "../../redux/actions/productoAction"
 
 const ITEM_HEIGHT = 48
@@ -31,6 +29,7 @@ const MenuProps = {
 function PhonesFilter({data, name, selectFilter}) {
   const [selData, setSelData] = React.useState([])
 
+
   const handleChangeselect = (event) => {
     const {
       target: {value},
@@ -39,7 +38,7 @@ function PhonesFilter({data, name, selectFilter}) {
   }
   return (
     <div style={{display: "flex"}}>
-      <FormControl sx={{m: 1, width: 300}}>
+      <FormControl sx={{m: 1, width: 300, borderColor: "#fff"}}>
         <InputLabel id="demo-multiple-chip-label">
           {name ? name : "Filter"}
         </InputLabel>

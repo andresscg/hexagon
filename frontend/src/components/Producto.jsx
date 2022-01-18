@@ -5,6 +5,8 @@ import productoAction from "../redux/actions/productoAction"
 import {connect} from "react-redux"
 import {useCart} from "react-use-cart"
 import Swal from "sweetalert2"
+import "../styles/Producto.css"
+
 
 const Producto = (props) => {
   const {addItem, removeItem, items} = useCart()
