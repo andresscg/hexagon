@@ -1,64 +1,60 @@
 .shop__main {
-    background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    padding: 15vh 0 20px 30px;
-    min-height: 80vh;
-    display: flex;
-    flex-flow: column nowrap;
-  }
-
-
-.filter-contaniner__find{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  background-image: url(../../public/assets/bg2.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 15vh 0 20px 30px;
+  min-height: 80vh;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-.css-2m9kme-MuiFormControl-root p{
-    display: none;
+.filter-contaniner__find {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.css-187mznn-MuiSlider-root{
-    color: #8d237e !important;
+.css-2m9kme-MuiFormControl-root p {
+  display: none;
 }
 
-.shop__main input{
-    margin-bottom: 1rem;
-    width: fit-content;
+.css-187mznn-MuiSlider-root {
+  color: #8d237e !important;
+}
+
+.shop__main input {
+  margin-bottom: 1rem;
+  width: fit-content;
 }
 
 body::-webkit-scrollbar {
-    color: #511549;          
-  }
-  
-body::-webkit-scrollbar-track {
-    background: #8d237e;       
-  }
-  
-body::-webkit-scrollbar-thumb{
-    background-color: #511549;   
-    border-radius: 5px;      
-    border: none; 
-  }
+  color: #511549;
+}
 
-  .shop__container {
-    display: flex;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-    min-height: 100%;
-  }
-  
-  .shop__side-bar {
-    display: flex;
-    flex-direction: column;
-  }
-  .shop__content {
-    width: 100%;
-    /* overflow-y: scroll; */
-  }
-  
-  
-  
+body::-webkit-scrollbar-track {
+  background: #8d237e;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #511549;
+  border-radius: 5px;
+  border: none;
+}
+
+.shop__container {
+  display: flex;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  min-height: 100%;
+}
+
+.shop__side-bar {
+  display: flex;
+  flex-direction: column;
+}
+.shop__content {
+  width: 100%;
+  /* overflow-y: scroll; */
+}

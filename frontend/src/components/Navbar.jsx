@@ -2,7 +2,6 @@ import React from "react"
 import {Nav, Dropdown, Badge, Button} from "react-bootstrap"
 import {FaShoppingCart} from "react-icons/fa"
 import {AiFillDelete} from "react-icons/ai"
-import "../styles/Navbar.css"
 import {Link} from "react-router-dom"
 import "../styles/Navbar.css"
 import modalAction from "../redux/actions/modalAction"
@@ -16,7 +15,16 @@ const Navbar = (props) => {
   return (
     <>
       <div className="nav-container" style={{zIndex: 100}}>
-        <img src="../../assets/logo.png" alt="logo" className="nav__logo" />
+        <div className="nav__logo--text">
+          <p className="nav__title">HEXAGON</p>
+          <p className="nav__subtitle">TECHSTORE</p>
+        </div>
+        <img
+          src="../../assets/logo_notext.svg"
+          alt="logo"
+          className="nav__logo"
+        />
+
         <div className="nav__menu--navigation">
           <Link to="/" className="nav__menu--item">
             Home
@@ -79,9 +87,7 @@ const Navbar = (props) => {
                       <div className="cartItemDetail" style={{gap: 10}}>
                         <span>{prod.product}</span>
                         <span>${prod.price}</span>
-                        <span>
-                          {prod.quantity}
-                        </span>
+                        <span>{prod.quantity}</span>
                       </div>
 
                       <AiFillDelete

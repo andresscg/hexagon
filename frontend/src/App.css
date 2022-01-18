@@ -2,7 +2,8 @@
   /* FONTS */
   --headings-font: "Poppins", sans-serif;
   --text-font: "Mukta", sans-serif;
- 
+  --logo-font: "Varela Round", sans-serif;
+
   /* COLORS */
   --white: #ffff;
   --primary: #fb9728;
@@ -39,5 +40,3 @@ a {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
 }
-
-

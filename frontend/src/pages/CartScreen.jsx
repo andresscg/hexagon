@@ -15,7 +15,6 @@ import {useCart} from "react-use-cart"
 import {useNavigate} from "react-router-dom"
 import "../styles/CartScreen.css"
 
-
 export default function CartScreen(props) {
   const {
     emptyCart,
@@ -39,48 +38,57 @@ export default function CartScreen(props) {
   }
 
   return (
-    <div className="home">
+    <div className="home" style={{backgroundImage: "url(/assets/bg2.webp)"}}>
       <h2 className="text-light">Cart Items</h2>
-      <div className="productContainer mx-auto container bg-light text-dark" style={{zIndex: -100}}>
-        <ListGroup className="cart-items__container" >
-            {items.map((prop) => (
-              <ListGroupItem key={prop.id} >
-                <Row className="justify-content-center">
-                  <Col md={2}>
-                    <Image src={prop.image} alt={prop.product} fluid rounded className="product-img"/>
-                  </Col>
-                  <Col md={2}>
-                    <span>{prop.product}</span>
-                  </Col>
-                  <Col md={2}>
-                    <span>$ {prop.itemTotal}</span>
-                  </Col>
-                  <Col md={1} className="p-auto" >
-                    <Form.Control
-                      className="w-100"
-                      as="select"
-                      value={prop.quantity}
-                      onChange={(e) => {
-                        updateItemQuantity(prop.id, Number(e.target.value))
-                      }}
-                    >
-                      {[...Array(prop.stock).keys()].map((x) => (
-                        <option key={x + 1}>{x + 1}</option>
-                      ))}
-                    </Form.Control>
-                  </Col>
-                  <Col md={2} >
-                    <button
-                      onClick={() => {
-                        removeItem(prop.id)
-                      }}
-                      className="trash-btn"
-                    >
-                      <AiFillDelete fontSize="20px" />
-                    </button>
-                  </Col>
-                </Row>
-              </ListGroupItem>
+      <div
+        className="productContainer mx-auto container bg-light text-dark"
+        style={{zIndex: -100}}
+      >
+        <ListGroup className="cart-items__container">
+          {items.map((prop) => (
+            <ListGroupItem key={prop.id}>
+              <Row className="justify-content-center">
+                <Col md={2}>
+                  <Image
+                    src={prop.image}
+                    alt={prop.product}
+                    fluid
+                    rounded
+                    className="product-img"
+                  />
+                </Col>
+                <Col md={2}>
+                  <span>{prop.product}</span>
+                </Col>
+                <Col md={2}>
+                  <span>$ {prop.itemTotal}</span>
+                </Col>
+                <Col md={1} className="p-auto">
+                  <Form.Control
+                    className="w-100"
+                    as="select"
+                    value={prop.quantity}
+                    onChange={(e) => {
+                      updateItemQuantity(prop.id, Number(e.target.value))
+                    }}
+                  >
+                    {[...Array(prop.stock).keys()].map((x) => (
+                      <option key={x + 1}>{x + 1}</option>
+                    ))}
+                  </Form.Control>
+                </Col>
+                <Col md={2}>
+                  <button
+                    onClick={() => {
+                      removeItem(prop.id)
+                    }}
+                    className="trash-btn"
+                  >
+                    <AiFillDelete fontSize="20px" />
+                  </button>
+                </Col>
+              </Row>
+            </ListGroupItem>
           ))}
         </ListGroup>
       </div>
@@ -104,19 +112,42 @@ export default function CartScreen(props) {
         <h3 className="text-dark">How would you like to pay?</h3>
         <div className="d-flex flex-column my-2">
           <span className="title">Subtotal ({totalItems}) items</span>
-          <span className="text-uppercase fs-4 fw-bold"> Total: ${cartTotal}</span>
+          <span className="text-uppercase fs-4 fw-bold">
+            {" "}
+            Total: ${cartTotal}
+          </span>
         </div>
         <div className="d-flex justify-content-center flex-wrap gap-1 wrapping">
           <div class="form-check d-flex justify-content-center px-1 mx-1">
-            <input type="radio" id="debito" name="formapago" class="form-check-input mx-1" onClick />
-            <label htmlFor="debito" disabled>Debit</label>
+            <input
+              type="radio"
+              id="debito"
+              name="formapago"
+              class="form-check-input mx-1"
+              onClick
+            />
+            <label htmlFor="debito" disabled>
+              Debit
+            </label>
           </div>
           <div class="form-check d-flex justify-content-center px-1  mx-1">
-            <input  type="radio" id="tarjeta" name="formapago" class="form-check-input mx-1"/>
-            <label htmlFor="tarjeta" disabled>Credit Card</label>
+            <input
+              type="radio"
+              id="tarjeta"
+              name="formapago"
+              class="form-check-input mx-1"
+            />
+            <label htmlFor="tarjeta" disabled>
+              Credit Card
+            </label>
           </div>
           <div class="form-check d-flex justify-content-center px-1  mx-1">
-            <input type="radio" id="paypal" name="formapago" class="form-check-input mx-1" />
+            <input
+              type="radio"
+              id="paypal"
+              name="formapago"
+              class="form-check-input mx-1"
+            />
             <label htmlFor="paypal">Paypal</label>
           </div>
         </div>

@@ -1,7 +1,7 @@
 .hero-container {
   width: 100%;
   height: 100vh;
-  background-image: url("../../public/assets/bg3.jpg");
+  background-image: url("../../public/assets/bg3.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,15 +53,15 @@
 
 @keyframes float {
   0% {
-    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
     transform: translatey(0px);
   }
   50% {
-    box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
     transform: translatey(-20px);
   }
   100% {
-    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
     transform: translatey(0px);
   }
 }
@@ -92,14 +92,14 @@
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 1200px){
-  .heroInfo__heading{
+@media screen and (max-width: 1200px) {
+  .heroInfo__heading {
     font-size: 48px;
   }
-  .heroInfo__subtitle{
+  .heroInfo__subtitle {
     font-size: 18px;
   }
-  .heroInfo__btn{
+  .heroInfo__btn {
     font-size: 20px;
   }
 }
