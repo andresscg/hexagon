@@ -53,6 +53,8 @@ function Filters(props) {
               productos={props.productos}
               sort={props.sortProductos}
             />
+          </div>
+          <div>
             <Button onClick={() => setGrid(false)}>
               <FaList onClick={() => setGrid(false)} />
             </Button>
