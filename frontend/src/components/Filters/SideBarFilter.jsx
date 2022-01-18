@@ -3,9 +3,9 @@ import PhonesFilter from "./PhonesFilter"
 import SliderPriceFilter from "./SliderPriceFilter"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
-import SortIcon from "@mui/icons-material/Sort"
-import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
-import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
+import {FaSortAlphaDownAlt} from "react-icons/fa"
+import {FaSortAlphaDown} from "react-icons/fa"
+import { AiFillLike, AiFillDislike } from "react-icons/ai"
 
 export default function SideBarFilter(props) {
   const [sortName, setSortName] = useState(false)
@@ -54,34 +54,22 @@ export default function SideBarFilter(props) {
       <>
         <p>Ordernar por:</p>
         <div className="shop__top-bar--sort">
-          <p style={{cursor: "pointer"}} onClick={() => handleSort("alf")}>
-            Alfabeticamente{" "}
-            {!sortName ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
-          </p>
-          <SortByAlphaIcon
-            style={{cursor: "pointer"}}
-            onClick={() => handleSort("alf")}
-          />
-        </div>
-        <div className="shop__top-bar--sort">
           <p style={{cursor: "pointer"}} onClick={() => handleSort("price")}>
-            {sortPrice ? "Menor" : "Mayor"} precio{" "}
+            {sortPrice ? "Lower" : "Higher "} price{" "}
             {!sortPrice ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
           </p>
-          <SortIcon
-            style={{cursor: "pointer"}}
-            onClick={() => handleSort("price")}
-          />
+        </div>
+        <div className="shop__top-bar--sort">
+          <p style={{cursor: "pointer"}} onClick={() => handleSort("alf")}>
+            Alphabetically   
+          {!sortName ? <FaSortAlphaDownAlt /> :  <FaSortAlphaDown />}
+          </p>
         </div>
         <div className="shop__top-bar--sort">
           <p style={{cursor: "pointer"}} onClick={() => handleSort("like")}>
-            {sortLike ? "Menor" : "Mayor"} gustados{" "}
-            {!sortLike ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+            {sortLike ? "Less" : "Most"} popular{" "}
+            {!sortLike ? <AiFillLike /> : <AiFillDislike />}
           </p>
-          <ThumbsUpDownIcon
-            style={{cursor: "pointer"}}
-            onClick={() => handleSort("like")}
-          />
         </div>
       </>
     </>

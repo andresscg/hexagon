@@ -7,13 +7,6 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  /* background-color: rgb(237, 237, 237); */
-  /* background-image: url(https://cdn.discordapp.com/attachments/929119504842231878/930592705359269898/abstract-wallpaper-9-1600x900.jpg); */
-
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 .container-all__productos h1 {
@@ -29,8 +22,8 @@
   padding: 10px 30px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
-  min-width: 100%;
+  justify-content: flex-end;
+  min-width: 80%;
   min-height: 100%;
   gap: 20px;
 }

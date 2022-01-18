@@ -21,14 +21,26 @@ function Filters(props) {
 
   return (
     <div className="shop__main">
-      <FormControl
-        onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
-        placeholder="FIND YOUR PRODUCT"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-      <div className="shop__container" style={{height: "100vh"}}>
-        <SideBarFilter productos={props.productos} sort={props.sortProductos} />
-        <div className="shop__top-bar">
+      <div className="filter-contaniner__find">
+        <FormControl
+          onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
+          placeholder="FIND YOUR PRODUCT"
+          aria-describedby="inputGroup-sizing-sm"
+        />
+      </div>
+      <div className="shop__container">
+        <div className="shop__side-bar">
+          {width >= 1300 ? (
+            <SideBarFilter
+              productos={props.productos}
+              sort={props.sortProductos}
+            />
+          ) : (
+            <SideBarDrawer
+              productos={props.productos}
+              sort={props.sortProductos}
+            />
+          )}
           <div className="shop__top-bar--sort">
             <p onClick={() => setGrid(false)}>Ver en lista</p>
             <Button onClick={() => setGrid(false)}>
