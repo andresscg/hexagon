@@ -14,6 +14,7 @@ import Paypal from "../components/Paypal"
 import {useCart} from "react-use-cart"
 import {useNavigate} from "react-router-dom"
 import "../styles/CartScreen.css"
+import ShippingForm from "../components/ShippingForm"
 
 export default function CartScreen(props) {
   const {
@@ -117,41 +118,9 @@ export default function CartScreen(props) {
             Total: ${cartTotal}
           </span>
         </div>
-        <div className="d-flex justify-content-center flex-wrap gap-1 wrapping">
-          <div class="form-check d-flex justify-content-center px-1 mx-1">
-            <input
-              type="radio"
-              id="debito"
-              name="formapago"
-              class="form-check-input mx-1"
-              onClick
-            />
-            <label htmlFor="debito" disabled>
-              Debit
-            </label>
-          </div>
-          <div class="form-check d-flex justify-content-center px-1  mx-1">
-            <input
-              type="radio"
-              id="tarjeta"
-              name="formapago"
-              class="form-check-input mx-1"
-            />
-            <label htmlFor="tarjeta" disabled>
-              Credit Card
-            </label>
-          </div>
-          <div class="form-check d-flex justify-content-center px-1  mx-1">
-            <input
-              type="radio"
-              id="paypal"
-              name="formapago"
-              class="form-check-input mx-1"
-            />
-            <label htmlFor="paypal">Paypal</label>
-          </div>
-        </div>
+
         <div>
+          <ShippingForm cartTotal={cartTotal} />
           <Button
             className="my-2"
             type="button"
@@ -161,13 +130,6 @@ export default function CartScreen(props) {
             Proceed to Checkout
           </Button>
         </div>
-
-        {paypal && (
-          <Paypal
-            description={`Compra del dia ${fecha.toLocaleDateString()}en Hexagon`}
-            total={cartTotal}
-          />
-        )}
       </Row>
     </div>
   )

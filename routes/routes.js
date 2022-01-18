@@ -107,5 +107,15 @@ router
   .put(passport.authenticate("jwt", {session: false}), comentario)
 
 router.route("/user/getUsersByDate").get(userController.byGoogle)
+router
+  .route("/address/newAddress")
+  .post(
+    passport.authenticate("jwt", {session: false}),
+    userController.newAddress
+  )
+  .get(
+    passport.authenticate("jwt", {session: false}),
+    userController.checkAddress
+  )
 
 module.exports = router

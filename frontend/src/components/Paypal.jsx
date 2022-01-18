@@ -41,6 +41,6 @@ const Paypal = (props) => {
       })
       .render(paypal.current)
   }, [])
-  return <div ref={paypal} style={{zIndex: -100}}></div>
+  return <div ref={paypal}></div>
 }
 export default Paypal

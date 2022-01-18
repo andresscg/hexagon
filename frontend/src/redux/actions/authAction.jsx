@@ -24,7 +24,7 @@ const authAction = {
           localStorage.setItem("token", response.data.token)
           console.log(response)
           getState().modalReducer.showModal = false
-          toast.success('Welcome Back!', {position: 'bottom-right'})
+          toast.success("Welcome Back!", {position: "bottom-right"})
           dispatch({
             type: "auth@@USER",
             payload: {
@@ -34,7 +34,7 @@ const authAction = {
             },
           })
         } else {
-          toast.error(response.data.errors, {position: 'bottom-right'})
+          toast.error(response.data.errors, {position: "bottom-right"})
           dispatch({
             type: "auth@@GET_USER_FAIL",
             payload: {
@@ -85,8 +85,8 @@ const authAction = {
             payload: {authError: response.data.errors},
           })
           console.log(response.data)
-            // ? response.data.errors.map((err) => toast.error(err.message))
-            // : toast.error(response.data.errors)
+          // ? response.data.errors.map((err) => toast.error(err.message))
+          // : toast.error(response.data.errors)
         }
       } catch (error) {
         console.error(error)
@@ -148,6 +148,56 @@ const authAction = {
         type: "auth@@ALL_USERS_BY_DATE",
         payload: response.data,
       })
+    }
+  },
+  newAddress: (country, state, city, name, address, phone) => {
+    return async (dispatch, getState) => {
+      const token = localStorage.getItem("token")
+
+      let response = await axios.post(
+        "http://localhost:4000/api/address/newAddress",
+        {
+          country,
+          state,
+          city,
+          name,
+          address,
+          phone,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      dispatch({
+        type: "address@ADDRESS",
+        payload: response.data.response,
+      })
+      return response
+    }
+  },
+
+  checkAddress: () => {
+    return async (dispatch, getState) => {
+      const token = localStorage.getItem("token")
+
+      let response = await axios.get(
+        "http://localhost:4000/api/address/newAddress",
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      console.log(response)
+      dispatch({
+        type: "address@ADDRESS",
+        payload: response.data,
+      })
+      return response
     }
   },
 }

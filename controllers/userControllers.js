@@ -3,6 +3,7 @@ const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
 const crypto = require("crypto")
+const Address = require("../models/Address")
 
 const sendEmail = async (email, uniqueString) => {
   const transporter = nodemailer.createTransport({
@@ -46,7 +47,10 @@ const sendEmail = async (email, uniqueString) => {
 
 const userController = {
   newUser: async (req, res) => {
-    let {firstName, lastName, email, password, google, photo, admin} = req.body
+    let {firstName, lastName, email, password, google, photo, country, admin} =
+      req.body
+
+    console.log(req.body)
 
     try {
       const userExist = await User.findOne({email})
@@ -82,6 +86,7 @@ const userController = {
           uniqueString,
           emailVerified,
           photo,
+          country,
           admin,
           google,
         })
@@ -233,6 +238,43 @@ const userController = {
       },
     ])
     res.json(grupo)
+  },
+  newAddress: async (req, res) => {
+    let {country, state, city, name, address, phone} = req.body
+
+    try {
+      const newAddressDirection = new Address({
+        country,
+        state,
+        city,
+        name,
+        address,
+        phone,
+        user: req.user._id,
+      })
+
+      await newAddressDirection.save()
+      res.json({
+        success: true,
+        response: newAddressDirection,
+        message: "New address registered",
+      })
+    } catch (error) {
+      console.log(error)
+      res.json({success: false, response: null, errors: error})
+    }
+  },
+  checkAddress: async (req, res) => {
+    console.log("si")
+    console.log(req.user._id)
+    let address = await Address.findOne({user: req.user._id})
+    console.log(address)
+
+    res.json({
+      success: true,
+      response: address,
+      errors: null,
+    })
   },
 }
 
