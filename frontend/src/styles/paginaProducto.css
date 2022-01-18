@@ -53,6 +53,8 @@
   flex-flow: column nowrap;
   align-items: flex-start;
   max-width: 40vw;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
 }
 
 .pricing {
@@ -73,6 +75,16 @@
   margin: 0.5rem;
   display: flex;
   justify-content: center;
+}
+
+.featured-products {
+  color: var(--primary);
+  text-align: center;
+  padding: 20px 0 10px;
+}
+
+.info__product__radius {
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 750px) {
