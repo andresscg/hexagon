@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema(
     emailVerified: {type: Boolean, required: true},
     email: {type: String, required: true},
     photo: {type: String},
+    country: {type: String, required: true},
     admin: {type: Boolean, default: false},
     google: {type: Boolean, default: false},
     created: {type: String, default: createdAt, required: true},
