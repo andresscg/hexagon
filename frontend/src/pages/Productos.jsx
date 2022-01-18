@@ -35,7 +35,7 @@ const Productos = (props) => {
               ))
             ) : (
               <div className="noexiste-container">
-                Sorry, the product you are looking for does not exist. 😪
+                Sorry, the product you are looking for does not exist . 😪
               </div>
             )}
           </div>
