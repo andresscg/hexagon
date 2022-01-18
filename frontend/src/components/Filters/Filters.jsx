@@ -2,18 +2,22 @@ import React, {useEffect, useState} from "react"
 import productoAction from "../../redux/actions/productoAction"
 import {connect} from "react-redux"
 import "../../styles/Filters.css"
-import "../../styles/ShopContainer.css"
-import SideBarDrawer from "./SideBarDrawer"
 import Productos from "../../pages/Productos"
+import SliderPriceFilter from "./SliderPriceFilter"
+import PhonesFilter from "./PhonesFilter"
+import {BiSearchAlt} from "react-icons/bi"
 import {Button, FormControl} from "react-bootstrap"
-import useWindowDimensions from "../../hooks/useWindowDimensions"
 import SideBarFilter from "./SideBarFilter"
-import {BsFillGrid3X3GapFill} from "react-icons/bs"
-import {FaList} from "react-icons/fa"
+
 
 function Filters(props) {
+  const categories = [
+    ...new Set(props.productos.map((producto) => producto.categoria)),
+  ]
+
+  const brands = [...new Set(props.productos.map((producto) => producto.marca))]
   const [grid, setGrid] = useState(false)
-  const {width} = useWindowDimensions()
+
   useEffect(() => {
     !props.auxiliar[1] && props.listaProductos()
     props.search("")
@@ -21,40 +25,48 @@ function Filters(props) {
 
   return (
     <div className="shop__main">
-      <div className="filter-contaniner__find">
-      <FormControl
-        onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
-        placeholder="FIND YOUR PRODUCT"
-        aria-describedby="inputGroup-sizing-sm"
-      />
+      <h2 className="text-light">Find what you're looking for:</h2>
+      <div className="buscador-container">
+        <BiSearchAlt/>
+          <FormControl
+            onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
+            placeholder="FIND YOUR PRODUCT"
+            aria-describedby="inputGroup-sizing-sm"
+          />
       </div>
-      <div className="shop__container">
-        <div className="shop__side-bar">
-          {width >= 1300 ? (
-            <SideBarFilter
-              productos={props.productos}
-              sort={props.sortProductos}
-            />
-          ) : (
-            <SideBarDrawer
-              productos={props.productos}
-              sort={props.sortProductos}
-            />
-          )}
-          <div className="shop__top-bar--sort">
-            <p onClick={() => setGrid(false)}>Ver en lista</p>
+      <div className="filter-contaniner__find">
+        <div className="shop__container">
+          <div className="selectores-container">
+            
+            <div className="selectores">
+              <PhonesFilter data={brands} name={"Brands"} />
+              <label>
+                <p>Price range:</p>
+                {props.productos.length > 0 && (
+                  <SliderPriceFilter productos={props.productos} />
+                )}
+              </label>
+              <PhonesFilter data={categories} name={"Categories"} />
+            </div>
+            <div className="botones-filter">
+              <SideBarFilter
+                productos={props.productos}
+                sort={props.sortProductos}
+              />
+          </div>
+          </div>
+          {/* <div className="layout-products">
             <Button onClick={() => setGrid(false)}>
               <FaList onClick={() => setGrid(false)} />
             </Button>
-            <p onClick={() => setGrid(true)}>Ver en grilla</p>
             <Button onClick={() => setGrid(true)}>
               <BsFillGrid3X3GapFill onClick={() => setGrid(true)} />
             </Button>
-          </div>
+          </div> */}
         </div>
-        <div className="shop__content">
-          <Productos products={props.sorted} grid={grid} />
-        </div>
+      </div>
+      <div className="shop__content">
+        <Productos products={props.sorted} grid={grid} />
       </div>
     </div>
   )

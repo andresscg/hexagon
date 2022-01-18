@@ -3,25 +3,31 @@ import PhonesFilter from "./PhonesFilter"
 import SliderPriceFilter from "./SliderPriceFilter"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
+import {RiCoinFill} from "react-icons/ri"
+import {FaCoins} from "react-icons/fa"
 import {FaSortAlphaDownAlt} from "react-icons/fa"
 import {FaSortAlphaDown} from "react-icons/fa"
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
 import {BsFillGrid3X3GapFill} from "react-icons/bs"
 import {FaList} from "react-icons/fa"
-import "../../styles/sideBarFilter.css"
+import "../../styles/SideBarFilter.css"
 import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
-import { AiFillLike, AiFillDislike } from "react-icons/ai"
+import {AiFillLike, AiFillDislike} from "react-icons/ai"
+import {Button} from "react-bootstrap"
 
 export default function SideBarFilter(props) {
   const [sortName, setSortName] = useState(false)
   const [sortPrice, setSortPrice] = useState(false)
   const [sortLike, setSortLike] = useState(false)
+  const [grid, setGrid] = useState(false)
 
   const categories = [
     ...new Set(props.productos.map((producto) => producto.categoria)),
   ]
 
   const brands = [...new Set(props.productos.map((producto) => producto.marca))]
+
+ 
 
   useEffect(() => {
     props.sort(false, "alf")
@@ -51,32 +57,23 @@ export default function SideBarFilter(props) {
 
   return (
     <>
-      <PhonesFilter data={brands} name={"Brands"} /> {/* Marca */}
-      <PhonesFilter data={categories} name={"Categories"} /> {/* Categorias */}
-      {props.productos.length > 0 && (
-        <SliderPriceFilter productos={props.productos} />
-      )}
-      <>
-        <p>Ordernar por:</p>
-        <div className="shop__top-bar--sort">
-          <p style={{cursor: "pointer"}} onClick={() => handleSort("price")}>
-            {sortPrice ? "Lower" : "Higher "} price{" "}
-            {!sortPrice ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
-          </p>
-        </div>
-        <div className="shop__top-bar--sort">
-          <p style={{cursor: "pointer"}} onClick={() => handleSort("alf")}>
-            Alphabetically   
-          {!sortName ? <FaSortAlphaDownAlt /> :  <FaSortAlphaDown />}
-          </p>
-        </div>
-        <div className="shop__top-bar--sort">
-          <p style={{cursor: "pointer"}} onClick={() => handleSort("like")}>
-            {sortLike ? "Less" : "Most"} popular{" "}
-            {!sortLike ? <AiFillLike /> : <AiFillDislike />}
-          </p>
-        </div>
-      </>
+      <Button onClick={() => handleSort("price")}>
+        {!sortPrice ? <FaCoins /> : <RiCoinFill />}
+      </Button>
+      <Button onClick={() => handleSort("like")}>
+        {!sortLike ? <AiFillLike /> : <AiFillDislike />}
+      </Button>
+      <Button onClick={() => handleSort("alf")}>
+        {!sortName ? <FaSortAlphaDownAlt /> : <FaSortAlphaDown />}
+      </Button>
+      <div className="layout-products">
+        <Button onClick={() => setGrid(false)}>
+          <FaList onClick={() => setGrid(false)} />
+        </Button>
+        <Button onClick={() => setGrid(true)}>
+          <BsFillGrid3X3GapFill onClick={() => setGrid(true)} />
+        </Button>
+      </div>
     </>
   )
 }

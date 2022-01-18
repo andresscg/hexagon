@@ -2,11 +2,12 @@
 
 .container-all__productos {
   min-width: 100%;
-  min-height: 100vh;
+  min-height: fit-content;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+  /* margin-top: 2vh; */
 }
 
 .container-all__productos h1 {
@@ -19,11 +20,11 @@
 }
 
 .container-all__filtros {
-  padding: 10px 30px;
+  padding:  0 30px 10px 30px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;
-  min-width: 80%;
+  justify-content: center;
+  min-width: 100%;
   min-height: 100%;
   gap: 20px;
 }
@@ -35,11 +36,11 @@
 }
 
 .productos-container {
-  min-width: 70%;
+  width: 45rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
-  gap: 20px;
+  align-items: center;
 }
 
 .prod-container {
@@ -53,7 +54,7 @@
 .noexiste-container {
   padding: 1rem;
   text-align: center;
-  width: 50vw;
+  width: 100%;
   background-color: var(--white);
   margin: 2px 0;
   border-radius: 5px;
