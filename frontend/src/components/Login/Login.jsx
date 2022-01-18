@@ -15,7 +15,8 @@ function Login(props) {
     e.preventDefault()
     if (email.current.value && password.current.value) {
       props.loginPending()
-      props.userLogin(email.current.value, password.current.value)
+      let response = props.userLogin(email.current.value, password.current.value)
+      console.log(response)
     }
   }
   return (

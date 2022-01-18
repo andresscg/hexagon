@@ -29,7 +29,7 @@ function Register(props) {
     e.preventDefault()
     if (email.current.value && password.current.value) {
       props.loginPending()
-      props.userRegister(
+      let response = props.userRegister(
         name.current.value,
         lastname.current.value,
         password.current.value,
@@ -37,6 +37,7 @@ function Register(props) {
         photo.current.value,
         country.current.value
       )
+      console.log(response)
     }
   }
   return (

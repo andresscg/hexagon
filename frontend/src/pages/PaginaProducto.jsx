@@ -118,7 +118,7 @@ const PaginaProducto = (props) => {
         </div>
       </div>
       <Button >
-          <Link to="/filters" className="text-light">
+          <Link to="/shop" className="text-light">
             Back to Products
           </Link>
       </Button>

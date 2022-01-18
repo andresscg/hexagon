@@ -60,12 +60,12 @@ const userController = {
           userExist.save()
           res.json({
             success: true,
-            message: "Puedes ingresar con Google",
+            message: "You can sign in with Google",
           })
         } else {
           res.json({
             success: false,
-            response: "El nombre de usuario ya esta en uso",
+            response: "Username already in use",
           })
         }
       } else {
@@ -96,7 +96,7 @@ const userController = {
           res.json({
             success: true,
             response: {token, nuevoUsuario},
-            message: "Felicitaciones se ha creado tu usuario con Google",
+            message: "Awesome! You created your account with Google",
           })
         } else {
           emailVerified = false
@@ -109,7 +109,7 @@ const userController = {
             success: true,
             response: {token, nuevoUsuario},
             message:
-              "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp ",
+              "We sent you an email to verify your account, please check your inbox.",
           })
         }
       }
@@ -145,20 +145,20 @@ const userController = {
           res.json({
             success: false,
             user: null,
-            errors: "Correo electrónico inválido",
+            errors: "Invalid Email",
           })
         } else {
           res.json({
             success: false,
             user: null,
-            errors: "Correo electrónico o contraseña inválido",
+            errors: "Invalid Email or Password",
           })
         }
       } else {
         res.json({
           success: false,
           user: null,
-          errors: "Correo electrónico en uso",
+          errors: "Email already in use",
         })
       }
     } catch (e) {
@@ -218,7 +218,7 @@ const userController = {
       await user.save()
       res.redirect("https://hexagon-techstore.herokuapp.com/")
     } else {
-      res.json({success: false, response: "Su email no se ha verificado"})
+      res.json({success: false, response: "Your e-mail hasn't been verified."})
     }
   },
   byGoogle: async (req, res) => {
