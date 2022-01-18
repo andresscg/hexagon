@@ -37,15 +37,14 @@ function Filters(props) {
       <div className="filter-contaniner__find">
         <div className="shop__container">
           <div className="selectores-container">
-            
             <div className="selectores">
               <PhonesFilter data={brands} name={"Brands"} />
-              <label>
+              <div>
                 <p>Price range:</p>
                 {props.productos.length > 0 && (
                   <SliderPriceFilter productos={props.productos} />
                 )}
-              </label>
+              </div>
               <PhonesFilter data={categories} name={"Categories"} />
             </div>
             <div className="botones-filter">

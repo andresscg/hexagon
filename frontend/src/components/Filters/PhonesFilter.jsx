@@ -9,7 +9,10 @@ import {
 } from "@mui/material"
 import React from "react"
 import {connect} from "react-redux"
-import {AiFillCloseCircle} from "react-icons/ai"
+import {AiOutlineClear} from "react-icons/ai"
+import "../../styles/Filters.css"
+import {Button} from "react-bootstrap"
+
 
 import productoAction from "../../redux/actions/productoAction"
 
@@ -64,12 +67,22 @@ function PhonesFilter({data, name, selectFilter}) {
           ))}
         </Select>
       </FormControl>
-      <AiFillCloseCircle
+      <div >
+        <Button className="cleanUp-container">
+        <p onClick={() => {
+          setSelData([])
+          selectFilter(selData, name)
+        }}>
+          Clean up
+        </p>
+        <AiOutlineClear
         onClick={() => {
           setSelData([])
           selectFilter(selData, name)
         }}
       />
+        </Button>
+      </div>
     </div>
   )
 }

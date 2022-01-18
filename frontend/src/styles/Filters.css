@@ -103,12 +103,22 @@ body::-webkit-scrollbar-thumb{
     border-radius: 20px;
     margin: 1rem 0;
     padding: 1rem;
+    color: white !important;
   }
+
+  .selectores > div{
+    margin: 0 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center; 
+    width: 20rem; 
+}
 
   .selectores-container{
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
+      color: white !important;
 
   }
   .buscador-container,  .buscador-container > svg{
@@ -119,4 +129,25 @@ body::-webkit-scrollbar-thumb{
           font-size:  2rem;
           margin-right: 15px;
       }
+
+      .buscador-container input{
+        width: 25rem
+      }
   
+      .cleanUp-container{
+        display: flex;
+        flex-flow: row nowrap;
+        width: fit-content;
+        border-radius: 20px;
+        padding: 0 .5rem
+      }
+
+      .cleanUp-container p, .cleanUp-container svg{
+        margin: .5rem;
+        font-size: .7rem;
+        cursor: pointer;
+      }
+
+      .cleanUp-container svg{
+        font-size: 1.5rem;
+      }
