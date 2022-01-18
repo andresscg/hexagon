@@ -12,9 +12,8 @@ import {BsFillGrid3X3GapFill} from "react-icons/bs"
 import {FaList} from "react-icons/fa"
 import "../../styles/sideBarFilter.css"
 import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
-import { AiFillLike, AiFillDislike } from "react-icons/ai"
+import {AiFillLike, AiFillDislike} from "react-icons/ai"
 import {Button} from "react-bootstrap"
-
 
 export default function SideBarFilter(props) {
   const [sortName, setSortName] = useState(false)
@@ -55,29 +54,15 @@ export default function SideBarFilter(props) {
 
   return (
     <>
-    <div className="container-filter_navbar">
-    <div className="shop__top-bar--sort">
-          <Button onClick={() => handleSort("price")}>
-          {!sortPrice ?  <FaCoins /> :  <RiCoinFill />}
-          </Button>
-          <Button onClick={() => handleSort("like")}>
-            {!sortLike ? <AiFillLike /> : <AiFillDislike />}
-          </Button>
-          <Button onClick={() => handleSort("alf")}>
-          {!sortName ? <FaSortAlphaDownAlt /> :  <FaSortAlphaDown />}
-          </Button>
-        </div>
-        <PhonesFilter data={brands} name={"Brands"} />
-        <PhonesFilter data={categories} name={"Categories"} /> 
-      <label>
-        <p>Price range:</p>
-          {props.productos.length > 0 && (
-          <SliderPriceFilter productos={props.productos} /> )}
-      </label>
-     
-        
-        
-    </div>
+      <Button onClick={() => handleSort("price")}>
+        {!sortPrice ? <FaCoins /> : <RiCoinFill />}
+      </Button>
+      <Button onClick={() => handleSort("like")}>
+        {!sortLike ? <AiFillLike /> : <AiFillDislike />}
+      </Button>
+      <Button onClick={() => handleSort("alf")}>
+        {!sortName ? <FaSortAlphaDownAlt /> : <FaSortAlphaDown />}
+      </Button>
     </>
   )
 }

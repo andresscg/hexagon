@@ -3,6 +3,10 @@ import productoAction from "../../redux/actions/productoAction"
 import {connect} from "react-redux"
 import "../../styles/Filters.css"
 import Productos from "../../pages/Productos"
+import SliderPriceFilter from "./SliderPriceFilter"
+
+import PhonesFilter from "./PhonesFilter"
+
 import {Button, FormControl} from "react-bootstrap"
 import useWindowDimensions from "../../hooks/useWindowDimensions"
 import SideBarFilter from "./SideBarFilter"
@@ -10,6 +14,11 @@ import {BsFillGrid3X3GapFill} from "react-icons/bs"
 import {FaList} from "react-icons/fa"
 
 function Filters(props) {
+  const categories = [
+    ...new Set(props.productos.map((producto) => producto.categoria)),
+  ]
+
+  const brands = [...new Set(props.productos.map((producto) => producto.marca))]
   const [grid, setGrid] = useState(false)
   const {width} = useWindowDimensions()
   useEffect(() => {
@@ -27,13 +36,23 @@ function Filters(props) {
             placeholder="FIND YOUR PRODUCT"
             aria-describedby="inputGroup-sizing-sm"
           />
-          <div className="shop__side-bar">
+          <div className="Selectores">
+            <PhonesFilter data={brands} name={"Brands"} />
+            <PhonesFilter data={categories} name={"Categories"} />
+          </div>
+          <div className="el rango">
+            <label>
+              <p>Price range:</p>
+              {props.productos.length > 0 && (
+                <SliderPriceFilter productos={props.productos} />
+              )}
+            </label>
+          </div>
+          <div style={{display: "flex"}} className="Los botones">
             <SideBarFilter
               productos={props.productos}
               sort={props.sortProductos}
             />
-          </div>
-          <div className="shop__top-bar--sort">
             <Button onClick={() => setGrid(false)}>
               <FaList onClick={() => setGrid(false)} />
             </Button>
