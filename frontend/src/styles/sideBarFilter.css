@@ -1,15 +1,14 @@
-.container-filter_navbar{
-    display: flex;
-    flex-flow: row nowrap;
+.container-filter_navbar {
+  display: flex;
+  flex-flow: row nowrap;
 }
 
-.shop__top-bar--sort{
-display: flex;
-flex-flow: row nowrap;
+.shop__top-bar--sort {
+  display: flex;
+  flex-flow: row nowrap;
 }
 
-
-.icon-alpha{
-    margin: 0 .5rem;
-    font-size: 1rem;
+.icon-alpha {
+  margin: 0 0.5rem;
+  font-size: 1rem;
 }

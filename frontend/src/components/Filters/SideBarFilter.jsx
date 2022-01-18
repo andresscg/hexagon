@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from "react"
-import PhonesFilter from "./PhonesFilter"
-import SliderPriceFilter from "./SliderPriceFilter"
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
+
 import {RiCoinFill} from "react-icons/ri"
 import {FaCoins} from "react-icons/fa"
 import {FaSortAlphaDownAlt} from "react-icons/fa"
 import {FaSortAlphaDown} from "react-icons/fa"
-import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown"
 import {BsFillGrid3X3GapFill} from "react-icons/bs"
 import {FaList} from "react-icons/fa"
-import "../../styles/SideBarFilter.css"
-import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
+import "../../styles/sideBarFilter.css"
 import {AiFillLike, AiFillDislike} from "react-icons/ai"
 import {Button} from "react-bootstrap"
 
@@ -26,8 +21,6 @@ export default function SideBarFilter(props) {
   ]
 
   const brands = [...new Set(props.productos.map((producto) => producto.marca))]
-
- 
 
   useEffect(() => {
     props.sort(false, "alf")
