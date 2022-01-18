@@ -11,6 +11,7 @@ import {AiFillDislike, AiFillLike} from "react-icons/ai"
 import {FaList} from "react-icons/fa"
 import "../../styles/sideBarFilter.css"
 import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
+import { AiFillLike, AiFillDislike } from "react-icons/ai"
 
 export default function SideBarFilter(props) {
   const [sortName, setSortName] = useState(false)
@@ -75,14 +76,6 @@ export default function SideBarFilter(props) {
             {sortLike ? "Less" : "Most"} popular{" "}
             {!sortLike ? <AiFillLike /> : <AiFillDislike />}
           </p>
-        </div>
-        <div className="shop__top-bar--sort">
-          <p>Ver en lista</p>
-          <FaList />
-        </div>
-        <div className="shop__top-bar--sort">
-          <p>Ver en grilla</p>
-          <BsFillGrid3X3GapFill />
         </div>
       </>
     </>
