@@ -1,9 +1,12 @@
 .shop__container {
   display: flex;
+  flex-direction: column;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
 }
-
+.tro-bar {
+  display: flex;
+}
 .shop__side-bar {
   display: flex;
   flex-direction: column;

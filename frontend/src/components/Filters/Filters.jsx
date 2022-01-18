@@ -27,18 +27,8 @@ function Filters(props) {
         aria-describedby="inputGroup-sizing-sm"
       />
       <div className="shop__container" style={{height: "100vh"}}>
-        <div className="shop__side-bar">
-          {width >= 1300 ? (
-            <SideBarFilter
-              productos={props.productos}
-              sort={props.sortProductos}
-            />
-          ) : (
-            <SideBarDrawer
-              productos={props.productos}
-              sort={props.sortProductos}
-            />
-          )}
+        <SideBarFilter productos={props.productos} sort={props.sortProductos} />
+        <div className="shop__top-bar">
           <div className="shop__top-bar--sort">
             <p onClick={() => setGrid(false)}>Ver en lista</p>
             <Button onClick={() => setGrid(false)}>
