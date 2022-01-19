@@ -42,13 +42,14 @@ a {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 
 .addcart-container button {
+  text-align: start;
   min-width: 15rem;
   border-radius: 5px;
-  margin: 5px 0;
 }
 
 .reseña-container {
