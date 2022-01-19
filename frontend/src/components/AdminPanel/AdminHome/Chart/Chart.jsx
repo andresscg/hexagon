@@ -1,7 +1,5 @@
 import "./Chart.css"
 import {
-  LineChart,
-  Line,
   XAxis,
   CartesianGrid,
   Tooltip,
@@ -11,7 +9,9 @@ import {
   BarChart,
 } from "recharts"
 
-export default function Chart({title, data, dataKey, grid}) {
+export default function Chart({title, data, dataKey}) {
+  console.log(data)
+
   return (
     <div className="chart">
       <h3 className="chart-title">{title}</h3>
@@ -21,7 +21,7 @@ export default function Chart({title, data, dataKey, grid}) {
           <Bar dataKey={dataKey} fill="#8884d8" />
 
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="_id.createdAt" />
+          <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
         </BarChart>

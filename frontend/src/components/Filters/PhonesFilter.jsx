@@ -9,8 +9,9 @@ import {
 } from "@mui/material"
 import React from "react"
 import {connect} from "react-redux"
-import {AiFillCloseCircle} from "react-icons/ai"
-
+import {AiOutlineClear} from "react-icons/ai"
+import "../../styles/Filters.css"
+import {Button} from "react-bootstrap"
 import productoAction from "../../redux/actions/productoAction"
 
 const ITEM_HEIGHT = 48
@@ -36,7 +37,7 @@ function PhonesFilter({data, name, selectFilter}) {
   }
   return (
     <div style={{display: "flex"}}>
-      <FormControl sx={{m: 1, width: 300}}>
+      <FormControl sx={{m: 1, width: 300, borderColor: "#fff"}}>
         <InputLabel id="demo-multiple-chip-label">
           {name ? name : "Filter"}
         </InputLabel>
@@ -47,11 +48,31 @@ function PhonesFilter({data, name, selectFilter}) {
           value={selData}
           onChange={handleChangeselect}
           onChangeCapture={selectFilter(selData, name)}
-          input={<OutlinedInput id="select-multiple-chip" label="Processor" />}
+          input={
+            <OutlinedInput
+              id="select-multiple-chip"
+              label="Processor"
+              color="secondary"
+            />
+          }
           renderValue={(selected) => (
-            <Box sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 0.5,
+                color: "rgba(255, 255, 255, 0.342)",
+              }}
+            >
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip
+                  key={value}
+                  label={value}
+                  sx={{
+                    color: "#fff",
+                    backgroundColor: "rgba(20, 20, 20, 0.8)",
+                  }}
+                />
               ))}
             </Box>
           )}
@@ -64,12 +85,24 @@ function PhonesFilter({data, name, selectFilter}) {
           ))}
         </Select>
       </FormControl>
-      <AiFillCloseCircle
-        onClick={() => {
-          setSelData([])
-          selectFilter(selData, name)
-        }}
-      />
+      <div>
+        <Button className="cleanUp-container">
+          <p
+            onClick={() => {
+              setSelData([])
+              selectFilter(selData, name)
+            }}
+          >
+            Clean up
+          </p>
+          <AiOutlineClear
+            onClick={() => {
+              setSelData([])
+              selectFilter(selData, name)
+            }}
+          />
+        </Button>
+      </div>
     </div>
   )
 }

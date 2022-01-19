@@ -68,7 +68,7 @@ function authReducer(state = initialState, {payload, type}) {
     case "auth@@ALL_USERS_BY_DATE":
       return {
         ...state,
-        usersByDate: payload.sort((a, b) => a.usersThisDay - b.usersThisDay),
+        usersByDate: payload.sort((a, b) => a.date - b.date),
       }
     case "address@ADDRESS":
       return {

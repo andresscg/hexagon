@@ -1,6 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
-const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
+const rootUrl = "http://localhost:4000/api/"
 const tokenAuth = rootUrl + "auth"
 const loginUrl = rootUrl + "user/login"
 const registerUrl = rootUrl + "user/register"
@@ -56,10 +56,7 @@ const authAction = {
   userRegister: (formData) => {
     return async (dispatch, getState) => {
       try {
-        let response = await axios.post(
-          "https://hexagon-techstore.herokuapp.com/api/user/register",
-          formData
-        )
+        let response = await axios.post(registerUrl, formData)
         console.log(response)
         if (response.data.success && !response.data.errors) {
           getState().modalReducer.showModal = false

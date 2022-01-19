@@ -9,7 +9,7 @@
   padding: 5px 0;
 }
 
-.footer__logo{
+.footer__logo {
   width: 20rem;
 }
 
@@ -20,7 +20,7 @@
   align-items: center;
 }
 
-.brand-container{
+.brand-container {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -40,16 +40,16 @@
 }
 
 .footer-copy {
+  color: var(--secondary-light);
   text-align: center;
 }
 
-@media screen and (max-width: 750px){
-   
+@media screen and (max-width: 750px) {
   .footer-container {
     flex-flow: column nowrap;
   }
 
-  .brand-container{
+  .brand-container {
     flex-flow: column;
   }
 }
