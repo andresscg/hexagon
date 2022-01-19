@@ -229,6 +229,12 @@
     align-items: center;
     justify-content: center;
     height: unset;
+    /* border-top: 2px solid #ef2f56;
+    border-bottom: 2px solid  #ef2f56; */
+    /* border-top: 2px solid var(--secondary);
+    border-bottom: 2px solid var(--secondary); */
+    /* background-color: #eb7b919a; */
+    box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.51);
   }
 
   .text-container__title{
