@@ -22,19 +22,28 @@ const Productos = (props) => {
     props.fetchearProductos()
   }, [])
 
+  console.log(props)
+
   return (
     <>
-      <div className="container-all__productos">
-        <div className="container-all__filtros">
+      <div 
+      className={
+        props.grid ? "container-all__productos-grid" : "container-all__productos"
+      }>
+        <div className={
+        props.grid ? "container-all__filtross-grid" : "container-all__filtros"
+      }>
           <div
             className={
-              props.grid ? "productos-container grid" : "productos-container"
+              props.grid ? "grid" : "productos-container"
             }
           >
             {props.auxiliar.length > 0 ? (
               props.auxiliar.map((producto) => (
-                <div key={producto._id} className="prod-container">
-                  <Producto producto={producto} />
+                <div key={producto._id}  className={
+                  props.grid ? "prod-container-grid" : "prod-container"
+                }>
+                  <Producto producto={producto} grid={props.grid}/>
                 </div>
               ))
             ) : (

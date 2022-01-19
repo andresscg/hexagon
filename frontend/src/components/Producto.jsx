@@ -10,7 +10,7 @@ import {Button} from "react-bootstrap"
 
 const Producto = (props) => {
   const {addItem, removeItem, items} = useCart()
-
+  console.log(props)
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -55,16 +55,20 @@ const Producto = (props) => {
   return (
     <>
       <div className="card-container">
-        <div className="info-container">
-          <div className="img-container">
+        <div className={props.grid ? "info-container-grid" : "info-container"
+            }>
+          <div className={props.grid ? "img-container-grid" : "img-container"
+            }>
             <Link to={`/shop/${props.producto._id}`}>
               <img src={props.producto.imagen} variant="top" />
             </Link>
-            <div className="row-container">
+            <div className={props.grid ? "row-container-grid" : "row-container"
+            }>
               <button className="btn-card">
                 <Link to={`/shop/${props.producto._id}`}>See Details</Link>
               </button>
-            <div className="addcart-container__noexiste">
+            <div  className={props.grid ? "addcart-container__noexiste-grid" : "addcart-container__noexiste"
+            }>
                 {items.some((p) => p.id === producto.id) ? (
                   <button
                     onClick={() => removeItem(producto.id)}
@@ -86,15 +90,18 @@ const Producto = (props) => {
               </div>
             </div>
           </div>
-          <div className="text-container">
+          <div  className={props.grid ? "text-container-grid" : "text-container"
+            }>
             <Link to={`/shop/${props.producto._id}`}>
               <p className="text-container__title">{props.producto.nombre}</p>
             </Link>
-            <div className="price-card__container">
+            <div className={props.grid ? "price-card__container-grid" : "price-card__container"
+            }>
               <div className="price-container">
                 <p>${props.producto.precio}</p>
               </div>
-              <div className="addcart-container">
+              <div className={props.grid ? "addcart-container-grid" : "addcart-container"
+            }>
                 {items.some((p) => p.id === producto.id) ? (
                   <button
                     onClick={() => removeItem(producto.id)}
@@ -116,8 +123,10 @@ const Producto = (props) => {
               </div>
             </div>
           </div>
-          <div className="fav-container">
-            <div className="like-container">
+          <div className={props.grid ? "fav-container-grid" : "fav-container"
+            }>
+            <div className="like-container" className={props.grid ? "like-container-grid" : "like-container"
+            }>
               <p>{likeProducts.length}</p>
               <button
                 className="boton-like"
