@@ -63,7 +63,8 @@ const Navbar = (props) => {
                       backgroundImage: `url(${
                         props.user?.google
                           ? props.user?.photo
-                          : "http://localhost:4000/" + props.user?.photo
+                          : "https://hexagon-techstore.herokuapp.com/" +
+                            props.user?.photo
                       })`,
                     }}
                     className="nav__menu__photo"
