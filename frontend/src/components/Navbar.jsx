@@ -26,15 +26,27 @@ const Navbar = (props) => {
         />
 
         <div className="nav__menu--navigation">
-          <Link to="/" className="nav__menu--item">
-            Home
-          </Link>
-          <Link to="/shop" className="nav__menu--item">
-            Shop
-          </Link>
-          <Link to="/contact" className="nav__menu--item">
-            Contact
-          </Link>
+          <button class="custom-btn btn-3">
+            <span>
+              <Link to="/" className="nav__menu--item text-light">
+                Home
+              </Link>
+            </span>
+          </button>
+          <button class="custom-btn btn-3">
+            <span>
+              <Link to="/shop" className="nav__menu--item text-light">
+                Shop
+              </Link>
+            </span>
+          </button>
+          <button class="custom-btn btn-3">
+            <span>
+              <Link to="/contact" className="nav__menu--item text-light">
+                Contact
+              </Link>
+            </span>
+          </button>
         </div>
         <div className="nav__menu--sign">
           {!props.isLoading && props.isAuth ? (
@@ -66,11 +78,13 @@ const Navbar = (props) => {
           )}
         </div>
 
-        <Nav>
-          <Dropdown>
-            <Dropdown.Toggle className="shopping__cart">
-              <FaShoppingCart color="white" fontSize="25px" />
-              <Badge className="cart__number">{totalItems}</Badge>
+        <Nav className="cart-fixed">
+          <Dropdown class="custom-btn btn-3">
+            <Dropdown.Toggle className="custom-btn btn-3">
+              <span>
+                <FaShoppingCart color="white" fontSize="25px" />
+                <Badge>{totalItems}</Badge>
+              </span>
             </Dropdown.Toggle>
             <Dropdown.Menu style={{minWidth: 370}} className="cart__dropdown">
               {totalItems ? (
@@ -89,7 +103,6 @@ const Navbar = (props) => {
                         <span>${prod.price}</span>
                         <span>{prod.quantity}</span>
                       </div>
-
                       <AiFillDelete
                         fontSize="20px"
                         style={{cursor: "pointer"}}

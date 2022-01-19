@@ -37,13 +37,13 @@ function Filters(props) {
         <div className="shop__container">
           <div className="selectores-container">
             <div className="selectores">
-              <PhonesFilter data={brands} name={"Brands"} />
-              <label>
+              <PhonesFilter data={brands} name={"Brands"} sx={{width: 10}} />
+              <div className="selectores-price">
                 <p>Price range:</p>
                 {props.productos.length > 0 && (
                   <SliderPriceFilter productos={props.productos} />
                 )}
-              </label>
+              </div>
               <PhonesFilter data={categories} name={"Categories"} />
             </div>
             <div className="botones-filter">

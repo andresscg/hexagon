@@ -6,6 +6,7 @@
   background-size: cover;
   padding: 15vh 0 20px 30px;
   min-height: 80vh;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -24,7 +25,14 @@
 }
 
 .css-187mznn-MuiSlider-root {
-  color: #8d237e !important;
+  color: #ffffff !important;
+}
+
+.MuiFormControl-root,
+.MuiFormControl-root label {
+  color: white;
+  width: 20rem;
+  border-color: white !important;
 }
 
 .shop__main input {
@@ -57,12 +65,13 @@ body::-webkit-scrollbar-track {
   /* overflow-y: scroll; */
 }
 
-.layout-products {
+.botones-filter {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
-  margin: 0 0 0 1rem;
+  width: 80%;
+  gap: 2px;
 }
 
 .layout-products button {
@@ -78,12 +87,6 @@ body::-webkit-scrollbar-track {
   align-items: flex-end;
 }
 
-.botones-filter button {
-  margin: 0 0.2rem -2px 0;
-  font-size: 1.5rem;
-  border-radius: 20px 20px 0 0;
-}
-
 .selectores {
   display: flex;
   flex-flow: row nowrap;
@@ -94,13 +97,24 @@ body::-webkit-scrollbar-track {
   border-radius: 20px;
   margin: 1rem 0;
   padding: 1rem;
+  color: white !important;
+}
+
+.selectores > div {
+  margin: 0 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 20rem;
 }
 
 .selectores-container {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  color: white !important;
 }
+
 .buscador-container,
 .buscador-container > svg {
   display: flex;
@@ -109,4 +123,132 @@ body::-webkit-scrollbar-track {
   color: white;
   font-size: 2rem;
   margin-right: 15px;
+}
+
+.buscador-container input {
+  width: 25rem;
+}
+
+.cleanUp-container {
+  display: flex;
+  flex-flow: row nowrap;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 0 0.5rem;
+}
+
+.cleanUp-container p,
+.cleanUp-container svg {
+  margin: 0.5rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.cleanUp-container svg {
+  font-size: 1.5rem;
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline,
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline legend span {
+  border-color: white !important;
+  color: white !important;
+}
+
+@media screen and (max-width: 1145px) {
+  .shop__main {
+    padding: unset;
+    padding: 15vh 0 0 0;
+    justify-content: center;
+  }
+
+  .shop__main h2 {
+    text-align: center;
+  }
+
+  .buscador-container {
+    margin: 0 5px;
+    width: 80%;
+  }
+
+  .buscador-container,
+  .buscador-container > svg {
+    margin: unset;
+  }
+
+  .buscador-container input {
+    min-width: 80%;
+  }
+
+  .css-sv45f8-MuiFormControl-root {
+    width: 60rem !important;
+  }
+
+  .css-187mznn-MuiSlider-root {
+    width: 15rem !important;
+  }
+
+  .css-1v5z18m {
+    width: 15rem !important;
+  }
+
+  .filter-contaniner__find {
+    width: fit-content;
+    min-width: unset;
+  }
+
+  .selectores {
+    flex-flow: column nowrap;
+    min-width: 260px;
+    width: 320px;
+  }
+
+  .selectores div {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .cleanUp-container p {
+    display: none;
+  }
+
+  .cleanUp-container svg {
+    font-size: 1rem;
+  }
+
+  .botones-filter {
+    flex-flow: row nowrap;
+    width: 90%;
+    justify-content: space-evenly;
+  }
+
+  .botones-filter button {
+    padding: 1rem 0.7rem;
+    margin: unset;
+    border-radius: 20px 20px 0 0;
+    margin: 0 0 -2px 0;
+  }
+
+  .layout-products {
+    margin: unset;
+  }
+
+  .layout-products button {
+    border-radius: 20px 20px 0 0;
+    margin: 0 0 -2px 0;
+    font-size: 1.5rem;
+  }
+
+  .selectores-price,
+  .selectores-price div {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap !important;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .selectores-price {
+    margin: 1rem 0 !important;
+  }
 }

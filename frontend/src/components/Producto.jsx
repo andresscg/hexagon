@@ -5,6 +5,8 @@ import productoAction from "../redux/actions/productoAction"
 import {connect} from "react-redux"
 import {useCart} from "react-use-cart"
 import Swal from "sweetalert2"
+import "../styles/Producto.css"
+
 
 const Producto = (props) => {
   const {addItem, removeItem, items} = useCart()
@@ -58,9 +60,31 @@ const Producto = (props) => {
             <Link to={`/shop/${props.producto._id}`}>
               <img src={props.producto.imagen} variant="top" />
             </Link>
-            <button className="btn-card">
-              <Link to={`/shop/${props.producto._id}`}>See Details</Link>
-            </button>
+            <div className="row-container">
+              <button className="btn-card">
+                <Link to={`/shop/${props.producto._id}`}>See Details</Link>
+              </button>
+            <div className="addcart-container__noexiste">
+                {items.some((p) => p.id === producto.id) ? (
+                  <button
+                    onClick={() => removeItem(producto.id)}
+                    className="btn-card"
+                  >
+                    Remove from Cart
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => addItem(producto)}
+                    className="btn-card"
+                    disabled={!props.producto.contadorStock}
+                  >
+                    {!props.producto.contadorStock
+                      ? "Out of Stock"
+                      : "Add to Cart"}
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
           <div className="text-container">
             <Link to={`/shop/${props.producto._id}`}>
