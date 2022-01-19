@@ -161,7 +161,7 @@ const productoAction = {
   },
   sold: (items, order) => {
     return async (dispatch, getState) => {
-      await axios.put("http://localhost:4000/api/productos", {
+      await axios.put("https://hexagon-techstore.herokuapp.com/api/productos", {
         items: items,
         order: order,
       })

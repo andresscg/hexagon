@@ -57,7 +57,7 @@ const authAction = {
     return async (dispatch, getState) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/register",
+          "https://hexagon-techstore.herokuapp.com/api/user/register",
           formData
         )
         console.log(response)
@@ -152,7 +152,7 @@ const authAction = {
       const token = localStorage.getItem("token")
 
       let response = await axios.post(
-        "http://localhost:4000/api/address/newAddress",
+        "https://hexagon-techstore.herokuapp.com/api/address/newAddress",
         {
           country,
           state,
@@ -181,7 +181,7 @@ const authAction = {
       const token = localStorage.getItem("token")
 
       let response = await axios.get(
-        "http://localhost:4000/api/address/newAddress",
+        "https://hexagon-techstore.herokuapp.com/api/address/newAddress",
 
         {
           headers: {
