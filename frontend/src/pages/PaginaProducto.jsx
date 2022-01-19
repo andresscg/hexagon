@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
-import { ListGroup, Card, Button, Form } from "react-bootstrap";
-import Calificacion from "../components/Calificacion";
-import { connect } from "react-redux";
-import productoAction from "../redux/actions/productoAction";
-import { useCart } from "react-use-cart";
-import "../styles/paginaProducto.css";
-import Carrousel from "../components/Carrousel";
+import React, {useEffect, useState} from "react"
+import {useParams} from "react-router"
+import {Link, useLocation} from "react-router-dom"
+import {ListGroup, Card, Button, Form} from "react-bootstrap"
+import {connect} from "react-redux"
+import productoAction from "../redux/actions/productoAction"
+import {useCart} from "react-use-cart"
+import "../styles/paginaProducto.css"
+import Carrousel from "../components/Carrousel"
 
 const PaginaProducto = (props) => {
-  let { id } = useParams();
-  const [qty, setQty] = useState(1);
+  let {id} = useParams()
+  const [qty, setQty] = useState(1)
 
-  const { addItem, items, removeItem } = useCart();
+  const {addItem, items, removeItem} = useCart()
 
   const producto = {
     id: props.producto._id,
@@ -23,13 +22,15 @@ const PaginaProducto = (props) => {
     stock: props.producto.contadorStock,
     rating: props.producto.calificacion,
     reviews: props.producto.numReseñas,
-  };
+  }
+
+  let location = useLocation()
 
   useEffect(() => {
-    window.scroll(0,0)
-    props.fetchUnProducto(id);
-    props.fetchProductos();
-  }, []);
+    window.scroll(0, 0)
+    props.fetchUnProducto(id)
+    props.fetchProductos()
+  }, [location])
 
   return (
     <div className="producto-pagina__container">
@@ -118,16 +119,16 @@ const PaginaProducto = (props) => {
         </Link>
       </Button>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     producto: state.productoReducer.producto,
-  };
-};
+  }
+}
 const mapDispatchToProps = {
   fetchUnProducto: productoAction.fetchUnProducto,
   fetchProductos: productoAction.fetchearProductos,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(PaginaProducto);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PaginaProducto)

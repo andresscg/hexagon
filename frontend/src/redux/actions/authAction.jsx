@@ -56,8 +56,10 @@ const authAction = {
   userRegister: (formData) => {
     return async (dispatch, getState) => {
       try {
-        console.log(formData)
-        let response = await axios.post('http://localhost:4000/api/user/register', formData)
+        let response = await axios.post(
+          "http://localhost:4000/api/user/register",
+          formData
+        )
         console.log(response)
         if (response.data.success && !response.data.errors) {
           getState().modalReducer.showModal = false

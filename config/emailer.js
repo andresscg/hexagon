@@ -1,27 +1,28 @@
-const nodemailer = require('nodemailer')
-
-
+const nodemailer = require("nodemailer")
 
 const sendEmail = async (email, uniqueString) => {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: "useremailverifyhexagon@gmail.com",
-        pass: "Hexagon2022",
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    })
-  
-    let sender = "useremailverifyHexagon@gmail.com"
-    let mailOptions = {
-      from: sender,
-      to: email,
-      subject: "User email verification ",
-      html: `
+  console.log(email)
+  console.log(uniqueString)
+
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "useremailverifyhexagon@gmail.com",
+      pass: "Hexagon2022",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  })
+
+  let sender = "useremailverifyHexagon@gmail.com"
+  let mailOptions = {
+    from: sender,
+    to: email,
+    subject: "User email verification ",
+    html: `
       <div>
           <img style="display: block;
           margin-left: auto;
@@ -32,14 +33,14 @@ const sendEmail = async (email, uniqueString) => {
           <p style="text-align:center">With your account you can: Buy, comment, give Likes</p>
           <p style="text-align:center; font-size: 1.2rem;">Please, to verify your email, click <a href=http://localhost:4000/api/verify/${uniqueString}>aqui</a>aqui</a></p>
       </div>`,
-    }
-    await transporter.sendMail(mailOptions, function (error, response) {
-      if (error) {
-        console.log(error)
-      } else {
-        console.log("Mensaje enviado")
-      }
-    })
   }
+  await transporter.sendMail(mailOptions, function (error, response) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log("Mensaje enviado")
+    }
+  })
+}
 
-exports.sendEmail = () => sendEmail()
+exports.sendEmail = sendEmail
