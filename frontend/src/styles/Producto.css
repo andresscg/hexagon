@@ -73,7 +73,7 @@
 
   .info-container-grid{
     width: 100%;
-
+    height: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -163,6 +163,7 @@
 
 .text-container-grid .text-container__title{
   font-size: unset;
+  margin: unset;
 }
 
 .price-card__container-grid{
