@@ -1,6 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
-const rootUrl = "https://hexagon-techstore.herokuapp.com/"
+const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
 const tokenAuth = rootUrl + "auth"
 const loginUrl = rootUrl + "user/login"
 const registerUrl = rootUrl + "user/register"
@@ -93,6 +93,7 @@ const authAction = {
             Authorization: `Bearer ${token}`,
           },
         })
+        console.log(response)
         dispatch({
           type: "auth@@GET_USER_SUCCESS",
           payload: {
@@ -121,7 +122,7 @@ const authAction = {
   logout: () => {
     localStorage.removeItem("token")
     return (dispatch, getState) => {
-      dispatch({type: "auth@@LOGOUT", payload: ""})
+      dispatch({type: "auth@@LOGOUT"})
     }
   },
   getUsers: () => {

@@ -134,6 +134,7 @@ const Navbar = (props) => {
   )
 }
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     user: state.authReducer.user,
     isAuth: state.authReducer.isAuth,
