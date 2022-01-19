@@ -17,6 +17,7 @@ app.use(express.json())
 app.use(passport.initialize())
 app.use("/api", router)
 app.use(compression())
+app.use(express.static(__dirname + '/images'))
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"))
