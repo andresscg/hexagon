@@ -8,8 +8,21 @@
   z-index: 100;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 5px 15px;
+}
+.navbar {
+  padding: 0.5rem 0;
+}
+.nav-inside {
+  display: flex;
+  width: 100%;
+  max-width: 1440px;
+  justify-content: space-between;
+}
+
+.nav__menu--navigation {
+  align-items: center;
 }
 
 @media screen and (max-width: 500px) {
@@ -45,7 +58,7 @@
 
 .nav__logo {
   display: flex;
-  width: 80px;
+  width: 60px;
   margin: 0 0.5rem;
 }
 

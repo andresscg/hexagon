@@ -20,11 +20,6 @@
   height: 100%;
 }
 
-.login-bg {
-  display: flex;
-  align-items: center;
-}
-
 .btns-primary {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
@@ -61,6 +56,7 @@
 
 .btn-login,
 .btn-signup {
+  background: white;
   max-width: 200px;
   min-width: 100px;
   word-break: break-word;
@@ -123,6 +119,15 @@
 
 .register-btns {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   align-items: center;
+}
+
+@media screen and (max-width: 375px) {
+  .login-body,
+  .register-body {
+    padding: 30px 10px;
+    height: 100%;
+  }
 }

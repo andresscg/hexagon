@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react"
+import React, {useRef} from "react"
 import {connect} from "react-redux"
 import authAction from "../../redux/actions/authAction"
 import GoogleLogin from "react-google-login"
@@ -29,7 +29,18 @@ function Login(props) {
         <div className="login-form">
           <h2 className="login-title">Log in</h2>
           <p className="login-subtitle">
-            If you already have an account, sign in!
+            If you don't have have an account,{" "}
+            <span
+              style={{
+                cursor: "pointer",
+                textDecoration: "underline",
+                fontWeight: 800,
+                color: "#fff",
+              }}
+              onClick={props.HandleLoginRegisterModal}
+            >
+              Register
+            </span>
           </p>
           <form onSubmit={handleLogin} className="form-container">
             <div className="form__inputs">
@@ -54,7 +65,7 @@ function Login(props) {
             <p className="sing-google">Or You Can:</p>
             <GoogleLogin
               clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
-              buttonText="Sign Up with Google"
+              buttonText="Sign In with Google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               className="google-btn"
@@ -78,6 +89,7 @@ const mapDispatchToProps = {
   tokenVerify: authAction.tokenVerify,
   loginPending: authAction.loginPending,
   showCloseModal: modalAction.showCloseModal,
+  HandleLoginRegisterModal: modalAction.HandleLoginRegisterModal,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

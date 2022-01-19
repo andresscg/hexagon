@@ -4,6 +4,8 @@ import GoogleLogin from "react-google-login"
 import {connect} from "react-redux"
 import authAction from "../../redux/actions/authAction"
 import "../../styles/SignForm.css"
+import {Link} from "react-router-dom"
+import modalAction from "../../redux/actions/modalAction"
 
 function Register(props) {
   const responseGoogle = (res) => {
@@ -61,9 +63,20 @@ function Register(props) {
   }
   return (
     <div className="register-body">
-      <h3 className="register-title">Make an account</h3>
+      <h2 className="register-title">Register</h2>
       <p className="register-subtitle">
-        If you don't have an account, create a new one!
+        If you have an account,{" "}
+        <span
+          style={{
+            cursor: "pointer",
+            textDecoration: "underline",
+            fontWeight: 800,
+            color: "#fff",
+          }}
+          onClick={props.HandleLoginRegisterModal}
+        >
+          Login!
+        </span>
       </p>
       <form
         className="register-form"
@@ -186,6 +199,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   loginPending: authAction.loginPending,
   userRegister: authAction.userRegister,
+  HandleLoginRegisterModal: modalAction.HandleLoginRegisterModal,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
