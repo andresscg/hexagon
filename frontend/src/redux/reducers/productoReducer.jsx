@@ -16,10 +16,15 @@ const productoReducer = (state = initialState, action) => {
     case "FETCH_PRODUCTOS":
       return {
         ...state,
-        productos: action.payload.productos,
-        auxiliar: action.payload.productos,
-        filtered: action.payload.productos,
-     
+        productos: action.payload.productos.filter(
+          (producto) => producto.contadorStock >= 1
+        ),
+        auxiliar: action.payload.productos.filter(
+          (producto) => producto.contadorStock >= 1
+        ),
+        filtered: action.payload.productos.filter(
+          (producto) => producto.contadorStock >= 1
+        ),
       }
 
     case "FETCH_UN_PRODUCTO":

@@ -9,7 +9,7 @@ import {toast} from "react-toastify"
 import {useCart} from "react-use-cart"
 
 const Paypal = (props) => {
-  const {emptyCart} = useCart()
+  const {emptyCart, items} = useCart()
 
   const paypal = useRef()
   useEffect(() => {
@@ -31,7 +31,9 @@ const Paypal = (props) => {
         },
         onApprove: (data, actions) => {
           let order = actions.order.capture()
+          props.sold(items, order)
           toast.success("Compra realizada con exito!!! ")
+          console.log(order)
           emptyCart()
         },
         onError: (error) => {

@@ -159,5 +159,13 @@ const productoAction = {
       })
     }
   },
+  sold: (items, order) => {
+    return async (dispatch, getState) => {
+      await axios.put("http://localhost:4000/api/productos", {
+        items: items,
+        order: order,
+      })
+    }
+  },
 }
 export default productoAction

@@ -4,6 +4,7 @@ import {Button, Modal} from "react-bootstrap"
 import {connect} from "react-redux"
 import authAction from "../redux/actions/authAction"
 import Paypal from "../components/Paypal"
+import productoAction from "../redux/actions/productoAction"
 
 function ShippingForm(props) {
   const country = useRef()
@@ -227,6 +228,8 @@ function ShippingForm(props) {
           </form>
         ) : (
           <Paypal
+            sold={props.sold}
+            fetchProducts={props.fetchearProductos}
             description={`Compra del dia ${date.toLocaleDateString()}en Hexagon`}
             total={props.cartTotal}
           />
@@ -253,6 +256,8 @@ const mapDispatchToProps = {
   newAddress: authAction.newAddress,
   checkAddress: authAction.checkAddress,
   loginPending: authAction.loginPending,
+  fetchearProductos: productoAction.fetchearProductos,
+  sold: productoAction.sold,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShippingForm)
