@@ -111,9 +111,6 @@ export default function CartScreen(props) {
 
         <div>
           <ShippingForm cartTotal={cartTotal} />
-          <Button className="my-2" type="button" disabled={isEmpty}>
-            Proceed to Checkout
-          </Button>
         </div>
       </Row>
     </div>
