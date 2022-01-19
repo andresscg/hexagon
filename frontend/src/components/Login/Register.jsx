@@ -3,7 +3,7 @@ import axios from "axios"
 import GoogleLogin from "react-google-login"
 import {connect, useDispatch} from "react-redux"
 import authAction from "../../redux/actions/authAction"
-import '../../styles/SignForm.css'
+import "../../styles/SignForm.css"
 
 function Register(props) {
   /*   localStorage.getItem("token") && !props.token && props.tokenDale()
@@ -21,13 +21,20 @@ function Register(props) {
 
   const [usStates, setUsStates] = useState([])
   useEffect(() => {
-    axios.get('https://datausa.io/api/searchLegacy/?limit=100&dimension=Geography&hierarchy=State&q=')
-      .then(response => setUsStates(response.data.results.sort((a, b) => {
-        if(a.name < b.name) return -1
-        if(a.name > b.name) return 1
-        return 0
-      })))
-      .catch(error => console.log(error))
+    axios
+      .get(
+        "https://datausa.io/api/searchLegacy/?limit=100&dimension=Geography&hierarchy=State&q="
+      )
+      .then((response) =>
+        setUsStates(
+          response.data.results.sort((a, b) => {
+            if (a.name < b.name) return -1
+            if (a.name > b.name) return 1
+            return 0
+          })
+        )
+      )
+      .catch((error) => console.log(error))
   })
 
   // const email = useRef()
@@ -37,19 +44,19 @@ function Register(props) {
   // const country = useRef()
 
   const [newUser, setNewUser] = useState({
-    email: '',
-    password: '',
-    name: '',
-    lastname: '',
-    photo: '',
-    country: '',
+    email: "",
+    password: "",
+    name: "",
+    lastname: "",
+    photo: "",
+    country: "",
   })
 
-  const handlePhoto = e => {
+  const handlePhoto = (e) => {
     setNewUser({...newUser, photo: e.target.files[0]})
   }
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setNewUser({...newUser, [e.target.name]: e.target.value})
   }
 
@@ -57,14 +64,14 @@ function Register(props) {
     e.preventDefault()
     console.log(newUser)
     const formData = new FormData()
-    formData.append('name', newUser.name)
-    formData.append('password', newUser.password)
-    formData.append('lastname', newUser.lastname)
-    formData.append('country', newUser.country)
-    formData.append('photo', newUser.photo)
-    formData.append('email', newUser.email)
-    console.log(formData.get('name'))
-    if (formData.get('email') && formData.get('password')) {
+    formData.append("firstName", newUser.name)
+    formData.append("password", newUser.password)
+    formData.append("lastName", newUser.lastname)
+    formData.append("country", newUser.country)
+    formData.append("photo", newUser.photo)
+    formData.append("email", newUser.email)
+    console.log(formData.get("name"))
+    if (formData.get("email") && formData.get("password")) {
       props.loginPending()
       let response = props.userRegister(formData)
       console.log(response)
@@ -73,8 +80,14 @@ function Register(props) {
   return (
     <div className="register-body">
       <h3 className="register-title">Make an account</h3>
-      <p className="register-subtitle">If you don't have an account, create a new one!</p>
-      <form className="register-form" onSubmit={handleRegister} encType="multipart/form-data">
+      <p className="register-subtitle">
+        If you don't have an account, create a new one!
+      </p>
+      <form
+        className="register-form"
+        onSubmit={handleRegister}
+        encType="multipart/form-data"
+      >
         <div className="register-inputs">
           <div className="input-group">
             <label htmlFor="name">Name</label>
@@ -150,23 +163,25 @@ function Register(props) {
               name="country"
               className="btn-signup"
               // ref={country}
+              defaultValue="none"
               onChange={handleChange}
               required
             >
-              {usStates.map(state => {
+              <option value="none" disabled defaultChecked>
+                Choose a state
+              </option>
+              {usStates.map((state) => {
                 return (
-                  <option value={state.name} key={state.key}>{state.name}</option>
+                  <option value={state.name} key={state.key}>
+                    {state.name}
+                  </option>
                 )
               })}
             </select>
           </div>
         </div>
         <div className="register-btns">
-          <input
-            type="submit"
-            className="btn-submit"
-            value="Register"
-          />
+          <input type="submit" className="btn-submit" value="Register" />
           <GoogleLogin
             clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
             buttonText="Sign Up with Google"

@@ -4,20 +4,18 @@ const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
 const crypto = require("crypto")
 const Address = require("../models/Address")
-const {sendEmail} = require("../config/emailer")
+const emailer = require("../config/emailer")
 
 const userController = {
   newUser: async (req, res) => {
-    // let {firstName, lastName, email, password, google, photo, admin} = req.body
-    console.log(req.file)
-    const firstName = req.body.name
-    const lastName = req.body.lastname
-    const email = req.body.email
-    const password = req.body.password
-    const google = req.body.google
-    const admin = req.body.admin
-    const photo = req.file.filename
+    let {firstName, lastName, email, password, google, country, admin} =
+      req.body
 
+    country ? country : (country = "none")
+    console.log(req.body)
+    let photo =
+      req.file?.filename ||
+      "014a2536-7afc-4a5c-b3db-c446d59b48dd-1642550231583.png"
     try {
       const userExist = await User.findOne({email})
 
@@ -54,8 +52,8 @@ const userController = {
           emailVerified,
           photo,
           country,
-          admin,
           google,
+          admin,
         })
 
         const token = jwt.sign({...nuevoUsuario}, process.env.SECRETKEY)
@@ -75,7 +73,8 @@ const userController = {
           nuevoUsuario.google = false
           nuevoUsuario.isConected = false
           await nuevoUsuario.save()
-          await sendEmail(email, uniqueString)
+          if (email && uniqueString)
+            await emailer.sendEmail(email, uniqueString)
 
           res.json({
             success: true,
@@ -87,7 +86,7 @@ const userController = {
       }
     } catch (error) {
       console.log(error)
-      res.json({success: false, response: null, errors: 'errors'})
+      res.json({success: false, response: null, errors: "errors"})
     }
   },
   logUser: async (req, res) => {

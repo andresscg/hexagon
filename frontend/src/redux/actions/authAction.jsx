@@ -56,8 +56,10 @@ const authAction = {
   userRegister: (formData) => {
     return async (dispatch, getState) => {
       try {
-        console.log(formData)
-        let response = await axios.post('http://localhost:4000/api/user/register', formData)
+        let response = await axios.post(
+          "https://hexagon-techstore.herokuapp.com/api/user/register",
+          formData
+        )
         console.log(response)
         if (response.data.success && !response.data.errors) {
           getState().modalReducer.showModal = false
@@ -150,7 +152,7 @@ const authAction = {
       const token = localStorage.getItem("token")
 
       let response = await axios.post(
-        "http://localhost:4000/api/address/newAddress",
+        "https://hexagon-techstore.herokuapp.com/api/address/newAddress",
         {
           country,
           state,
@@ -179,7 +181,7 @@ const authAction = {
       const token = localStorage.getItem("token")
 
       let response = await axios.get(
-        "http://localhost:4000/api/address/newAddress",
+        "https://hexagon-techstore.herokuapp.com/api/address/newAddress",
 
         {
           headers: {
