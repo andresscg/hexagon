@@ -259,8 +259,14 @@
   overflow-x: hidden;
   max-height: 70vh;
   border-radius: 10px;
-  min-width: 100vw !important;
+  max-width: 25vw !important;
 }
+
+.cartItemImg{
+  width: 35px;
+  object-fit: contain;
+}
+
 .navbar-toggler {
   color: red !important;
 }
