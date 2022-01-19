@@ -4,7 +4,7 @@
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-  padding: 15vh 0 20px 30px;
+  padding: 15vh 0;
   min-height: 80vh;
   width: 100%;
   display: flex;
@@ -17,7 +17,6 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  min-width: 55rem;
 }
 
 .css-2m9kme-MuiFormControl-root p {
@@ -89,7 +88,7 @@ body::-webkit-scrollbar-track {
 
 .selectores {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   border: 2px solid white;
@@ -154,7 +153,7 @@ body::-webkit-scrollbar-track {
   color: white !important;
 }
 
-@media screen and (max-width: 1145px) {
+@media screen and (max-width: 768px) {
   .shop__main {
     padding: unset;
     padding: 15vh 0 0 0;
@@ -199,13 +198,13 @@ body::-webkit-scrollbar-track {
   .selectores {
     flex-flow: column nowrap;
     min-width: 260px;
-    width: 320px;
+    width: 280px;
   }
 
   .selectores div {
     width: 100%;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
   }
 
   .cleanUp-container p {
@@ -251,4 +250,8 @@ body::-webkit-scrollbar-track {
   .selectores-price {
     margin: 1rem 0 !important;
   }
+}
+
+.css-hjtp1-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 13px !important;
 }

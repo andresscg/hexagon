@@ -29,7 +29,6 @@ const MenuProps = {
 function PhonesFilter({data, name, selectFilter}) {
   const [selData, setSelData] = React.useState([])
 
-
   const handleChangeselect = (event) => {
     const {
       target: {value},
@@ -49,11 +48,31 @@ function PhonesFilter({data, name, selectFilter}) {
           value={selData}
           onChange={handleChangeselect}
           onChangeCapture={selectFilter(selData, name)}
-          input={<OutlinedInput id="select-multiple-chip" label="Processor" />}
+          input={
+            <OutlinedInput
+              id="select-multiple-chip"
+              label="Processor"
+              color="secondary"
+            />
+          }
           renderValue={(selected) => (
-            <Box sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 0.5,
+                color: "rgba(255, 255, 255, 0.342)",
+              }}
+            >
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip
+                  key={value}
+                  label={value}
+                  sx={{
+                    color: "#fff",
+                    backgroundColor: "rgba(20, 20, 20, 0.8)",
+                  }}
+                />
               ))}
             </Box>
           )}
@@ -66,20 +85,22 @@ function PhonesFilter({data, name, selectFilter}) {
           ))}
         </Select>
       </FormControl>
-      <div >
+      <div>
         <Button className="cleanUp-container">
-        <p onClick={() => {
-          setSelData([])
-          selectFilter(selData, name)
-        }}>
-          Clean up
-        </p>
-        <AiOutlineClear
-        onClick={() => {
-          setSelData([])
-          selectFilter(selData, name)
-        }}
-      />
+          <p
+            onClick={() => {
+              setSelData([])
+              selectFilter(selData, name)
+            }}
+          >
+            Clean up
+          </p>
+          <AiOutlineClear
+            onClick={() => {
+              setSelData([])
+              selectFilter(selData, name)
+            }}
+          />
         </Button>
       </div>
     </div>
