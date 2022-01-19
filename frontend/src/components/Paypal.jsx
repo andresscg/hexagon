@@ -31,10 +31,7 @@ const Paypal = (props) => {
         },
         onApprove: (data, actions) => {
           let order = actions.order.capture()
-<<<<<<< HEAD
-=======
           props.sold(items, order)
->>>>>>> 3c82a5b87611277893e1593e6526046014a43d1e
           toast.success("Compra realizada con exito!!! ")
           emptyCart()
         },
@@ -45,12 +42,6 @@ const Paypal = (props) => {
       })
       .render(paypal.current)
   }, [])
-<<<<<<< HEAD
-  return <div ref={paypal} style={{zIndex: -100}}></div>
-}
-export default Paypal
-=======
   return <div ref={paypal}></div>
 }
 export default Paypal
->>>>>>> 3c82a5b87611277893e1593e6526046014a43d1e
