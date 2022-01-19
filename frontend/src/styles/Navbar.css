@@ -46,9 +46,7 @@
 
 /* 3 */
 .btn-3 {
-  background: rgb(0,172,238);
-background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
-  width: 130px;
+  background: linear-gradient(0deg, rgba(141,35,126,1) 13%, rgba(239,47,86,1) 100%);  width: 130px;
   height: 40px;
   line-height: 42px;
   padding: 0;
@@ -67,8 +65,9 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   content: "";
   right: 0;
   top: 0;
-   background: rgba(2,126,251,1);
-  transition: all 0.3s ease;
+  background: linear-gradient(0deg, rgba(141,35,126,1) 13%, rgba(239,47,86,1) 100%);  width: 130px;
+  transition: all 0.5s ease;
+  
 }
 .btn-3:before {
   height: 0%;
@@ -89,7 +88,7 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   width: 100%;
 }
 .btn-3 span:hover{
-   color: rgba(2,126,251,1);
+   color: white;
 }
 .btn-3 span:before,
 .btn-3 span:after {
@@ -97,8 +96,8 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   content: "";
   left: 0;
   bottom: 0;
-  background: rgba(2,126,251,1);
-  transition: all 0.3s ease;
+  background: linear-gradient(0deg, rgba(141,35,126,1) 87%, rgba(239,47,86,1) 100%);  width: 130px;
+  transition: all 0.5s ease;
 }
 .btn-3 span:before {
   width: 2px;

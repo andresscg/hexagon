@@ -20,21 +20,21 @@ const Navbar = (props) => {
         <div className="nav__menu--navigation">
           <button class="custom-btn btn-3">
             <span>
-              <Link to="/" className="nav__menu--item">
+              <Link to="/" className="nav__menu--item text-light">
                 Home
               </Link>
             </span>
           </button>
           <button class="custom-btn btn-3">
             <span>
-              <Link to="/shop" className="nav__menu--item">
+              <Link to="/shop" className="nav__menu--item text-light">
                 Shop
               </Link>
             </span>
           </button>
           <button class="custom-btn btn-3">
             <span>
-              <Link to="/contact" className="nav__menu--item">
+              <Link to="/contact" className="nav__menu--item text-light">
                 Contact
               </Link>
             </span>
@@ -71,10 +71,12 @@ const Navbar = (props) => {
         </div>
 
         <Nav className="cart-fixed">
-          <Dropdown>
-            <Dropdown.Toggle className="shopping__cart">
-              <FaShoppingCart color="white" fontSize="25px" />
-              <Badge className="cart__number">{totalItems}</Badge>
+          <Dropdown class="custom-btn btn-3">
+            <Dropdown.Toggle className="custom-btn btn-3">
+              <span>
+                <FaShoppingCart color="white" fontSize="25px" />
+                <Badge>{totalItems}</Badge>
+              </span>
             </Dropdown.Toggle>
             <Dropdown.Menu style={{minWidth: 370}} className="cart__dropdown">
               {totalItems ? (
@@ -95,7 +97,6 @@ const Navbar = (props) => {
                           {prod.quantity}
                         </span>
                       </div>
-
                       <AiFillDelete
                         fontSize="20px"
                         style={{cursor: "pointer"}}
