@@ -231,10 +231,12 @@ body::-webkit-scrollbar-thumb{
         
         .botones-filter{
           flex-flow: row nowrap;
+          width: 90%;
+          justify-content: space-evenly;
         }
         
         .botones-filter button{
-          padding: 1rem;
+          padding: 1rem .7rem;
           margin: unset;
           border-radius: 20px 20px 0 0;
           margin: 0 0 -2px  0;
