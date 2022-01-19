@@ -16,7 +16,7 @@ const userController = {
     let photo = req.body.photo
       ? req.body.photo
       : req.file?.filename ||
-        "2cbbc523-6dce-48af-88a9-354b7752b026-1642604865419.png"
+        "b496f662-c1b9-4698-9f9e-45f929193c5f-1642605957007.png"
 
     console.log(req.body)
     try {
