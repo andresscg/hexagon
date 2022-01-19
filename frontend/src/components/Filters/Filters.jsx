@@ -6,9 +6,8 @@ import Productos from "../../pages/Productos"
 import SliderPriceFilter from "./SliderPriceFilter"
 import PhonesFilter from "./PhonesFilter"
 import {BiSearchAlt} from "react-icons/bi"
-import {Button, FormControl} from "react-bootstrap"
+import {FormControl} from "react-bootstrap"
 import SideBarFilter from "./SideBarFilter"
-
 
 function Filters(props) {
   const categories = [
@@ -27,17 +26,16 @@ function Filters(props) {
     <div className="shop__main">
       <h2 className="text-light">Find what you're looking for:</h2>
       <div className="buscador-container">
-        <BiSearchAlt/>
-          <FormControl
-            onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
-            placeholder="FIND YOUR PRODUCT"
-            aria-describedby="inputGroup-sizing-sm"
-          />
+        <BiSearchAlt />
+        <FormControl
+          onChange={(e) => props.search(e.target.value.toLowerCase().trim())}
+          placeholder="FIND YOUR PRODUCT"
+          aria-describedby="inputGroup-sizing-sm"
+        />
       </div>
       <div className="filter-contaniner__find">
         <div className="shop__container">
           <div className="selectores-container">
-            
             <div className="selectores">
               <PhonesFilter data={brands} name={"Brands"} />
               <label>
@@ -50,19 +48,12 @@ function Filters(props) {
             </div>
             <div className="botones-filter">
               <SideBarFilter
+                setGrid={setGrid}
                 productos={props.productos}
                 sort={props.sortProductos}
               />
+            </div>
           </div>
-          </div>
-          {/* <div className="layout-products">
-            <Button onClick={() => setGrid(false)}>
-              <FaList onClick={() => setGrid(false)} />
-            </Button>
-            <Button onClick={() => setGrid(true)}>
-              <BsFillGrid3X3GapFill onClick={() => setGrid(true)} />
-            </Button>
-          </div> */}
         </div>
       </div>
       <div className="shop__content">
