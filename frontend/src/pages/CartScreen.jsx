@@ -28,8 +28,6 @@ export default function CartScreen(props) {
   let navigate = useNavigate()
   isEmpty && navigate("/shop", {replace: true})
 
-  console.log(items)
-
   return (
     <div className="home" style={{backgroundImage: "url(/assets/bg2.webp)"}}>
       <h2 className="text-light">Cart Items</h2>

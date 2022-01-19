@@ -5,8 +5,6 @@ import Carousel from "nuka-carousel"
 import "../styles/Carousel.css"
 
 const Carrousel = (props) => {
-  console.log(props.auxiliar)
-
   return (
     <Carousel
       autoplay={true}

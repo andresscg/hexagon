@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import authAction from "../../redux/actions/authAction"
 import GoogleLogin from "react-google-login"
 import modalAction from "../../redux/actions/modalAction"
-import '../../styles/SignForm.css'
+import "../../styles/SignForm.css"
 
 function Login(props) {
   const responseGoogle = (response) => {
@@ -11,21 +11,21 @@ function Login(props) {
   }
   const email = useRef()
   const password = useRef()
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault()
     if (email.current.value && password.current.value) {
       props.loginPending()
-      let response = props.userLogin(email.current.value, password.current.value)
-      console.log(response)
+      await props.userLogin(email.current.value, password.current.value)
     }
   }
   return (
     <div className="login-body">
-      {/* <img src="??" alt="" className="login-image" /> */}
       <div className="login-bg">
         <div className="login-form">
           <h2 className="login-title">Log in</h2>
-          <p className="login-subtitle">If you already have an account, sign in!</p>
+          <p className="login-subtitle">
+            If you already have an account, sign in!
+          </p>
           <form onSubmit={handleLogin} className="form-container">
             <div className="form__inputs">
               <input
@@ -46,21 +46,18 @@ function Login(props) {
             <button type="submit" className="btn-submit">
               Login
             </button>
-            <p className="sing-google">
-              Or You Can:
-            </p>
-          <GoogleLogin
-            clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
-            buttonText="Sign In with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            className="google-btn"
-            cookiePolicy={"single_host_origin"}
-          />
+            <p className="sing-google">Or You Can:</p>
+            <GoogleLogin
+              clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
+              buttonText="Sign In with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              className="google-btn"
+              cookiePolicy={"single_host_origin"}
+            />
           </form>
         </div>
       </div>
-      {/* <button onClick={() => props.tokenVerify()}>Token</button> */}
     </div>
   )
 }

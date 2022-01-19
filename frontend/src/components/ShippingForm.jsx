@@ -41,10 +41,6 @@ function ShippingForm(props) {
   }
 
   async function handleState(e) {
-    console.log("se llama")
-    console.log(country.current.value)
-    console.log(e.target.value)
-
     const res = await axios.post(
       "https://countriesnow.space/api/v0.1/countries/state/cities",
       {
@@ -243,7 +239,6 @@ function ShippingForm(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     isLoading: state.authReducer.isLoading,
     isAuth: state.authReducer.isAuth,
