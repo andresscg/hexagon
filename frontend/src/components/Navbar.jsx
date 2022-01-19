@@ -64,8 +64,6 @@ const Navbar = (props) => {
                       backgroundImage: `url(${
                         props.user?.google
                           ? props.user?.photo
-                          : props.user?.photo === "undefined"
-                          ? "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
                           : "https://hexagon-techstore.herokuapp.com/" +
                             props.user?.photo
                       })`,
