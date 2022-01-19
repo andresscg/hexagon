@@ -49,7 +49,7 @@ const Producto = (props) => {
     setLikeIcon(true)
   }
 
-  let likes = likeProducts.includes(props.user && props.user._id) ? "❤" : "🤍"
+  let likes = likeProducts.includes(props.user && props.user._id) ? "❤" : "🤍";
   // let likes = "❤️" && "🤍"
 
   return (
@@ -129,10 +129,31 @@ const Producto = (props) => {
             
           </div>
         </div>
+        <div className="addcart-container">
+          {props.cart.some((p) => p.item._id === props.producto._id) ? (
+            <Button
+              onClick={() => props.removeFromCart(props.producto)}
+              variant="danger"
+              className="btn-block"
+              type="button"
+            >
+              Remove from Cart
+            </Button>
+          ) : (
+            <Button
+              onClick={() => props.addToCart(props.producto, props.user._id)}
+              className="btn-block"
+              type="button"
+              disabled={!props.producto.contadorStock}
+            >
+              {!props.producto.contadorStock ? "Out of Stock" : "Add to Cart"}
+            </Button>
+          )}
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -145,4 +166,4 @@ const mapDispatchToProps = {
   likeDislike: productoAction.likeDislike,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Producto)
+export default connect(mapStateToProps, mapDispatchToProps)(Producto);

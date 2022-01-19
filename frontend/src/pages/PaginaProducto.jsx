@@ -9,6 +9,10 @@ import "../styles/paginaProducto.css"
 import Carrousel from "../components/Carrousel"
 
 const PaginaProducto = (props) => {
+  const stateCart = useContext(Cart)
+  const [state, dispatch] = stateCart
+  const {cart} = state
+
   let {id} = useParams()
   const [qty, setQty] = useState(1)
 

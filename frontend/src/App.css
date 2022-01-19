@@ -41,3 +41,29 @@ a {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
 }
+
+.addcart-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+.addcart-container button {
+  min-width: 15rem;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.reseña-container {
+  display: flex;
+}
+
+.noexiste-container {
+  padding: 1rem;
+  text-align: center;
+  width: 50vw;
+  background-color: var(--white);
+  margin: 2px 0;
+  border-radius: 5px;
+}
