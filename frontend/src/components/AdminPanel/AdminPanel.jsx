@@ -1,5 +1,5 @@
 import Sidebar from "./Sidebar/Sidebar"
-import AdminHome from "./AdminHome/AdminHome"
+import {Outlet} from "react-router-dom"
 
 export default function AdminPanel() {
   return (
