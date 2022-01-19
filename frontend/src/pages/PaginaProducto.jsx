@@ -9,6 +9,7 @@ import "../styles/paginaProducto.css"
 import Carrousel from "../components/Carrousel"
 
 const PaginaProducto = (props) => {
+
   let {id} = useParams()
   const [qty, setQty] = useState(1)
 
