@@ -39,16 +39,29 @@
   letter-spacing: 5px;
 }
 
+.nav__loco--container{
+  display: flex;
+}
+
+
 .nav__logo {
   display: flex;
-  width: 250px;
+  width: 80px;
+  margin: 0 .5rem;
 }
 
 .nav__menu--navigation {
   display: flex;
   flex-flow: row wrap;
-  width: 30%;
+  width: 70%;
   gap: 25px;
+}
+
+.cart-fixed{
+  position: fixed;
+  top: 12vh;
+  left: 90vw;
+  border-radius: 50% 50%;
 }
 
 .custom-btn {
