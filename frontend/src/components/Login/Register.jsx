@@ -175,8 +175,8 @@ function Register(props) {
         <div className="register-btns">
           <input type="submit" className="btn-submit" value="Register" />
           <GoogleLogin
-            clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
-            buttonText="Sign Up with Google"
+            clientId="773392097856-l3b8tl6cto9b38gj9kd9a910fl1r1he8.apps.googleusercontent.com"
+            buttonText="Register with Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             className="google-btn"

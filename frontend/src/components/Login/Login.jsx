@@ -48,8 +48,8 @@ function Login(props) {
             </button>
             <p className="sing-google">Or You Can:</p>
             <GoogleLogin
-              clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
-              buttonText="Sign In with Google"
+              clientId="773392097856-l3b8tl6cto9b38gj9kd9a910fl1r1he8.apps.googleusercontent.com"
+              buttonText="Login with Google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               className="google-btn"
