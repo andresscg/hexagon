@@ -6,7 +6,7 @@ import {connect} from "react-redux"
 import {useCart} from "react-use-cart"
 import Swal from "sweetalert2"
 import "../styles/Producto.css"
-
+import {Button} from "react-bootstrap"
 
 const Producto = (props) => {
   const {addItem, removeItem, items} = useCart()
@@ -49,7 +49,7 @@ const Producto = (props) => {
     setLikeIcon(true)
   }
 
-  let likes = likeProducts.includes(props.user && props.user._id) ? "❤" : "🤍"
+  let likes = likeProducts.includes(props.user && props.user._id) ? "❤" : "🤍";
   // let likes = "❤️" && "🤍"
 
   return (
@@ -131,8 +131,8 @@ const Producto = (props) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -145,4 +145,4 @@ const mapDispatchToProps = {
   likeDislike: productoAction.likeDislike,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Producto)
+export default connect(mapStateToProps, mapDispatchToProps)(Producto);
