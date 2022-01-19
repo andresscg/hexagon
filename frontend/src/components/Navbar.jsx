@@ -47,7 +47,7 @@ const Navbar = (props) => {
               </button>
               <div className="user__info">
                 <div
-                  style={{backgroundImage: `url(${props.user?.photo})`}}
+                  style={{backgroundImage: `url(https://hexagon-techstore.herokuapp.com/${props.user?.photo})`}}
                   className="nav__menu__photo"
                 />
                 <p className="user__name">{props.user?.firstName}</p>
