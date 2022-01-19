@@ -1,6 +1,6 @@
 .nav-container {
   width: 100%;
-  min-height: 12vh;
+  min-height: var(--nav-height);
   background-color: rgba(68, 52, 148, 0.5);
   backdrop-filter: blur(8px);
   position: fixed;
@@ -39,15 +39,14 @@
   letter-spacing: 5px;
 }
 
-.nav__loco--container{
+.nav__loco--container {
   display: flex;
 }
-
 
 .nav__logo {
   display: flex;
   width: 80px;
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
 
 .nav__menu--navigation {
@@ -57,10 +56,10 @@
   gap: 25px;
 }
 
-.cart-fixed{
-  position: fixed;
-  top: 12vh;
-  left: 90vw;
+.cart-fixed {
+  position: absolute;
+  top: 140px;
+  right: 10px;
   border-radius: 50% 50%;
 }
 
@@ -311,8 +310,14 @@
   .nav__logo {
     margin: auto;
   }
+}
 
-  button {
-    margin: 20px;
-  }
+.dropdown-toggle {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
 }
