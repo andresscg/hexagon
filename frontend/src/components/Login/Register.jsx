@@ -13,7 +13,8 @@ function Register(props) {
       password: res.profileObj.googleId,
       email: res.profileObj.email,
       photo: res.profileObj.imageUrl,
-      google: "Google",
+      google: true,
+      country: "Google",
     }
     props.userRegister(formData)
   }
@@ -62,6 +63,7 @@ function Register(props) {
     formData.append("country", newUser.country)
     formData.append("photo", newUser.photo)
     formData.append("email", newUser.email)
+    formData.append("google", false)
     if (formData.get("email") && formData.get("password")) {
       props.loginPending()
       props.userRegister(formData)

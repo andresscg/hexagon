@@ -62,7 +62,7 @@ const userController = {
 
         const token = jwt.sign({...nuevoUsuario}, process.env.SECRETKEY)
 
-        if (google) {
+        if (google === true) {
           nuevoUsuario.emailVerified = true
           nuevoUsuario.google = true
           nuevoUsuario.isConected = false

@@ -1,7 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
-import modalAction from "./modalAction"
-const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
+const rootUrl = "http://localhost:4000/api/"
 const tokenAuth = rootUrl + "auth"
 const loginUrl = rootUrl + "user/login"
 const registerUrl = rootUrl + "user/register"
@@ -55,10 +54,10 @@ const authAction = {
     return async (dispatch, getState) => {
       let response = await axios.post(registerUrl, formData)
       console.log(response)
-      if (response.data.success && !response.data.errors) {
+      if (response.data.success) {
         toast.error(response.data.message)
-
         getState().modalReducer.showModal = false
+
         localStorage.setItem("token", response.data.response.token)
         toast.success(
           "Welcome to HEXAGON " + response.data.response.nuevoUsuario.firstName
@@ -72,12 +71,14 @@ const authAction = {
           },
         })
       } else {
+        console.log("fallo")
+        response.data.errors[0]
+          ? response.data.errors.map((err) => toast.error(err.message))
+          : toast.error(response.data.message)
         dispatch({
           type: "auth@@GET_USER_FAIL",
           payload: {authError: response.data.errors},
         })
-
-        toast.error(response.data.message)
       }
     }
   },
