@@ -3,51 +3,22 @@ const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
 const crypto = require("crypto")
-
-const sendEmail = async (email, uniqueString) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "useremailverifyhexagon@gmail.com",
-      pass: "Hexagon2022",
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  })
-
-  let sender = "useremailverifyHexagon@gmail.com"
-  let mailOptions = {
-    from: sender,
-    to: email,
-    subject: "Verificacion de email usuario ",
-    html: `
-    <div>
-        <img style="display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100px;
-        height:100px;" src='https://i.imgur.com/GjurQqE.png' alt='logo Hexagon'/>
-        <h2 style="text-align:center;  font-size: 1.5rem;">Gracias por registrarte con nosotros!</h2>
-        <p style="text-align:center">Con tu cuenta podras:Comprar, comentar dar Likes</p>
-        <p style="text-align:center; font-size: 1.2rem;">Por favor, para verificar tu correo, haz click <a href=http://localhost:4000/api/verify/${uniqueString}>aqui</a>aqui</a></p>
-    </div>`,
-  }
-  await transporter.sendMail(mailOptions, function (error, response) {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log("Mensaje enviado")
-    }
-  })
-}
+const Address = require("../models/Address")
+const emailer = require("../config/emailer")
 
 const userController = {
   newUser: async (req, res) => {
-    let {firstName, lastName, email, password, google, photo, admin} = req.body
+    let {firstName, lastName, email, password, google, country, admin} =
+      req.body
 
+    country ? country : (country = "none")
+    console.log(req.body)
+    let photo = req.body.photo
+      ? req.body.photo
+      : req.file?.filename ||
+        "205ffd00-61b4-405b-b77a-25782821b6e2-1642613596185.png"
+
+    console.log(req.body)
     try {
       const userExist = await User.findOne({email})
 
@@ -60,12 +31,12 @@ const userController = {
           userExist.save()
           res.json({
             success: true,
-            message: "Puedes ingresar con Google",
+            message: "You can login with Google",
           })
         } else {
           res.json({
             success: false,
-            response: "El nombre de usuario ya esta en uso",
+            response: "Username already in use",
           })
         }
       } else {
@@ -74,6 +45,7 @@ const userController = {
         let emailVerified = false
 
         const contraseñaHasheada = bcryptjs.hashSync(password, 10)
+
         const nuevoUsuario = new User({
           firstName,
           lastName,
@@ -82,57 +54,54 @@ const userController = {
           uniqueString,
           emailVerified,
           photo,
-          admin,
+          country,
           google,
+          admin,
         })
 
         const token = jwt.sign({...nuevoUsuario}, process.env.SECRETKEY)
 
-        if (google) {
+        if (google === true) {
           nuevoUsuario.emailVerified = true
           nuevoUsuario.google = true
           nuevoUsuario.isConected = false
+          nuevoUsuario.photo = req.body.photo
           await nuevoUsuario.save()
           res.json({
             success: true,
             response: {token, nuevoUsuario},
-            message: "Felicitaciones se ha creado tu usuario con Google",
+            message: "Awesome! You created your account with Google",
           })
         } else {
           emailVerified = false
           nuevoUsuario.google = false
           nuevoUsuario.isConected = false
           await nuevoUsuario.save()
-          await sendEmail(email, uniqueString)
+          if (email && uniqueString)
+            await emailer.sendEmail(email, uniqueString)
 
           res.json({
             success: true,
             response: {token, nuevoUsuario},
             message:
-              "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp ",
+              "We sent you an email to verify your account, please check your inbox.",
           })
         }
       }
     } catch (error) {
       console.log(error)
-      res.json({success: false, response: null, errors: errors})
+      res.json({success: false, response: null, errors: "errors"})
     }
   },
   logUser: async (req, res) => {
     const {email, password, isGoogle} = req.body
+    console.log(req.body)
     try {
       let user = await User.findOne({email})
+      console.log(user)
       if (user) {
-        /* if (!user.emailVerified) {
-          return res.json({
-            success: false,
-            response: null,
-            errors: "Por favor verifica tu correo antes de ingresar",
-          })
-        } */
-        let samePassword = user
-          ? bcryptjs.compareSync(password, user.password)
-          : false
+        let samePassword = bcryptjs.compareSync(password, user.password)
+
         if (user && samePassword) {
           const token = jwt.sign({user}, process.env.SECRETKEY)
           res.json({
@@ -145,20 +114,20 @@ const userController = {
           res.json({
             success: false,
             user: null,
-            errors: "Correo electrónico inválido",
+            errors: "Invalid Email",
           })
         } else {
           res.json({
             success: false,
             user: null,
-            errors: "Correo electrónico o contraseña inválido",
+            errors: "Invalid Email or Password",
           })
         }
       } else {
         res.json({
           success: false,
           user: null,
-          errors: "Correo electrónico en uso",
+          errors: "No encuentra el usuario",
         })
       }
     } catch (e) {
@@ -216,9 +185,9 @@ const userController = {
     if (user) {
       user.emailVerified = true
       await user.save()
-      res.redirect("http://localhost:3000/")
+      res.redirect("https://hexagon-techstore.herokuapp.com/")
     } else {
-      res.json({success: false, response: "Su email no se ha verificado"})
+      res.json({success: false, response: "Your e-mail hasn't been verified."})
     }
   },
   byGoogle: async (req, res) => {
@@ -226,13 +195,58 @@ const userController = {
       {
         $group: {
           _id: {
-            createdAt: "$createdAt",
+            $add: [
+              {$dayOfYear: "$createdAt"},
+              {$multiply: [400, {$year: "$createdAt"}]},
+            ],
           },
           usersThisDay: {$sum: 1},
+          first: {$min: "$createdAt"},
         },
       },
+      {$sort: {_id: -1}},
+      {$limit: 15},
+      {$project: {date: "$first", usersThisDay: 1, _id: 0}},
     ])
+    console.log(grupo)
     res.json(grupo)
+  },
+  newAddress: async (req, res) => {
+    let {country, state, city, name, address, phone} = req.body
+
+    try {
+      const newAddressDirection = new Address({
+        country,
+        state,
+        city,
+        name,
+        address,
+        phone,
+        user: req.user._id,
+      })
+
+      await newAddressDirection.save()
+      res.json({
+        success: true,
+        response: newAddressDirection,
+        message: "New address registered",
+      })
+    } catch (error) {
+      console.log(error)
+      res.json({success: false, response: null, errors: error})
+    }
+  },
+  checkAddress: async (req, res) => {
+    console.log("si")
+    console.log(req.user._id)
+    let address = await Address.findOne({user: req.user._id})
+    console.log(address)
+
+    res.json({
+      success: true,
+      response: address,
+      errors: null,
+    })
   },
 }
 

@@ -7,7 +7,6 @@ import UsersLG from "./Users/UsersLG/UsersLG"
 import UsersSM from "./Users/UsersSM/UsersSM"
 
 function AdminHome(props) {
-  console.log(props.usersByDate)
   useEffect(() => {
     props.getUsersByDate()
   }, [])

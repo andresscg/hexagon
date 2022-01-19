@@ -17,6 +17,7 @@
 .login-body,
 .register-body {
   padding: 30px 40px;
+  height: 100%;
 }
 
 .btns-primary {
@@ -55,6 +56,11 @@
 
 .btn-login,
 .btn-signup {
+  background: white;
+  max-width: 200px;
+  min-width: 100px;
+  word-break: break-word;
+  overflow-wrap: break-word;
   margin-right: 10px;
   padding: 5px 2px;
   border: 3px solid var(--secondary-dark);
@@ -113,6 +119,15 @@
 
 .register-btns {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   align-items: center;
+}
+
+@media screen and (max-width: 375px) {
+  .login-body,
+  .register-body {
+    padding: 30px 10px;
+    height: 100%;
+  }
 }

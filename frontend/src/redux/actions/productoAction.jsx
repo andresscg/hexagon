@@ -1,4 +1,5 @@
 import axios from "axios"
+import {toast} from "react-toastify"
 
 const token = localStorage.getItem("token")
 const tokenHeader = {
@@ -7,8 +8,8 @@ const tokenHeader = {
   },
 }
 const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
-const addorGetProduct = rootUrl + "productos"
-const like = addorGetProduct + "/like/"
+const addorGetProduct = rootUrl + "productos/"
+const like = addorGetProduct + "like/"
 
 const productoAction = {
   fetchearProductos: () => {
@@ -18,11 +19,94 @@ const productoAction = {
         type: "FETCH_PRODUCTOS",
         payload: {productos: response.data.respuesta},
       })
-      console.log(response)
       return response.data
     }
   },
+  sortProductos: (buleano, sort) => {
+    return async (dispatch, getState) => {
+      if (sort === "alf") {
+        let des = (a, b) => a.nombre.localeCompare(b.nombre)
+        let asc = (b, a) => a.nombre.localeCompare(b.nombre)
 
+        if (!buleano) {
+          dispatch({
+            type: "SORT",
+            payload: des,
+          })
+        } else {
+          dispatch({
+            type: "SORT",
+            payload: asc,
+          })
+        }
+      }
+      if (sort === "price") {
+        let des = (a, b) => a.precio - b.precio
+        let asc = (b, a) => a.precio - b.precio
+        if (!buleano) {
+          dispatch({
+            type: "SORT",
+            payload: des,
+          })
+        } else {
+          dispatch({
+            type: "SORT",
+            payload: asc,
+          })
+        }
+      }
+      if (sort === "like") {
+        let des = (a, b) => a.likes.length - b.likes.length
+        let asc = (b, a) => a.likes.length - b.likes.length
+        if (!buleano) {
+          dispatch({
+            type: "SORT",
+            payload: des,
+          })
+        } else {
+          dispatch({
+            type: "SORT",
+            payload: asc,
+          })
+        }
+      }
+    }
+  },
+  rangePrice: (max, min) => {
+    return (dispatch, getState) => {
+      dispatch({
+        type: "RANGE_PRICE",
+        payload: {max: max, min: min},
+      })
+    }
+  },
+  search: (search) => {
+    return (dispatch, getState) => {
+      dispatch({
+        type: "SEARCH",
+        payload: {search: search},
+      })
+    }
+  },
+  selectFilter: (data, selector) => {
+    return (dispatch, getState) => {
+      if (selector === "Brands")
+        dispatch({
+          type: "BRANDS",
+          payload: {data: data},
+        })
+      if (selector === "Categories")
+        dispatch({
+          type: "CATEGORIES",
+          payload: {data: data},
+        })
+    }
+  },
+  filters: () => {
+    return (dispatch) => {
+      dispatch({type: "FILTERS"})
+    }
+  },
   fetchUnProducto: (id) => {
     return (dispatch, getState) => {
       axios
@@ -33,8 +117,8 @@ const productoAction = {
     }
   },
 
-  likeDislike: (token, id, idUsuario) => {
-    console.log(token)
+  likeDislike: (id, idUsuario) => {
+    const token = localStorage.getItem("token")
     return async () => {
       try {
         const response = await axios.put(
@@ -48,7 +132,7 @@ const productoAction = {
         )
         return response.data.response
       } catch (error) {
-        console.log(error)
+        toast.error(error.message)
       }
     }
   },
@@ -60,9 +144,8 @@ const productoAction = {
           {imagen, nombre, descripcion, marca, categoria, stock},
           tokenHeader
         )
-        console.log(response)
       } catch (error) {
-        console.log(error)
+        toast.error(error.message)
       }
     }
   },
@@ -73,6 +156,14 @@ const productoAction = {
         payload: {
           search: search,
         },
+      })
+    }
+  },
+  sold: (items, order) => {
+    return async (dispatch, getState) => {
+      await axios.put("https://hexagon-techstore.herokuapp.com/api/productos", {
+        items: items,
+        order: order,
       })
     }
   },

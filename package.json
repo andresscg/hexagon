@@ -12,25 +12,28 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "express-openid-connect": "^2.5.2",
+    "googleapis": "^92.0.0",
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^6.1.5",
+    "multer": "^1.4.4",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "npm": "^8.3.0",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
-    "react-use-cart": "^1.13.0",
-    "redux-persist": "^6.0.0"
+    "spdy": "^4.0.2",
+    "uuid": "^8.3.2"
   },
   "engines": {
-    "node": "16.13.0"
+    "node": "17.3.1"
   }
 }

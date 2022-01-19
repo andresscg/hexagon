@@ -17,13 +17,18 @@ const authAction = {
   },
   userLogin: (email, password) => {
     return async (dispatch, getState) => {
+      console.log(email)
+      console.log(password)
       try {
-        const response = await axios.post(loginUrl, {email, password})
-        console.log(response)
+        const response = await axios.post(loginUrl, {
+          email: email,
+          password: password,
+          isGoogle: true,
+        })
         if (response.data.success) {
-          getState().modalReducer.showModal = false
-          console.log(response)
           localStorage.setItem("token", response.data.token)
+          getState().modalReducer.showModal = false
+          toast.success("Welcome Back!", {position: "bottom-right"})
           dispatch({
             type: "auth@@USER",
             payload: {
@@ -33,7 +38,7 @@ const authAction = {
             },
           })
         } else {
-          toast.error(response.data.errors)
+          toast.error(response.data.errors, {position: "bottom-right"})
           dispatch({
             type: "auth@@GET_USER_FAIL",
             payload: {
@@ -42,8 +47,6 @@ const authAction = {
           })
         }
       } catch (error) {
-        console.log(error)
-        toast.error("Email or password incorrect!")
         dispatch({
           type: "auth@@GET_USER_FAIL",
           payload: {
@@ -53,53 +56,43 @@ const authAction = {
       }
     }
   },
-  userRegister: (firstName, lastName, password, email, photo, country) => {
+  userRegister: (formData) => {
     return async (dispatch, getState) => {
-      try {
-        let response = await axios.post(registerUrl, {
-          firstName,
-          lastName,
-          password,
-          email,
-          photo,
-          country,
+      let response = await axios.post(registerUrl, formData)
+      console.log(response)
+      if (response.data.success) {
+        toast.error(response.data.message)
+        getState().modalReducer.showModal = false
+
+        localStorage.setItem("token", response.data.response.token)
+        toast.success(
+          "Welcome to HEXAGON " + response.data.response.nuevoUsuario.firstName
+        )
+        dispatch({
+          type: "auth@@NEW_USER",
+          payload: {
+            user: response.data.response.nuevoUsuario,
+            token: response.data.response.token,
+            authError: response.data.errors,
+          },
         })
-        console.log(response)
-        if (response.data.success && !response.data.errors) {
-          getState().modalReducer.showModal = false
-          localStorage.setItem("token", response.data.response.token)
-          toast.success(
-            "Welcome to HEXAGON " +
-              response.data.response.nuevoUsuario.firstName
-          )
-          dispatch({
-            type: "auth@@NEW_USER",
-            payload: {
-              user: response.data.response.nuevoUsuario,
-              token: response.data.response.token,
-              authError: response.data.errors,
-            },
-          })
-        } else {
-          dispatch({
-            type: "auth@@GET_USER_FAIL",
-            payload: {authError: response.data.errors},
-          })
-          response.data.errors.isArray
-            ? response.data.errors.map((err) => {
-                console.log(err.message)
-                toast.error(err.message)
-              })
-            : toast.error(response.data.errors)
-        }
-      } catch (error) {
-        console.error(error)
+      } else {
+        console.log("fallo")
+        response.data.errors[0]
+          ? response.data.errors.map((err) => toast.error(err.message))
+          : toast.error(response.data.message)
+        dispatch({
+          type: "auth@@GET_USER_FAIL",
+          payload: {authError: response.data.errors},
+        })
       }
     }
   },
+
   tokenVerify: () => {
     return async (dispatch, getState) => {
-      const token = localStorage.getItem("token")
+      const token =
+        localStorage.getItem("token") || getState().authReducer.token
       try {
         const response = await axios.get(tokenAuth, {
           headers: {
@@ -116,8 +109,9 @@ const authAction = {
           },
         })
       } catch (error) {
+        const token =
+          localStorage.getItem("token") || getState().authReducer.token
         if (token) {
-          /* localStorage.removeItem("token") */
           dispatch({
             type: "auth@@GET_USER_FAIL",
             payload: {user: null, token: null, authError: error.message},
@@ -134,13 +128,12 @@ const authAction = {
   logout: () => {
     localStorage.removeItem("token")
     return (dispatch, getState) => {
-      dispatch({type: "auth@@LOGOUT", payload: ""})
+      dispatch({type: "auth@@LOGOUT"})
     }
   },
   getUsers: () => {
     return async (dispatch, getState) => {
       const response = await axios.get(allUsers)
-      console.log(response)
       dispatch({type: "auth@@ALL_USERS", payload: response.data.response})
       return response
     }
@@ -148,11 +141,60 @@ const authAction = {
   getUsersByDate: () => {
     return async (dispatch, getState) => {
       const response = await axios.get(allUsersByDate)
-      console.log(response)
       dispatch({
         type: "auth@@ALL_USERS_BY_DATE",
         payload: response.data,
       })
+    }
+  },
+  newAddress: (country, state, city, name, address, phone) => {
+    return async (dispatch, getState) => {
+      const token = localStorage.getItem("token")
+
+      let response = await axios.post(
+        "https://hexagon-techstore.herokuapp.com/api/address/newAddress",
+        {
+          country,
+          state,
+          city,
+          name,
+          address,
+          phone,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      dispatch({
+        type: "address@ADDRESS",
+        payload: response.data.response,
+      })
+      return response
+    }
+  },
+
+  checkAddress: () => {
+    return async (dispatch, getState) => {
+      const token = localStorage.getItem("token")
+
+      let response = await axios.get(
+        "https://hexagon-techstore.herokuapp.com/api/address/newAddress",
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      dispatch({
+        type: "address@ADDRESS",
+        payload: response.data,
+      })
+      return response
     }
   },
 }

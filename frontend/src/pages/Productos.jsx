@@ -1,56 +1,68 @@
 import React, {useEffect} from "react"
-import Producto from "../components/Producto"
-import {Row, Col, Container, InputGroup, FormControl} from "react-bootstrap"
 import {connect} from "react-redux"
+import Producto from "../components/Producto"
 import productoAction from "../redux/actions/productoAction"
+import FlipMove from "react-flip-move"
+
+import "../styles/Producto.css"
 
 const Productos = (props) => {
   useEffect(() => {
-    props.listaProductos()
+    props.filters()
+  }, [
+    props.min,
+    props.max,
+    props.search,
+    props.sort,
+    props.categories,
+    props.brands,
+  ])
+  useEffect(() => {
+    window.scroll(0, 0)
+    props.fetchearProductos()
   }, [])
+
+  console.log(props)
 
   return (
     <>
-      <div className="container-all_productos">
-        <h1>Nuestros productos</h1>
-        <div className="container-all_filtros">
-          <div className="container-filtros">
-            <p>ACA VAN LOS FILTROS</p>
-            {<FormControl
-              onChange={(e) => props.filtro(e.target.value.toLowerCase().trim())}
-              placeholder="FIND YOUR PRODUCT"
-              aria-describedby="inputGroup-sizing-sm"
-            />}
-          </div>
-        <div className="productos-container">
-          { props.auxiliar.length > 0 
-          ?
+      <FlipMove className={props.grid ? "grid" : "productos-container"}>
+        {props.auxiliar.length > 0 ? (
           props.auxiliar.map((producto) => (
-            <div key={producto._id} className="prod-container">
-              <Producto producto={producto} />
+            <div
+              key={producto._id}
+              className={props.grid ? "prod-container-grid" : "prod-container"}
+            >
+              <Producto producto={producto} grid={props.grid} />
             </div>
-          )):
+          ))
+        ) : (
           <div className="noexiste-container">
-            Lo sentimos, el producto que estás buscando no existe. 😪
+            Sorry, the product you are looking for does not exist. 😪
           </div>
-          }
-        </div>
-        </div>
-      </div>
+        )}
+      </FlipMove>
     </>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    auxiliar: state.productoReducer.auxiliar,
-    cart: state.cartReducer.cart,
+    min: state.productoReducer.min,
+    max: state.productoReducer.max,
+
+    search: state.productoReducer.search,
+    sort: state.productoReducer.sort,
+    categories: state.productoReducer.categories,
+    brands: state.productoReducer.brands,
+    auxiliar: state.productoReducer.filtered,
   }
 }
 
 const mapDispatchToProps = {
   listaProductos: productoAction.fetchearProductos,
-  filtro: productoAction.filtro,
+  filters: productoAction.filters,
+  fetchearProductos: productoAction.fetchearProductos,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productos)

@@ -1,35 +1,40 @@
-import React from 'react'
-import {FaFacebook, FaInstagram, FaWhatsapp, FaGoogle} from 'react-icons/fa'
-import '../styles/Footer.css'
+import React from "react"
+import {FaFacebook, FaInstagram, FaWhatsapp, FaGoogle} from "react-icons/fa"
+import "../styles/Footer.css"
 
 const Footer = () => {
   return (
     <div className="footer-container">
-      <div className="footer-content">
-        <div className="footer__social">
-          <p className="social__title">
-            Our Social Media
-          </p>
-          <div className="social__icons">
-            <FaFacebook className="social__icon" />
-            <FaInstagram className="social__icon" />
-            <FaWhatsapp className="social__icon" />
-            <FaGoogle className="social__icon" />
-          </div>
+      <div className="social__icons">
+        <FaFacebook className="social__icon" />
+        <FaInstagram className="social__icon" />
+      </div>
+      <div className="brand-container">
+        <div className="nav__logo--text" style={{margin: 0}}>
+          <p className="nav__title">HEXAGON</p>
+          <p className="nav__subtitle">TECHSTORE</p>
         </div>
-        <img src="../../assets/logo.png" alt="Logo" className="footer__logo" />
+        <img
+          src="../../assets/logo_notext.svg"
+          alt="logo"
+          width={100}
+          className="nav__logo"
+          style={{marginBottom: 10}}
+        />
+
         <div className="footer__contact">
-          <p className="contact__title">
-            Contact
-          </p>
           <p className="contact__info">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, eaque quia quidem earum magni porro?
+            1230 Peachtree Street, NE. Suite 1900. Atlanta, GA
+          </p>
+          <p className="footer-copy">
+            Hexagon TechStore | 2022, All Rights Reserved.
           </p>
         </div>
       </div>
-      <p className="footer-copy">
-        Hexagon TechStore | 2022, All Rights Reserved.
-      </p>
+      <div className="social__icons">
+        <FaWhatsapp className="social__icon" />
+        <FaGoogle className="social__icon" />
+      </div>
     </div>
   )
 }

@@ -4,9 +4,49 @@ const passport = require("passport")
 const validator = require("../controllers/validator")
 const userController = require("../controllers/userControllers")
 const productosController = require("../controllers/productosController")
+const nodemailer = require("nodemailer")
+const {google} = require("googleapis")
+const OAuth2 = google.auth.OAuth2
+const multer = require("multer")
+const {v4: uuidv4} = require("uuid")
+const path = require("path")
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images")
+  },
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname))
+  },
+})
+
+const fileFilter = (req, file, cb) => {
+  const allowedFiles = ["image/jpeg", "image/png", "image/jpg"]
+  if (allowedFiles.includes(file.mimetype)) {
+    cb(null, true)
+  } else {
+    cb(null, false)
+  }
+}
+
+let upload = multer({storage, fileFilter})
+
+const oauth2Client = new OAuth2(
+  "111498414684-specl4tg3bs5nscj9faknua8im4qhcqi.apps.googleusercontent.com",
+  "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",
+  "https://developers.google.com/oauthplayground"
+)
+
+oauth2Client.setCredentials({
+  refresh_token:
+    "1//04VeFxBn_bk0zCgYIARAAGAQSNwF-L9IrD8Nqa6EWesPTCm1AHZSxKFO1LnvprbEWqBPafxBTUv2_2mAHWUbRULUPucb9I-Cmkto",
+})
+const accessToken = oauth2Client.getAccessToken()
 
 router.route("/verify/:uniqueString").get(userController.verifyEmail)
-router.route("/user/register").post(validator, userController.newUser)
+router
+  .route("/user/register")
+  .post(upload.single("photo"), validator, userController.newUser)
 router.route("/user/login").post(userController.logUser)
 router
   .route("/user/modificar")
@@ -20,9 +60,60 @@ const {
   borrarUnProducto,
   modificarUnProducto,
   comentario,
+  modificarProductos,
 } = productosController
 
-router.route("/productos").get(obtenerProductos).post(agregarProducto)
+const smtpTransport = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    type: "OAuth2",
+    user: "afelipecastillog@gmail.com",
+    clientId:
+      "111498414684-specl4tg3bs5nscj9faknua8im4qhcqi.apps.googleusercontent.com",
+    clientSecret: "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",
+    refreshToken:
+      "1//04VeFxBn_bk0zCgYIARAAGAQSNwF-L9IrD8Nqa6EWesPTCm1AHZSxKFO1LnvprbEWqBPafxBTUv2_2mAHWUbRULUPucb9I-Cmkto",
+    accessToken: accessToken,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+})
+
+smtpTransport.verify((err) => {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log("Ready to send")
+  }
+})
+
+router.route("/contact").post((req, res) => {
+  const {name, email, message} = req.body
+  const mail = {
+    from: name,
+    to: "useremailverifyHexagon@gmail.com",
+    subject: "Contact Form Submission",
+    html: `
+      <p>Name: ${name}</p>
+      <p>Email: ${email}</p>
+      <p>Message: ${message}</p>
+    `,
+  }
+  smtpTransport.sendMail(mail, (error) => {
+    if (error) {
+      res.json({status: "Error sending maiil"})
+    } else {
+      res.json({status: "Message sent!"})
+    }
+  })
+})
+
+router
+  .route("/productos")
+  .get(obtenerProductos)
+  .post(agregarProducto)
+  .put(modificarProductos)
 
 router
   .route("/productos/:id")
@@ -46,5 +137,15 @@ router
   .put(passport.authenticate("jwt", {session: false}), comentario)
 
 router.route("/user/getUsersByDate").get(userController.byGoogle)
+router
+  .route("/address/newAddress")
+  .post(
+    passport.authenticate("jwt", {session: false}),
+    userController.newAddress
+  )
+  .get(
+    passport.authenticate("jwt", {session: false}),
+    userController.checkAddress
+  )
 
 module.exports = router

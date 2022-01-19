@@ -1,97 +1,138 @@
-import React, {useEffect, useContext} from "react"
-import {Nav, Dropdown, Badge, Button} from "react-bootstrap"
+import React from "react"
+import {
+  Nav,
+  Navbar as Navba,
+  Dropdown,
+  Badge,
+  Button,
+  Container,
+} from "react-bootstrap"
 import {FaShoppingCart} from "react-icons/fa"
 import {AiFillDelete} from "react-icons/ai"
-import "../styles/Navbar.css"
-import Logout from "./Login/Logout"
 import {Link} from "react-router-dom"
 import "../styles/Navbar.css"
 import modalAction from "../redux/actions/modalAction"
 import {connect} from "react-redux"
 import authAction from "../redux/actions/authAction"
-import {DropdownButton} from "react-bootstrap"
-import LikedProducts from "./likedProducts"
-import EmailVerification from "./EmailVerification"
-import cartAction from "../redux/actions/cartAction"
+import {useCart} from "react-use-cart"
 
 const Navbar = (props) => {
-  useEffect(() => {
-    if (!props.token) {
-      props.tokenVerify()
-    }
-  }, [props.isLoading, props.token])
+  const {removeItem, totalItems, items} = useCart()
+
+  console.log(props.user)
   return (
     <>
-      <div className="nav-container">
-        <img src="../../assets/logo.png" alt="logo" className="nav__logo" />
-        <div className="nav__menu--navigation">
-          <Link to="/" className="nav__menu--item">
-            Home
-          </Link>
-          <Link to="/shop" className="nav__menu--item">
-            Shop
-          </Link>
-          <Link to="/contact" className="nav__menu--item">
-            Contact
-          </Link>
-        </div>
-        <div className="nav__menu--sign">
-          {!props.isLoading && props.isAuth ? (
-            <>
-              <button
-                onClick={() => props.logout()}
-                className="nav__menu__sign-btn"
-              >
-                Log Out
-              </button>
-              <div className="user__info">
-                <div
-                  style={{backgroundImage: `url(${props.user?.photo})`}}
-                  className="nav__menu__photo"
-                />
-                <p className="user__name">{props.user?.firstName}</p>
-              </div>
-            </>
-          ) : (
-            <button
-              onClick={() => props.showCloseModal()}
-              className="nav__menu__sign-btn"
-            >
-              Login/Register
-            </button>
-          )}
-          {!props.isLoading && props.isAuth && props.user?.admin && (
-            <Link to={"/admin"}>Admin</Link>
-          )}
-        </div>
-        {props.token && (
-          <Nav>
+      <div className="nav-container" style={{zIndex: 100}}>
+        <div className="nav-inside">
+          <div className="nav__loco--container">
+            <img
+              src="../../assets/logo_notext.svg"
+              alt="logo"
+              className="nav__logo"
+            />
+            <div className="nav__logo--text">
+              <Link to="/" className="nav__title">
+                HEXAGON
+              </Link>
+              <p className="nav__subtitle">TECHSTORE</p>
+            </div>
+          </div>
+          <Navba expand="lg">
+            <Navba.Toggle aria-controls="basic-navbar-nav" />
+            <Navba.Collapse id="basic-navbar-nav">
+              <Nav>
+                <div className="nav__menu--navigation">
+                  <button className="custom-btn btn-3">
+                    <span>
+                      <Link to="/" className="nav__menu--item text-light">
+                        Home
+                      </Link>
+                    </span>
+                  </button>
+                  <button className="custom-btn btn-3">
+                    <span>
+                      <Link to="/shop" className="nav__menu--item text-light">
+                        Shop
+                      </Link>
+                    </span>
+                  </button>
+                  <button className="custom-btn btn-3">
+                    <span>
+                      <Link
+                        to="/contact"
+                        className="nav__menu--item text-light"
+                      >
+                        Contact
+                      </Link>
+                    </span>
+                  </button>
+
+                  {!props.isLoading && props.isAuth ? (
+                    <>
+                      <button
+                        onClick={() => props.logout()}
+                        className="custom-btn btn-3"
+                      >
+                        <span>Log Out</span>
+                      </button>
+                      <div className="user__info">
+                        <div
+                          style={{
+                            backgroundImage: `url(${
+                              props.user?.google
+                                ? props.user?.photo
+                                : "https://i.imgur.com/o2bJt64.png"
+                            })`,
+                          }}
+                          className="nav__menu__photo"
+                        />
+                        <p className="user__name">{props.user?.firstName}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => props.showCloseModal()}
+                      className="custom-btn btn-3"
+                    >
+                      <span>Login/Register</span>
+                    </button>
+                  )}
+                  {!props.isLoading && props.isAuth && props.user?.admin && (
+                    <Link to={"/admin"}>Admin</Link>
+                  )}
+                </div>
+              </Nav>
+            </Navba.Collapse>
+          </Navba>
+
+          <Nav className="cart-fixed">
             <Dropdown>
               <Dropdown.Toggle>
                 <FaShoppingCart color="white" fontSize="25px" />
-                <Badge>{props.cart.length}</Badge>
+                <Badge>{totalItems}</Badge>
               </Dropdown.Toggle>
-              <Dropdown.Menu style={{minWidth: 370}}>
-                {props.cart.length > 0 ? (
+              <Dropdown.Menu style={{minWidth: 370}} className="cart__dropdown">
+                {totalItems ? (
                   <>
-                    {props.cart.map((prod) => (
-                      <span className="cartitem" key={prod._id}>
+                    {items.map((prod) => (
+                      <span className="cartItem" key={prod.id}>
                         <img
-                          src={prod.imagen}
+                          src={prod.image}
                           className="cartItemImg"
-                          alt={prod.nombre}
+                          alt={prod.product}
+                          width={100}
                         />
 
-                        <div className="cartItemDetail">
-                          <span>{prod.nombre}</span>
-                          <span>${prod.precio}</span>
+                        <div className="cartItemDetail" style={{gap: 10}}>
+                          <span>{prod.product}</span>
+                          <span>${prod.price}</span>
+                          <span>{prod.quantity}</span>
                         </div>
-
                         <AiFillDelete
                           fontSize="20px"
                           style={{cursor: "pointer"}}
                           onClick={() => {
-                            props.removeFromCart(prod)
+                            removeItem(prod.id)
                           }}
                         />
                       </span>
@@ -108,33 +149,8 @@ const Navbar = (props) => {
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
-        )}
+        </div>
       </div>
-      {/* <div className="nav__menu--sign">
-        {!props.isLoading && props.isAuth ? (
-          <>
-            <button onClick={() => props.logout()}>LOGOUT</button>
-            <img src={props.user.photo} width={50} heigth={50} />
-          </>
-        ) : (
-          <button onClick={() => props.showCloseModal()}>Login/Register</button>
-        )}
-
-        {!props.isLoading && props.isAuth && props.user?.admin && (
-          <Link to={"/admin"}>Admin</Link>
-        )}
-        {!props.isLoading && props.isAuth && !props.user?.EmailVerification && (
-          <EmailVerification />
-        )}
-      </div>
-      <DropdownButton id="dropdown-basic-button" title="Favorites">
-        {props.productos?.map((producto, index) => (
-          <LikedProducts key={index} producto={producto} />
-        ))}
-      </DropdownButton>
-      <Link className="btn btn-dark" to="/Productos">
-        productos
-      </Link> */}
     </>
   )
 }
@@ -146,7 +162,6 @@ const mapStateToProps = (state) => {
     isLoading: state.authReducer.isLoading,
     token: state.authReducer.token,
     productos: state.productoReducer.productos,
-    cart: state.cartReducer.cart,
   }
 }
 
@@ -154,7 +169,6 @@ const mapDispatchToProps = {
   showCloseModal: modalAction.showCloseModal,
   tokenVerify: authAction.tokenVerify,
   logout: authAction.logout,
-  removeFromCart: cartAction.removeFromCart,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

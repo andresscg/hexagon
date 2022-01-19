@@ -2,6 +2,8 @@
   /* FONTS */
   --headings-font: "Poppins", sans-serif;
   --text-font: "Mukta", sans-serif;
+  --logo-font: "Varela Round", sans-serif;
+  --nav-height: 10vh;
 
   /* COLORS */
   --white: #ffff;
@@ -18,146 +20,21 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: var(--headings-font);
 }
-
+.css-19z1ozs-MuiPaper-root-MuiAppBar-root {
+  position: unset !important;
+  height: fit-content !important;
+}
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+  margin-top: 12vh;
+}
 p {
   margin-bottom: unset !important;
 }
 
 a {
   text-decoration: none;
-}
-
-.container-all_productos {
-  padding-top: 12vh;
-  min-width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: rgb(237, 237, 237);
-}
-
-.container-all_productos h1 {
-  font-family: var(--headings-font);
-  font-size: 2rem;
-  text-align: center;
-  margin: 5px 0;
-}
-
-.container-all_filtros {
-  padding: 10px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.container-filtros {
-  margin: 0 5px;
-  min-width: 25vw;
-  border-radius: 5px;
-}
-
-.productos-container {
-  width: 50vw;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
-}
-
-.prod-container {
-  width: 50vw;
-  height: 18rem;
-  background-color: var(--white);
-  margin: 2px 0;
-  border-radius: 5px;
-}
-
-.card-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-
-.info-container {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-}
-
-.img-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 15rem;
-  min-height: 80%;
-  background-color: none;
-}
-
-.img-container img {
-  margin-top: 5px;
-  max-width: 150px;
-  max-height: 200px;
-  object-fit: cover;
-}
-
-.fav-container {
-  margin: 0 8px 0 0;
-  width: 25%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.fav-container .boton-like {
-  border: unset;
-  background-color: unset;
-  font-size: 2rem;
-}
-
-.like-container {
-  margin: 1rem 0 0 0;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-.price-container {
-  font-size: 2rem;
-  align-self: center;
-  font-weight: 400;
-  color: var(--secondary);
-  width: 100px;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.text-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-}
-
-.text-container a {
-  margin: 1rem 0 0 0;
-  font-size: 16px;
-  width: 100%;
-  text-transform: uppercase;
 }
 
 .addcart-container {
