@@ -1,22 +1,21 @@
-import React, {useRef, useState, useEffect} from "react"
+import React, {useState, useEffect} from "react"
 import axios from "axios"
 import GoogleLogin from "react-google-login"
-import {connect, useDispatch} from "react-redux"
+import {connect} from "react-redux"
 import authAction from "../../redux/actions/authAction"
 import "../../styles/SignForm.css"
 
 function Register(props) {
-  /*   localStorage.getItem("token") && !props.token && props.tokenDale()
-   */
   const responseGoogle = (res) => {
-    props.userRegister(
-      res.profileObj.givenName,
-      res.profileObj.familyName,
-      res.profileObj.googleId,
-      res.profileObj.email,
-      res.profileObj.imageUrl,
-      "Google"
-    )
+    const formData = {
+      firstName: res.profileObj.givenName,
+      lastName: res.profileObj.familyName,
+      password: res.profileObj.googleId,
+      email: res.profileObj.email,
+      photo: res.profileObj.imageUrl,
+      google: "Google",
+    }
+    props.userRegister(formData)
   }
 
   const [usStates, setUsStates] = useState([])
@@ -37,12 +36,6 @@ function Register(props) {
       .catch((error) => console.log(error))
   })
 
-  // const email = useRef()
-  // const password = useRef()
-  // const name = useRef()
-  // const lastname = useRef()
-  // const country = useRef()
-
   const [newUser, setNewUser] = useState({
     email: "",
     password: "",
@@ -62,7 +55,6 @@ function Register(props) {
 
   function handleRegister(e) {
     e.preventDefault()
-    console.log(newUser)
     const formData = new FormData()
     formData.append("firstName", newUser.name)
     formData.append("password", newUser.password)
@@ -70,11 +62,9 @@ function Register(props) {
     formData.append("country", newUser.country)
     formData.append("photo", newUser.photo)
     formData.append("email", newUser.email)
-    console.log(formData.get("name"))
     if (formData.get("email") && formData.get("password")) {
       props.loginPending()
-      let response = props.userRegister(formData)
-      console.log(response)
+      props.userRegister(formData)
     }
   }
   return (

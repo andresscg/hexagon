@@ -74,8 +74,6 @@ const productoReducer = (state = initialState, action) => {
         state.brands.length > 0 ? state.brands.indexOf(el.marca) >= 0 : true
       )
 
-      console.log(filteredByBrands)
-
       const filtered = filteredByBrands.filter((producto) =>
         producto.nombre.toLowerCase().includes(state.search.toLowerCase())
       )

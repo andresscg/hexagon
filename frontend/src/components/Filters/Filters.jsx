@@ -64,7 +64,6 @@ function Filters(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     productos: state.productoReducer.productos,
     auxiliar: state.productoReducer.filtered,

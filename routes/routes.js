@@ -46,7 +46,7 @@ const accessToken = oauth2Client.getAccessToken()
 router.route("/verify/:uniqueString").get(userController.verifyEmail)
 router
   .route("/user/register")
-  .post(upload.single("photo"), userController.newUser)
+  .post(upload.single("photo"), validator, userController.newUser)
 router.route("/user/login").post(userController.logUser)
 router
   .route("/user/modificar")
@@ -137,7 +137,7 @@ router
   .put(passport.authenticate("jwt", {session: false}), comentario)
 
 router.route("/user/getUsersByDate").get(userController.byGoogle)
-/* router
+router
   .route("/address/newAddress")
   .post(
     passport.authenticate("jwt", {session: false}),
@@ -146,6 +146,6 @@ router.route("/user/getUsersByDate").get(userController.byGoogle)
   .get(
     passport.authenticate("jwt", {session: false}),
     userController.checkAddress
-  ) */
+  )
 
 module.exports = router

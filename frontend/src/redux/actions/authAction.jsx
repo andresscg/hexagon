@@ -1,5 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
+import modalAction from "./modalAction"
 const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
 const tokenAuth = rootUrl + "auth"
 const loginUrl = rootUrl + "user/login"
@@ -20,9 +21,7 @@ const authAction = {
       try {
         const response = await axios.post(loginUrl, {email, password})
         if (response.data.success) {
-          console.log("guardate")
           localStorage.setItem("token", response.data.token)
-          console.log(response)
           getState().modalReducer.showModal = false
           toast.success("Welcome Back!", {position: "bottom-right"})
           dispatch({
@@ -43,7 +42,6 @@ const authAction = {
           })
         }
       } catch (error) {
-        console.log(error)
         dispatch({
           type: "auth@@GET_USER_FAIL",
           payload: {
@@ -55,38 +53,35 @@ const authAction = {
   },
   userRegister: (formData) => {
     return async (dispatch, getState) => {
-      try {
-        let response = await axios.post(registerUrl, formData)
-        console.log(response)
-        if (response.data.success && !response.data.errors) {
-          getState().modalReducer.showModal = false
-          localStorage.setItem("token", response.data.response.token)
-          toast.success(
-            "Welcome to HEXAGON " +
-              response.data.response.nuevoUsuario.firstName
-          )
-          dispatch({
-            type: "auth@@NEW_USER",
-            payload: {
-              user: response.data.response.nuevoUsuario,
-              token: response.data.response.token,
-              authError: response.data.errors,
-            },
-          })
-        } else {
-          dispatch({
-            type: "auth@@GET_USER_FAIL",
-            payload: {authError: response.data.errors},
-          })
-          console.log(response.data)
-          // ? response.data.errors.map((err) => toast.error(err.message))
-          // : toast.error(response.data.errors)
-        }
-      } catch (error) {
-        console.log(error)
+      let response = await axios.post(registerUrl, formData)
+      console.log(response)
+      if (response.data.success && !response.data.errors) {
+        toast.error(response.data.message)
+
+        getState().modalReducer.showModal = false
+        localStorage.setItem("token", response.data.response.token)
+        toast.success(
+          "Welcome to HEXAGON " + response.data.response.nuevoUsuario.firstName
+        )
+        dispatch({
+          type: "auth@@NEW_USER",
+          payload: {
+            user: response.data.response.nuevoUsuario,
+            token: response.data.response.token,
+            authError: response.data.errors,
+          },
+        })
+      } else {
+        dispatch({
+          type: "auth@@GET_USER_FAIL",
+          payload: {authError: response.data.errors},
+        })
+
+        toast.error(response.data.message)
       }
     }
   },
+
   tokenVerify: () => {
     return async (dispatch, getState) => {
       const token =
@@ -186,7 +181,7 @@ const authAction = {
           },
         }
       )
-      console.log(response)
+
       dispatch({
         type: "address@ADDRESS",
         payload: response.data,

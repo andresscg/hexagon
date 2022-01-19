@@ -13,9 +13,13 @@ const userController = {
 
     country ? country : (country = "none")
     console.log(req.body)
-    let photo =
-      req.file?.filename ||
-      "014a2536-7afc-4a5c-b3db-c446d59b48dd-1642550231583.png"
+    let photo = req.body.photo
+      ? req.body.photo
+      : req.file?.filename ||
+        "014a2536-7afc-4a5c-b3db-c446d59b48dd-1642550231583.png"
+
+    console.log(req.body.photo)
+    console.log(photo)
     try {
       const userExist = await User.findOne({email})
 
@@ -62,6 +66,7 @@ const userController = {
           nuevoUsuario.emailVerified = true
           nuevoUsuario.google = true
           nuevoUsuario.isConected = false
+          nuevoUsuario.photo = req.body.photo
           await nuevoUsuario.save()
           res.json({
             success: true,
