@@ -36,7 +36,7 @@ const Categories = () => {
             }}
           ></div>
           <div className="categories__cards--title third">
-            <p className="cards__name">-03: Accesories</p>
+            <p className="cards__name">-03: Cases</p>
           </div>
           <div
             className="categories__cards--img bg-orange"
@@ -46,7 +46,7 @@ const Categories = () => {
             }}
           ></div>
           <div className="categories__cards--title blue">
-            <p className="cards__name">-04: Cases</p>
+            <p className="cards__name">-04: Accessories</p>
           </div>
         </div>
       </div>
