@@ -132,13 +132,13 @@ function Register(props) {
               type="file"
               id="photo"
               name="photo"
-              // className="btn-signup"
+              className="btn-signup"
               accept=".png, .jpg, .jpeg"
               onChange={handlePhoto}
             ></input>
           </div>
           <div className="input-group ">
-            <label htmlFor="country">State</label>
+            <label htmlFor="country">Country</label>
             <select
               type="text"
               id="country"
