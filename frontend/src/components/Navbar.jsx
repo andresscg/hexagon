@@ -1,5 +1,12 @@
 import React from "react"
-import {Nav, Dropdown, Badge, Button} from "react-bootstrap"
+import {
+  Nav,
+  Navbar as Navba,
+  Dropdown,
+  Badge,
+  Button,
+  Container,
+} from "react-bootstrap"
 import {FaShoppingCart} from "react-icons/fa"
 import {AiFillDelete} from "react-icons/ai"
 import {Link} from "react-router-dom"
@@ -23,69 +30,78 @@ const Navbar = (props) => {
             className="nav__logo"
           />
           <div className="nav__logo--text">
-            <p className="nav__title">HEXAGON</p>
+            <Link to="/" className="nav__title">
+              HEXAGON
+            </Link>
             <p className="nav__subtitle">TECHSTORE</p>
           </div>
         </div>
-        <div className="nav__menu--navigation">
-          <button className="custom-btn btn-3">
-            <span>
-              <Link to="/" className="nav__menu--item text-light">
-                Home
-              </Link>
-            </span>
-          </button>
-          <button className="custom-btn btn-3">
-            <span>
-              <Link to="/shop" className="nav__menu--item text-light">
-                Shop
-              </Link>
-            </span>
-          </button>
-          <button className="custom-btn btn-3">
-            <span>
-              <Link to="/contact" className="nav__menu--item text-light">
-                Contact
-              </Link>
-            </span>
-          </button>
-          <div className="nav__menu--sign">
-            {!props.isLoading && props.isAuth ? (
-              <>
-                <button
-                  onClick={() => props.logout()}
-                  className="custom-btn btn-3"
-                >
-                  <span>Log Out</span>
+        <Navba expand="lg">
+          <Navba.Toggle aria-controls="basic-navbar-nav" />
+          <Navba.Collapse id="basic-navbar-nav">
+            <Nav>
+              <div className="nav__menu--navigation">
+                <button className="custom-btn btn-3">
+                  <span>
+                    <Link to="/" className="nav__menu--item text-light">
+                      Home
+                    </Link>
+                  </span>
                 </button>
-                <div className="user__info">
-                  <div
-                    style={{
-                      backgroundImage: `url(${
-                        props.user?.google
-                          ? props.user?.photo
-                          : "https://hexagon-techstore.herokuapp.com/" +
-                            props.user?.photo
-                      })`,
-                    }}
-                    className="nav__menu__photo"
-                  />
-                  <p className="user__name">{props.user?.firstName}</p>
-                </div>
-              </>
-            ) : (
-              <button
-                onClick={() => props.showCloseModal()}
-                className="custom-btn btn-3"
-              >
-                <span>Login/Register</span>
-              </button>
-            )}
-            {!props.isLoading && props.isAuth && props.user?.admin && (
-              <Link to={"/admin"}>Admin</Link>
-            )}
-          </div>
-        </div>
+                <button className="custom-btn btn-3">
+                  <span>
+                    <Link to="/shop" className="nav__menu--item text-light">
+                      Shop
+                    </Link>
+                  </span>
+                </button>
+                <button className="custom-btn btn-3">
+                  <span>
+                    <Link to="/contact" className="nav__menu--item text-light">
+                      Contact
+                    </Link>
+                  </span>
+                </button>
+
+                {!props.isLoading && props.isAuth ? (
+                  <>
+                    <button
+                      onClick={() => props.logout()}
+                      className="custom-btn btn-3"
+                    >
+                      <span>Log Out</span>
+                    </button>
+                    <div className="user__info">
+                      <div
+                        style={{
+                          backgroundImage: `url(${
+                            props.user?.google
+                              ? props.user?.photo
+                              : "https://hexagon-techstore.herokuapp.com/" +
+                                props.user?.photo
+                          })`,
+                        }}
+                        className="nav__menu__photo"
+                      />
+                      <p className="user__name">{props.user?.firstName}</p>
+                    </div>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => props.showCloseModal()}
+                    className="custom-btn btn-3"
+                  >
+                    <span>Login/Register</span>
+                  </button>
+                )}
+                {!props.isLoading && props.isAuth && props.user?.admin && (
+                  <Link to={"/admin"}>Admin</Link>
+                )}
+              </div>
+            </Nav>
+          </Navba.Collapse>
+        </Navba>
+
         <Nav className="cart-fixed">
           <Dropdown>
             <Dropdown.Toggle>
