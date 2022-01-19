@@ -1,4 +1,5 @@
 import axios from "axios"
+import {toast} from "react-toastify"
 
 const token = localStorage.getItem("token")
 const tokenHeader = {
@@ -129,10 +130,9 @@ const productoAction = {
             },
           }
         )
-        console.log(response.data)
         return response.data.response
       } catch (error) {
-        console.log(error)
+        toast.error(error.message)
       }
     }
   },
@@ -145,7 +145,7 @@ const productoAction = {
           tokenHeader
         )
       } catch (error) {
-        console.log(error)
+        toast.error(error.message)
       }
     }
   },

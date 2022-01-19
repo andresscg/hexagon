@@ -12,7 +12,6 @@ import productoAction from "./redux/actions/productoAction"
 
 function App(props) {
   window.onstorage = () => {
-    console.log("localStorage")
     props.fetchearProductos()
     props.filters()
   }

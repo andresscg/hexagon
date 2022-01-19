@@ -33,7 +33,6 @@ const Paypal = (props) => {
           let order = actions.order.capture()
           props.sold(items, order)
           toast.success("Compra realizada con exito!!! ")
-          console.log(order)
           emptyCart()
         },
         onError: (error) => {

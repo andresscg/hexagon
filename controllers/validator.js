@@ -20,11 +20,11 @@ const validator = (req, res, next) => {
       "string.empty": "The password cannot be empty",
       "string.min": "The password must have a minimum of 5 letters..",
     }),
-    photo: joi.string().trim().min(4).required().messages({
-      "string.empty": "The URL of the photo cannot be empty",
-      "string.min": "The URL of the photo must be at least 4 letters long...",
-    }),
+    photo: joi.string().allow("").optional(),
     country: joi.string().trim().required().messages({
+      "string.empty": "The country cannot be empty",
+    }),
+    google: joi.boolean().required().messages({
       "string.empty": "The country cannot be empty",
     }),
   })
