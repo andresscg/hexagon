@@ -16,10 +16,9 @@ const userController = {
     let photo = req.body.photo
       ? req.body.photo
       : req.file?.filename ||
-        "014a2536-7afc-4a5c-b3db-c446d59b48dd-1642550231583.png"
+        "2cbbc523-6dce-48af-88a9-354b7752b026-1642604865419.png"
 
-    console.log(req.body.photo)
-    console.log(photo)
+    console.log(req.body)
     try {
       const userExist = await User.findOne({email})
 
