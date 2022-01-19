@@ -17,8 +17,14 @@ const authAction = {
   },
   userLogin: (email, password) => {
     return async (dispatch, getState) => {
+      console.log(email)
+      console.log(password)
       try {
-        const response = await axios.post(loginUrl, {email, password})
+        const response = await axios.post(loginUrl, {
+          emaail: email,
+          password: password,
+          isGoogle: true,
+        })
         if (response.data.success) {
           localStorage.setItem("token", response.data.token)
           getState().modalReducer.showModal = false

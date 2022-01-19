@@ -7,7 +7,8 @@ import "../../styles/SignForm.css"
 
 function Register(props) {
   const responseGoogle = (res) => {
-    const formData = {
+    console.log(res)
+    props.userRegister({
       firstName: res.profileObj.givenName,
       lastName: res.profileObj.familyName,
       password: res.profileObj.googleId,
@@ -15,8 +16,7 @@ function Register(props) {
       photo: res.profileObj.imageUrl,
       google: true,
       country: "Google",
-    }
-    props.userRegister(formData)
+    })
   }
 
   const [usStates, setUsStates] = useState([])
@@ -175,7 +175,7 @@ function Register(props) {
         <div className="register-btns">
           <input type="submit" className="btn-submit" value="Register" />
           <GoogleLogin
-            clientId="773392097856-l3b8tl6cto9b38gj9kd9a910fl1r1he8.apps.googleusercontent.com"
+            clientId="1014396609884-bfa3vh2eh1jnbbu6urdv1ndpammv0tcp.apps.googleusercontent.com"
             buttonText="Register with Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
