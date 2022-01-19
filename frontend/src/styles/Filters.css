@@ -61,6 +61,7 @@ body::-webkit-scrollbar-track {
 }
 .shop__content {
   width: 100%;
+  padding: 0 20px;
   /* overflow-y: scroll; */
 }
 

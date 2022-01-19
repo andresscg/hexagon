@@ -10,7 +10,7 @@
 
 .about-container {
   width: 100%;
-  height: 65vh;
+  min-height: 65vh;
   padding: 50px 50px;
   background-color: rgba(68, 52, 148, 0.9);
   display: flex;
@@ -70,5 +70,42 @@
   }
   .info__text{
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 980px){
+  .about-container {
+    flex-direction: column;
+  }
+  .about__info{
+    width: 100%;
+    border-right: none;
+    border-bottom: 5px solid var(--third);
+    padding-bottom: 10px;
+  }
+
+  .about__features {
+    padding-left: 0;
+    padding-top: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .features__cards{
+    flex-direction: column;
+  }
+  .categories__cards{
+    grid-template-columns: 1fr 1fr;
+  }
+  .secondary{
+    grid-column: 2 / 3;
+  }
+  .bg-pink{
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  .bg-purple{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
   }
 }

@@ -17,6 +17,12 @@
 .login-body,
 .register-body {
   padding: 30px 40px;
+  height: 100%;
+}
+
+.login-bg{
+  display: flex;
+  align-items: center;
 }
 
 .btns-primary {

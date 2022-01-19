@@ -61,7 +61,7 @@ const Navbar = (props) => {
                   </button>
                   <div className="user__info">
                     <div
-                      style={{backgroundImage: `url(${props.user?.photo})`}}
+                      style={{backgroundImage: `url(https://hexagon-techstore.herokuapp.com/${props.user?.photo})`}}
                       className="nav__menu__photo"
                     />
                     <p className="user__name">{props.user?.firstName}</p>
@@ -93,12 +93,8 @@ const Navbar = (props) => {
                   <>
                     {items.map((prod) => (
                       <span className="cartItem" key={prod.id}>
-                        <img
-                          src={prod.image}
-                          className="cartItemImg"
-                          alt={prod.product}
-                          width={100}
-                        />
+                        
+                        <div className="cartItemImg" style={{backgroundImage: `url(${prod.image})`}}></div>
 
                         <div className="cartItemDetail" style={{gap: 10}}>
                           <span>{prod.product}</span>
