@@ -30,7 +30,7 @@
 
 /* LISTADO */
 .productos-container {
-  width: 45rem;
+  min-width: 60%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
@@ -49,8 +49,8 @@
 .grid {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
-  gap:5px
+  justify-content: center;
+  gap:10px
   }
 
   
@@ -67,7 +67,6 @@
     width: 275px;
     height: 380px;
     background-color: var(--white);
-    margin: 2px 0;
     border-radius: 10px;
   }
 
