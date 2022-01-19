@@ -52,6 +52,7 @@ function Filters(props) {
             </div>
             <div className="botones-filter">
               <SideBarFilter
+                setGrid={setGrid}
                 productos={props.productos}
                 sort={props.sortProductos}
               />

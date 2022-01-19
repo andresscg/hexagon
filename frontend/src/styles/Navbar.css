@@ -1,23 +1,26 @@
 .nav-container {
   width: 100%;
-  height: 12vh;
+  min-height: 12vh;
   background-color: rgba(68, 52, 148, 0.5);
   backdrop-filter: blur(8px);
   position: fixed;
   display: flex;
   z-index: 100;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
   padding: 5px 15px;
 }
 
 .nav__logo {
-  max-width: 100%;
-  height: 100%;
+  display: flex;
+  width: 250px;
 }
 
 .nav__menu--navigation {
   display: flex;
+  flex-flow: row wrap;
+  width: 30%;
   gap: 25px;
 }
 
@@ -25,14 +28,13 @@
   text-decoration: none;
   font-family: "Poppins", sans-serif !important;
   color: #fff;
-  font-size: 24px;
-  padding: 5px 10px;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  margin: 2px;
+
 }
 
-.nav__menu--item:hover {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-}
+
 
 .nav__menu--sign {
   display: flex;
@@ -158,4 +160,123 @@
 .cartItemImg {
   max-width: 100%;
   height: 100px;
+}
+
+@media screen and (max-width: 750px) {
+  .nav__menu--navigation{
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 2px
+  }
+
+  .nav__logo {
+    margin: auto
+  }
+  
+
+}
+
+
+button {
+  margin: 20px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+/* 3 */
+.btn-3 {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  
+}
+.btn-3 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.btn-3:before,
+.btn-3:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   background: rgba(2,126,251,1);
+  transition: all 0.3s ease;
+  border-radius: 20px;
+}
+.btn-3:before {
+  height: 0%;
+  width: 2px;
+  border-radius: 20px;
+}
+.btn-3:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-3:hover{
+   background: transparent;
+  box-shadow: none;
+  border-radius: 20px;
+}
+.btn-3:hover:before {
+  height: 100%;
+  border-radius: 20px;
+}
+.btn-3:hover:after {
+  width: 100%;
+  border-radius: 20px;
+}
+.btn-3 span:hover{
+  border-radius: 20px;
+   color: rgba(2,126,251,1);
+}
+.btn-3 span:before,
+.btn-3 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  background: rgba(2,126,251,1);
+  transition: all 0.3s ease;
+}
+.btn-3 span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-3 span:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-3 span:hover:before {
+  border-radius: 20px;
+  height: 100%;
+}
+.btn-3 span:hover:after {
+  border-radius: 20px;
+  width: 100%;
 }

@@ -71,7 +71,7 @@ export default function SideBarFilter(props) {
           <FaList onClick={() => setGrid(false)} />
         </Button>
         <Button onClick={() => setGrid(true)}>
-          <BsFillGrid3X3GapFill onClick={() => setGrid(true)} />
+          <BsFillGrid3X3GapFill onClick={() => props.setGrid(true)} />
         </Button>
       </div>
     </>

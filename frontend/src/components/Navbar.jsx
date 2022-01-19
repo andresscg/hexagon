@@ -15,18 +15,30 @@ const Navbar = (props) => {
 
   return (
     <>
-      <div className="nav-container" style={{zIndex: 100}}>
+      <div className="nav-container">
         <img src="../../assets/logo.png" alt="logo" className="nav__logo" />
         <div className="nav__menu--navigation">
-          <Link to="/" className="nav__menu--item">
-            Home
-          </Link>
-          <Link to="/shop" className="nav__menu--item">
-            Shop
-          </Link>
-          <Link to="/contact" className="nav__menu--item">
-            Contact
-          </Link>
+          <button class="custom-btn btn-3">
+            <span>
+              <Link to="/" className="nav__menu--item">
+                Home
+              </Link>
+            </span>
+          </button>
+          <button class="custom-btn btn-3">
+            <span>
+              <Link to="/" className="nav__menu--item">
+                Shop
+              </Link>
+            </span>
+          </button>
+          <button class="custom-btn btn-3">
+            <span>
+              <Link to="/" className="nav__menu--item">
+                Contact
+              </Link>
+            </span>
+          </button>
         </div>
         <div className="nav__menu--sign">
           {!props.isLoading && props.isAuth ? (
@@ -58,7 +70,7 @@ const Navbar = (props) => {
           )}
         </div>
 
-        <Nav>
+        <Nav className="cart-fixed">
           <Dropdown>
             <Dropdown.Toggle className="shopping__cart">
               <FaShoppingCart color="white" fontSize="25px" />
