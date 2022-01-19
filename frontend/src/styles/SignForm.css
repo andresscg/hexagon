@@ -20,7 +20,7 @@
   height: 100%;
 }
 
-.login-bg{
+.login-bg {
   display: flex;
   align-items: center;
 }
@@ -61,6 +61,10 @@
 
 .btn-login,
 .btn-signup {
+  max-width: 200px;
+  min-width: 100px;
+  word-break: break-word;
+  overflow-wrap: break-word;
   margin-right: 10px;
   padding: 5px 2px;
   border: 3px solid var(--secondary-dark);

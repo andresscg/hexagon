@@ -19,23 +19,13 @@ function Register(props) {
     })
   }
 
-  const [usStates, setUsStates] = useState([])
+  const [countries, setCountries] = useState([])
+
   useEffect(() => {
     axios
-      .get(
-        "https://datausa.io/api/searchLegacy/?limit=100&dimension=Geography&hierarchy=State&q="
-      )
-      .then((response) =>
-        setUsStates(
-          response.data.results.sort((a, b) => {
-            if (a.name < b.name) return -1
-            if (a.name > b.name) return 1
-            return 0
-          })
-        )
-      )
-      .catch((error) => console.log(error))
-  })
+      .get("https://countriesnow.space/api/v0.1/countries/states")
+      .then((res) => setCountries(res.data.data))
+  }, [])
 
   const [newUser, setNewUser] = useState({
     email: "",
@@ -162,7 +152,7 @@ function Register(props) {
               <option value="none" disabled defaultChecked>
                 Choose a state
               </option>
-              {usStates.map((state) => {
+              {countries?.map((state) => {
                 return (
                   <option value={state.name} key={state.key}>
                     {state.name}
