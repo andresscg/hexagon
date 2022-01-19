@@ -7,6 +7,7 @@ import "../../styles/SignForm.css"
 
 function Login(props) {
   const responseGoogle = (response) => {
+    console.log(response)
     props.userLogin(
       response.profileObj.email,
       response.profileObj.googleId,
@@ -52,8 +53,8 @@ function Login(props) {
             </button>
             <p className="sing-google">Or You Can:</p>
             <GoogleLogin
-              clientId="1014396609884-bfa3vh2eh1jnbbu6urdv1ndpammv0tcp.apps.googleusercontent.com"
-              buttonText="Login with Google"
+              clientId="113911854537-8j68k30a4qpl884ffcvk7hvdfmsdlfnc.apps.googleusercontent.com"
+              buttonText="Sign Up with Google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               className="google-btn"

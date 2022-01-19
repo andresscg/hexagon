@@ -1,6 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
-const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
+const rootUrl = "http://localhost:4000/api/"
 const tokenAuth = rootUrl + "auth"
 const loginUrl = rootUrl + "user/login"
 const registerUrl = rootUrl + "user/register"
@@ -21,7 +21,7 @@ const authAction = {
       console.log(password)
       try {
         const response = await axios.post(loginUrl, {
-          emaail: email,
+          email: email,
           password: password,
           isGoogle: true,
         })

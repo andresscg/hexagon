@@ -16,7 +16,7 @@ const userController = {
     let photo = req.body.photo
       ? req.body.photo
       : req.file?.filename ||
-        "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+        "205ffd00-61b4-405b-b77a-25782821b6e2-1642613596185.png"
 
     console.log(req.body)
     try {
@@ -95,19 +95,13 @@ const userController = {
   },
   logUser: async (req, res) => {
     const {email, password, isGoogle} = req.body
+    console.log(req.body)
     try {
       let user = await User.findOne({email})
+      console.log(user)
       if (user) {
-        /* if (!user.emailVerified) {
-          return res.json({
-            success: false,
-            response: null,
-            errors: "Por favor verifica tu correo antes de ingresar",
-          })
-        } */
-        let samePassword = user
-          ? bcryptjs.compareSync(password, user.password)
-          : false
+        let samePassword = bcryptjs.compareSync(password, user.password)
+
         if (user && samePassword) {
           const token = jwt.sign({user}, process.env.SECRETKEY)
           res.json({
@@ -133,7 +127,7 @@ const userController = {
         res.json({
           success: false,
           user: null,
-          errors: "Email already in use",
+          errors: "No encuentra el usuario",
         })
       }
     } catch (e) {
