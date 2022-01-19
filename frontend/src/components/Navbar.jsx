@@ -27,14 +27,14 @@ const Navbar = (props) => {
           </button>
           <button class="custom-btn btn-3">
             <span>
-              <Link to="/" className="nav__menu--item">
+              <Link to="/shop" className="nav__menu--item">
                 Shop
               </Link>
             </span>
           </button>
           <button class="custom-btn btn-3">
             <span>
-              <Link to="/" className="nav__menu--item">
+              <Link to="/contact" className="nav__menu--item">
                 Contact
               </Link>
             </span>
