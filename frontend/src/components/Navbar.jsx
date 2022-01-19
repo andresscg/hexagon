@@ -97,12 +97,10 @@ const Navbar = (props) => {
                 <>
                   {items.map((prod) => (
                     <span className="cartItem" key={prod.id}>
-                      <img
-                        src={prod.image}
+                      <div
+                        style={{backgroundImage: `url(${prod.image})`}}
                         className="cartItemImg"
-                        alt={prod.product}
-                        width={100}
-                      />
+                      ></div>
 
                       <div className="cartItemDetail" style={{gap: 10}}>
                         <span>{prod.product}</span>
