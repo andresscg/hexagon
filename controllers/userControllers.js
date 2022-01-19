@@ -197,12 +197,20 @@ const userController = {
       {
         $group: {
           _id: {
-            createdAt: "$createdAt",
+            $add: [
+              {$dayOfYear: "$createdAt"},
+              {$multiply: [400, {$year: "$createdAt"}]},
+            ],
           },
           usersThisDay: {$sum: 1},
+          first: {$min: "$createdAt"},
         },
       },
+      {$sort: {_id: -1}},
+      {$limit: 15},
+      {$project: {date: "$first", usersThisDay: 1, _id: 0}},
     ])
+    console.log(grupo)
     res.json(grupo)
   },
   newAddress: async (req, res) => {
