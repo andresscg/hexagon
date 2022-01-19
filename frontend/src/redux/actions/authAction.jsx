@@ -1,6 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
-const rootUrl = "http://localhost:4000/api/"
+const rootUrl = "https://hexagon-techstore.herokuapp.com/api/"
 const tokenAuth = rootUrl + "auth"
 const loginUrl = rootUrl + "user/login"
 const registerUrl = rootUrl + "user/register"
@@ -17,8 +17,14 @@ const authAction = {
   },
   userLogin: (email, password) => {
     return async (dispatch, getState) => {
+      console.log(email)
+      console.log(password)
       try {
-        const response = await axios.post(loginUrl, {email, password})
+        const response = await axios.post(loginUrl, {
+          email: email,
+          password: password,
+          isGoogle: true,
+        })
         if (response.data.success) {
           localStorage.setItem("token", response.data.token)
           getState().modalReducer.showModal = false
@@ -93,6 +99,7 @@ const authAction = {
             Authorization: `Bearer ${token}`,
           },
         })
+        console.log(response)
         dispatch({
           type: "auth@@GET_USER_SUCCESS",
           payload: {
@@ -121,7 +128,7 @@ const authAction = {
   logout: () => {
     localStorage.removeItem("token")
     return (dispatch, getState) => {
-      dispatch({type: "auth@@LOGOUT", payload: ""})
+      dispatch({type: "auth@@LOGOUT"})
     }
   },
   getUsers: () => {

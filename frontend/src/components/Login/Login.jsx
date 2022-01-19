@@ -7,7 +7,12 @@ import "../../styles/SignForm.css"
 
 function Login(props) {
   const responseGoogle = (response) => {
-    props.userLogin(response.profileObj.email, response.profileObj.googleId)
+    console.log(response)
+    props.userLogin(
+      response.profileObj.email,
+      response.profileObj.googleId,
+      true
+    )
   }
   const email = useRef()
   const password = useRef()
@@ -24,7 +29,18 @@ function Login(props) {
         <div className="login-form">
           <h2 className="login-title">Log in</h2>
           <p className="login-subtitle">
-            If you already have an account, sign in!
+            If you don't have have an account,{" "}
+            <span
+              style={{
+                cursor: "pointer",
+                textDecoration: "underline",
+                fontWeight: 800,
+                color: "#fff",
+              }}
+              onClick={props.HandleLoginRegisterModal}
+            >
+              Register
+            </span>
           </p>
           <form onSubmit={handleLogin} className="form-container">
             <div className="form__inputs">
@@ -73,6 +89,7 @@ const mapDispatchToProps = {
   tokenVerify: authAction.tokenVerify,
   loginPending: authAction.loginPending,
   showCloseModal: modalAction.showCloseModal,
+  HandleLoginRegisterModal: modalAction.HandleLoginRegisterModal,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

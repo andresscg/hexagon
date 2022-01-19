@@ -6,10 +6,23 @@
   position: fixed;
   display: flex;
   z-index: 100;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 5px 15px;
+}
+.navbar {
+  padding: 0.5rem 0;
+}
+.nav-inside {
+  display: flex;
+  width: 100%;
+  max-width: 1440px;
+  justify-content: space-between;
+}
+
+.nav__menu--navigation {
+  align-items: center;
 }
 
 @media screen and (max-width: 500px) {
@@ -45,14 +58,14 @@
 
 .nav__logo {
   display: flex;
-  width: 80px;
+  width: 60px;
   margin: 0 0.5rem;
 }
 
 .nav__menu--navigation {
   display: flex;
   flex-flow: row wrap;
-  width: 70%;
+  width: 100%;
   gap: 25px;
 }
 
@@ -246,6 +259,10 @@
   overflow-x: hidden;
   max-height: 70vh;
   border-radius: 10px;
+  min-width: 100vw !important;
+}
+.navbar-toggler {
+  color: red !important;
 }
 
 .nav .show {
@@ -295,7 +312,10 @@
 }
 
 .cartItemImg {
-  max-width: 100%;
+  width: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 100px;
 }
 

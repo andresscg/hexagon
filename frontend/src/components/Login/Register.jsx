@@ -4,10 +4,13 @@ import GoogleLogin from "react-google-login"
 import {connect} from "react-redux"
 import authAction from "../../redux/actions/authAction"
 import "../../styles/SignForm.css"
+import {Link} from "react-router-dom"
+import modalAction from "../../redux/actions/modalAction"
 
 function Register(props) {
   const responseGoogle = (res) => {
-    const formData = {
+    console.log(res)
+    props.userRegister({
       firstName: res.profileObj.givenName,
       lastName: res.profileObj.familyName,
       password: res.profileObj.googleId,
@@ -15,27 +18,16 @@ function Register(props) {
       photo: res.profileObj.imageUrl,
       google: true,
       country: "Google",
-    }
-    props.userRegister(formData)
+    })
   }
 
-  const [usStates, setUsStates] = useState([])
+  const [countries, setCountries] = useState([])
+
   useEffect(() => {
     axios
-      .get(
-        "https://datausa.io/api/searchLegacy/?limit=100&dimension=Geography&hierarchy=State&q="
-      )
-      .then((response) =>
-        setUsStates(
-          response.data.results.sort((a, b) => {
-            if (a.name < b.name) return -1
-            if (a.name > b.name) return 1
-            return 0
-          })
-        )
-      )
-      .catch((error) => console.log(error))
-  })
+      .get("https://countriesnow.space/api/v0.1/countries/states")
+      .then((res) => setCountries(res.data.data))
+  }, [])
 
   const [newUser, setNewUser] = useState({
     email: "",
@@ -71,9 +63,20 @@ function Register(props) {
   }
   return (
     <div className="register-body">
-      <h3 className="register-title">Make an account</h3>
+      <h2 className="register-title">Register</h2>
       <p className="register-subtitle">
-        If you don't have an account, create a new one!
+        If you have an account,{" "}
+        <span
+          style={{
+            cursor: "pointer",
+            textDecoration: "underline",
+            fontWeight: 800,
+            color: "#fff",
+          }}
+          onClick={props.HandleLoginRegisterModal}
+        >
+          Login!
+        </span>
       </p>
       <form
         className="register-form"
@@ -142,13 +145,13 @@ function Register(props) {
               type="file"
               id="photo"
               name="photo"
-              // className="btn-signup"
+              className="btn-signup"
               accept=".png, .jpg, .jpeg"
               onChange={handlePhoto}
             ></input>
           </div>
           <div className="input-group ">
-            <label htmlFor="country">State</label>
+            <label htmlFor="country">Country</label>
             <select
               type="text"
               id="country"
@@ -162,7 +165,7 @@ function Register(props) {
               <option value="none" disabled defaultChecked>
                 Choose a state
               </option>
-              {usStates.map((state) => {
+              {countries?.map((state) => {
                 return (
                   <option value={state.name} key={state.key}>
                     {state.name}
@@ -196,6 +199,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   loginPending: authAction.loginPending,
   userRegister: authAction.userRegister,
+  HandleLoginRegisterModal: modalAction.HandleLoginRegisterModal,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)

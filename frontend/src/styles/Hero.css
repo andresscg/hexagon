@@ -1,6 +1,6 @@
 .hero-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("../../public/assets/bg3.webp");
   background-position: center;
   background-size: cover;
@@ -11,7 +11,7 @@
 }
 
 .heroImg {
-  max-width: 100%;
+  max-width: 50%;
 }
 
 .heroInfo__heading {
@@ -27,7 +27,7 @@
   color: var(--primary);
   font-family: "Mukta", sans-serif !important;
   font-size: 20px;
-  padding: 15px 20px 60px 0;
+  padding: 15px 20px 20px 0;
   letter-spacing: 1.5px;
   margin-bottom: 30px;
 }
@@ -42,28 +42,11 @@
   font-family: "Poppins", sans-serif;
   border: 5px solid var(--third);
   border-radius: 15px;
-  transform: translatey(0px);
-  animation: float 5s ease-in-out infinite;
 }
 
 .heroInfo__btn:hover {
   color: var(--secondary-dark);
   background-color: var(--secondary-light);
-}
-
-@keyframes float {
-  0% {
-    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-    transform: translatey(0px);
-  }
-  50% {
-    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
-    transform: translatey(-20px);
-  }
-  100% {
-    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-    transform: translatey(0px);
-  }
 }
 
 .loader--true {
@@ -92,7 +75,7 @@
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 560px) {
   .heroInfo__heading {
     font-size: 48px;
   }
@@ -101,5 +84,28 @@
   }
   .heroInfo__btn {
     font-size: 20px;
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .heroImg {
+    display: none;
+  }
+  .heroInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .heroInfo__heading, .heroInfo__subtitle{
+    text-align: center;
+  }
+  .heroInfo__btn{
+    margin: auto;
+  }
+}
+@media screen and (max-width: 768px){
+  .about-container {
+    flex-direction: column;
   }
 }

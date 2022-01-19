@@ -48,7 +48,7 @@ export default function SideBarFilter(props) {
       <Button onClick={() => handleSort("alf")}>
         {!sortName ? <FaSortAlphaDownAlt /> : <FaSortAlphaDown />}
       </Button>
-      <div className="layout-products">
+      <div className="layout-products grid-btn">
         <Button onClick={() => props.setGrid(false)}>
           <FaList onClick={() => props.setGrid(false)} />
         </Button>
