@@ -5,7 +5,7 @@ import {connect} from "react-redux"
 
 import authAction from "../../../../redux/actions/authAction"
 import {Table} from "react-bootstrap"
-import ListProduct from "./ListProduct"
+import ListProduct from "./ListUser"
 
 function AdminUsers(props) {
   const [data, setData] = useState([])
