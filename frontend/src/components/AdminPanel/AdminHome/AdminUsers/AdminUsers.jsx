@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom"
-import "./AdminProducts.css"
+import "./AdminUsers.css"
 import {useEffect, useState} from "react"
 import {connect} from "react-redux"
 
@@ -7,7 +7,7 @@ import authAction from "../../../../redux/actions/authAction"
 import {Table} from "react-bootstrap"
 import ListProduct from "./ListProduct"
 
-function AdminProducts(props) {
+function AdminUsers(props) {
   const [data, setData] = useState([])
   useEffect(() => {
     props
@@ -20,17 +20,16 @@ function AdminProducts(props) {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>#</th>
+          <th>Img</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
         </tr>
       </thead>
       <tbody>
-        {data.length > 1 &&
-          data.map((user, index) => {
-            return <ListProduct user={user} key={index} />
-          })}
+        {props?.users?.map((user, index) => {
+          return <ListProduct user={user} key={index} />
+        })}
       </tbody>
     </Table>
   )
@@ -46,4 +45,4 @@ const mapDispatchToProps = {
   getUsers: authAction.getUsers,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminProducts)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminUsers)
