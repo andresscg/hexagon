@@ -12,7 +12,9 @@ export default function ListProduct({user, index}) {
   const toShow = content ? content.substring(0, 50) : ""
   return (
     <tr>
-      <td>{user.imagen}</td>
+      <td>
+        <img src={user.imagen} width={200} />
+      </td>
       <td>{user.nombre}</td>
       <td>{user.categoria}</td>
       <td>
