@@ -22,8 +22,6 @@ const Productos = (props) => {
     props.fetchearProductos()
   }, [])
 
-  console.log(props)
-
   return (
     <>
       <FlipMove className={props.grid ? "grid" : "productos-container"}>

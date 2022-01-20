@@ -22,7 +22,7 @@ export default function Sidebar() {
         <div className="sidebar-menu">
           <h3 className="sidebar-title">Dashboard</h3>
           <ul className="sidebar-list">
-            <Link to="/" className="sidebar-list__link">
+            <Link to="/admin" className="sidebar-list__link">
               <li className="sidebar-list__item--active">
                 <LineStyle className="sidebar-icon" />
                 Home

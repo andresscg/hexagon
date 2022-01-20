@@ -19,7 +19,6 @@ const Producto = (props) => {
     inputProps: {"aria-label": `${likeIcon ? "Like!" : "Dislike :c"}`},
   }
   const {addItem, removeItem, items} = useCart()
-  console.log(props)
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",

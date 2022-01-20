@@ -15,8 +15,6 @@ export default function UsersSM() {
       .then((res) => setData(res.data.response))
   }, [])
 
-  console.log(data)
-
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>

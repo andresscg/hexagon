@@ -19,7 +19,6 @@ import {useCart} from "react-use-cart"
 const Navbar = (props) => {
   const {removeItem, totalItems, items} = useCart()
 
-  console.log(props.user)
   return (
     <>
       <div className="nav-container" style={{zIndex: 100}}>
@@ -155,7 +154,6 @@ const Navbar = (props) => {
   )
 }
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     user: state.authReducer.user,
     isAuth: state.authReducer.isAuth,

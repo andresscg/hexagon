@@ -88,8 +88,6 @@ export default function User() {
       })
   }, [])
 
-  console.log(userAddress)
-
   return (
     <div className="user">
       <div className="user__title-container">

@@ -7,7 +7,6 @@ import "../../styles/SignForm.css"
 
 function Login(props) {
   const responseGoogle = (response) => {
-    console.log(response)
     props.userLogin(
       response.profileObj.email,
       response.profileObj.googleId,

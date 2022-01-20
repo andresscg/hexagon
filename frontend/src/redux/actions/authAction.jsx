@@ -17,8 +17,6 @@ const authAction = {
   },
   userLogin: (email, password) => {
     return async (dispatch, getState) => {
-      console.log(email)
-      console.log(password)
       try {
         const response = await axios.post(loginUrl, {
           email: email,
@@ -59,7 +57,6 @@ const authAction = {
   userRegister: (formData) => {
     return async (dispatch, getState) => {
       let response = await axios.post(registerUrl, formData)
-      console.log(response)
       if (response.data.success) {
         toast.error(response.data.message)
         getState().modalReducer.showModal = false
@@ -77,7 +74,6 @@ const authAction = {
           },
         })
       } else {
-        console.log("fallo")
         response.data.errors[0]
           ? response.data.errors.map((err) => toast.error(err.message))
           : toast.error(response.data.message)
@@ -99,7 +95,6 @@ const authAction = {
             Authorization: `Bearer ${token}`,
           },
         })
-        console.log(response)
         dispatch({
           type: "auth@@GET_USER_SUCCESS",
           payload: {

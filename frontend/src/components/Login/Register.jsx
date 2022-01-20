@@ -9,7 +9,6 @@ import modalAction from "../../redux/actions/modalAction"
 
 function Register(props) {
   const responseGoogle = (res) => {
-    console.log(res)
     props.userRegister({
       firstName: res.profileObj.givenName,
       lastName: res.profileObj.familyName,
