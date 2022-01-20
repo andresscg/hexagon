@@ -25,18 +25,11 @@ export default function ListProduct({user, index}) {
             alt={user.firstName}
           />
         </Link>
-      </td>{" "}
+      </td>
       <td>{user.firstName}</td>
       <td>{user.lastName}</td>
       <td>{user.email}</td>
-      <td>
-        <p>{!show ? toShow : content}</p>
-        {content?.length > 50 && (
-          <Button onClick={() => setShow(!show)}>
-            {!show ? <BiShow /> : <BiHide />}
-          </Button>
-        )}
-      </td>
+
       <td>
         <Button variant="warning">
           <FaEdit />
