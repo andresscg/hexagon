@@ -46,7 +46,7 @@ function Filters(props) {
               </div>
               <PhonesFilter data={categories} name={"Categories"} />
             </div>
-            <div className="botones-filter layout-products">
+            <div className="botones-filter layout-products ">
               <SideBarFilter
                 setGrid={setGrid}
                 productos={props.productos}

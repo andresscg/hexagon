@@ -23,127 +23,133 @@ const Navbar = (props) => {
   return (
     <>
       <div className="nav-container" style={{zIndex: 100}}>
-        <div className="nav__loco--container">
-          <img
-            src="../../assets/logo_notext.svg"
-            alt="logo"
-            className="nav__logo"
-          />
-          <div className="nav__logo--text">
-            <Link to="/" className="nav__title">
-              HEXAGON
-            </Link>
-            <p className="nav__subtitle">TECHSTORE</p>
+        <div className="nav-inside">
+          <div className="nav__loco--container">
+            <img
+              src="../../assets/logo_notext.svg"
+              alt="logo"
+              className="nav__logo"
+            />
+            <div className="nav__logo--text">
+              <Link to="/" className="nav__title">
+                HEXAGON
+              </Link>
+              <p className="nav__subtitle">TECHSTORE</p>
+            </div>
           </div>
-        </div>
-        <Navba expand="lg">
-          <Navba.Toggle aria-controls="basic-navbar-nav" />
-          <Navba.Collapse id="basic-navbar-nav">
-            <Nav>
-              <div className="nav__menu--navigation">
-                <button className="custom-btn btn-3">
-                  <span>
-                    <Link to="/" className="nav__menu--item text-light">
-                      Home
-                    </Link>
-                  </span>
-                </button>
-                <button className="custom-btn btn-3">
-                  <span>
-                    <Link to="/shop" className="nav__menu--item text-light">
-                      Shop
-                    </Link>
-                  </span>
-                </button>
-                <button className="custom-btn btn-3">
-                  <span>
-                    <Link to="/contact" className="nav__menu--item text-light">
-                      Contact
-                    </Link>
-                  </span>
-                </button>
+          <Navba expand="lg">
+            <Navba.Toggle aria-controls="basic-navbar-nav" />
+            <Navba.Collapse id="basic-navbar-nav">
+              <Nav>
+                <div className="nav__menu--navigation">
+                  <button className="custom-btn btn-3">
+                    <span>
+                      <Link to="/" className="nav__menu--item text-light">
+                        Home
+                      </Link>
+                    </span>
+                  </button>
+                  <button className="custom-btn btn-3">
+                    <span>
+                      <Link to="/shop" className="nav__menu--item text-light">
+                        Shop
+                      </Link>
+                    </span>
+                  </button>
+                  <button className="custom-btn btn-3">
+                    <span>
+                      <Link
+                        to="/contact"
+                        className="nav__menu--item text-light"
+                      >
+                        Contact
+                      </Link>
+                    </span>
+                  </button>
 
-                {!props.isLoading && props.isAuth ? (
-                  <>
+                  {!props.isLoading && props.isAuth ? (
+                    <>
+                      <button
+                        onClick={() => props.logout()}
+                        className="custom-btn btn-3"
+                      >
+                        <span>Log Out</span>
+                      </button>
+                      <div className="user__info">
+                        <div
+                          style={{
+                            backgroundImage: `url(${
+                              props.user?.google
+                                ? props.user?.photo
+                                : "https://i.imgur.com/o2bJt64.png"
+                            })`,
+                          }}
+                          className="nav__menu__photo"
+                        />
+                        <p className="user__name">{props.user?.firstName}</p>
+                      </div>
+                    </>
+                  ) : (
                     <button
-                      onClick={() => props.logout()}
+                      onClick={() => props.showCloseModal()}
                       className="custom-btn btn-3"
                     >
-                      <span>Log Out</span>
+                      <span>Login/Register</span>
                     </button>
-                    <div className="user__info">
-                      <div
-                        style={{
-                          backgroundImage: `url(${
-                            props.user?.google
-                              ? props.user?.photo
-                              : "https://hexagon-techstore.herokuapp.com/" +
-                                props.user?.photo
-                          })`,
-                        }}
-                        className="nav__menu__photo"
-                      />
-                      <p className="user__name">{props.user?.firstName}</p>
-                    </div>
+                  )}
+                  {!props.isLoading && props.isAuth && props.user?.admin && (
+                    <Link to={"/admin"}>Admin</Link>
+                  )}
+                </div>
+              </Nav>
+            </Navba.Collapse>
+          </Navba>
+
+          <Nav className="cart-fixed">
+            <Dropdown>
+              <Dropdown.Toggle>
+                <FaShoppingCart color="white" fontSize="25px" />
+                <Badge>{totalItems}</Badge>
+              </Dropdown.Toggle>
+              <Dropdown.Menu style={{minWidth: 370}} className="cart__dropdown">
+                {totalItems ? (
+                  <>
+                    {items.map((prod) => (
+                      <span className="cartItem" key={prod.id}>
+                        <img
+                          src={prod.image}
+                          className="cartItemImg"
+                          alt={prod.product}
+                          width={100}
+                        />
+
+                        <div className="cartItemDetail" style={{gap: 10}}>
+                          <span>{prod.product}</span>
+                          <span>${prod.price}</span>
+                          <span>{prod.quantity}</span>
+                        </div>
+                        <AiFillDelete
+                          fontSize="20px"
+                          style={{cursor: "pointer"}}
+                          onClick={() => {
+                            removeItem(prod.id)
+                          }}
+                        />
+                      </span>
+                    ))}
+                    <Link to="/cart">
+                      <Button style={{width: "95%", margin: "0 10px"}}>
+                        Go To Cart
+                      </Button>
+                    </Link>
                   </>
                 ) : (
-                  <button
-                    onClick={() => props.showCloseModal()}
-                    className="custom-btn btn-3"
-                  >
-                    <span>Login/Register</span>
-                  </button>
+                  <span style={{padding: 10}}>Cart is Empty</span>
                 )}
-                {!props.isLoading && props.isAuth && props.user?.admin && (
-                  <Link to={"/admin"}>Admin</Link>
-                )}
-              </div>
-            </Nav>
-          </Navba.Collapse>
-        </Navba>
-
-        <Nav className="cart-fixed">
-          <Dropdown>
-            <Dropdown.Toggle>
-              <FaShoppingCart color="white" fontSize="25px" />
-              <Badge>{totalItems}</Badge>
-            </Dropdown.Toggle>
-            <Dropdown.Menu style={{minWidth: 370}} className="cart__dropdown">
-              {totalItems ? (
-                <>
-                  {items.map((prod) => (
-                    <span className="cartItem" key={prod.id}>
-                      <div
-                        style={{backgroundImage: `url(${prod.image})`}}
-                        className="cartItemImg"
-                      ></div>
-
-                      <div className="cartItemDetail" style={{gap: 10}}>
-                        <span>{prod.product}</span>
-                        <span>${prod.price}</span>
-                        <span>{prod.quantity}</span>
-                      </div>
-                      <AiFillDelete
-                        fontSize="20px"
-                        style={{cursor: "pointer"}}
-                        onClick={() => {
-                          removeItem(prod.id)
-                        }}
-                      />
-                    </span>
-                  ))}
-                  <Link to="/cart">
-                    <Button style={{width: "95%", margin: "0 10px"}}>
-                      Go To Cart
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <span style={{padding: 10}}>Cart is Empty</span>
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Nav>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Nav>
+        </div>
       </div>
     </>
   )

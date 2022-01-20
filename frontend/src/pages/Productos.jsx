@@ -1,14 +1,13 @@
-import {max} from "moment"
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import Producto from "../components/Producto"
 import productoAction from "../redux/actions/productoAction"
+import FlipMove from "react-flip-move"
 
 import "../styles/Producto.css"
 
 const Productos = (props) => {
   useEffect(() => {
-    window.scroll(0,0)
     props.filters()
   }, [
     props.min,
@@ -19,6 +18,7 @@ const Productos = (props) => {
     props.brands,
   ])
   useEffect(() => {
+    window.scroll(0, 0)
     props.fetchearProductos()
   }, [])
 
@@ -26,34 +26,22 @@ const Productos = (props) => {
 
   return (
     <>
-      <div 
-      className={
-        props.grid ? "container-all__productos-grid" : "container-all__productos"
-      }>
-        <div className={
-        props.grid ? "container-all__filtross-grid" : "container-all__filtros"
-      }>
-          <div
-            className={
-              props.grid ? "grid" : "productos-container"
-            }
-          >
-            {props.auxiliar.length > 0 ? (
-              props.auxiliar.map((producto) => (
-                <div key={producto._id}  className={
-                  props.grid ? "prod-container-grid" : "prod-container"
-                }>
-                  <Producto producto={producto} grid={props.grid}/>
-                </div>
-              ))
-            ) : (
-              <div className="noexiste-container">
-                Sorry, the product you are looking for does not exist. 😪
-              </div>
-            )}
+      <FlipMove className={props.grid ? "grid" : "productos-container"}>
+        {props.auxiliar.length > 0 ? (
+          props.auxiliar.map((producto) => (
+            <div
+              key={producto._id}
+              className={props.grid ? "prod-container-grid" : "prod-container"}
+            >
+              <Producto producto={producto} grid={props.grid} />
+            </div>
+          ))
+        ) : (
+          <div className="noexiste-container">
+            Sorry, the product you are looking for does not exist. 😪
           </div>
-        </div>
-      </div>
+        )}
+      </FlipMove>
     </>
   )
 }

@@ -3,7 +3,7 @@
   --headings-font: "Poppins", sans-serif;
   --text-font: "Mukta", sans-serif;
   --logo-font: "Varela Round", sans-serif;
-  --nav-height: 12vh;
+  --nav-height: 10vh;
 
   /* COLORS */
   --white: #ffff;
@@ -37,7 +37,6 @@ a {
   text-decoration: none;
 }
 
-  
 .addcart-container {
   display: flex;
   flex-flow: row nowrap;

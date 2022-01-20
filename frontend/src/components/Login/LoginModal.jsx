@@ -5,7 +5,7 @@ import {Button, Modal} from "react-bootstrap"
 import modalAction from "../../redux/actions/modalAction"
 import {connect} from "react-redux"
 import Loader from "react-spinners/HashLoader"
-import '../../styles/SignForm.css'
+import "../../styles/SignForm.css"
 
 function LoginModal(props) {
   return (
@@ -23,9 +23,9 @@ function LoginModal(props) {
         </Modal.Header>
         {props.registerLogin ? <Login /> : <Register />}
 
-        <button className="btn btns-primary"onClick={props.HandleLoginRegisterModal}>
+        {/*  <button className="btn btns-primary"onClick={props.HandleLoginRegisterModal}>
           {props.registerLogin ? "Go To Registration" : "Go To Login"}
-        </button>
+        </button> */}
       </Modal>
     </div>
   )
