@@ -86,14 +86,14 @@
 
 .productFormLeft > label {
   margin-bottom: 10px;
-  color: gray;
+  color: white;
 }
 
 .productFormLeft > input {
   margin-bottom: 10px;
   border: none;
   padding: 5px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid white;
 }
 
 .productFormLeft > select {
