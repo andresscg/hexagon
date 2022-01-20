@@ -3,8 +3,8 @@ import AdminContent from "./AdminContent/AdminContent"
 import Chart from "./Chart/Chart"
 import {connect} from "react-redux"
 import {useEffect} from "react"
-import UsersLG from "./Users/UsersLG/UsersLG"
-import UsersSM from "./Users/UsersSM/UsersSM"
+import UsersLG from "./AdminUsers/UsersLG/UsersLG"
+import UsersSM from "./AdminUsers/UsersSM/UsersSM"
 
 function AdminHome(props) {
   useEffect(() => {
@@ -12,7 +12,6 @@ function AdminHome(props) {
   }, [])
   return (
     <div style={{flex: 4, paddingTop: "15vh", backgroundColor: "gray"}}>
-      <button onClick={props.getUsersByDate}>USERS</button>
       <AdminContent />
       <Chart
         data={props.usersByDate}

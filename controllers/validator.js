@@ -24,7 +24,7 @@ const validator = (req, res, next) => {
     country: joi.string().trim().required().messages({
       "string.empty": "The country cannot be empty",
     }),
-    google: joi.boolean().required().messages({
+    google: joi.boolean().default(false).required().messages({
       "string.empty": "The country cannot be empty",
     }),
   })

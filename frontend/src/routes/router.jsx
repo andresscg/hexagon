@@ -13,6 +13,8 @@ import AdminHome from "../components/AdminPanel/AdminHome/AdminHome"
 import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProduct/NewProduct"
 import CartScreen from "../pages/CartScreen"
 import Filters from "../components/Filters/Filters"
+import UserPage from "../components/AdminPanel/AdminHome/AdminUsers/UserPage/UserPage"
+import AdminUsers from "../components/AdminPanel/AdminHome/AdminUsers/AdminUsers"
 
 function router(props) {
   const admin = props.user?.admin || false
@@ -41,6 +43,8 @@ function router(props) {
                 path="admin/products/newproduct"
                 element={<NewProduct />}
               />
+              <Route path="admin/users" element={<AdminUsers />} />
+              <Route path="admin/users/:user" element={<UserPage />} />
             </Route>
           ) : (
             <Route path="about" element={<About />} />

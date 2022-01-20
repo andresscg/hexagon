@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import {
   LineStyle,
   Timeline,
@@ -14,6 +14,7 @@ import {
   Report,
 } from "@material-ui/icons"
 import "./Sidebar.css"
+
 export default function Sidebar() {
   return (
     <div className="sidebar">
@@ -40,7 +41,7 @@ export default function Sidebar() {
         <div className="sidebar-menu">
           <h3 className="sidebar-title">Quick Menu</h3>
           <ul className="sidebar-list">
-            <Link to="/users" className="sidebar-list__link">
+            <Link to="/admin/users" className="sidebar-list__link">
               <li className="sidebar-list__item">
                 <PermIdentity className="sidebar-icon" />
                 Users

@@ -48,10 +48,17 @@ router
   .route("/user/register")
   .post(upload.single("photo"), validator, userController.newUser)
 router.route("/user/login").post(userController.logUser)
+router.route("/user/modificar").get(userController.getUsers)
+
 router
-  .route("/user/modificar")
-  .get(userController.getUsers)
-  .put(userController.modifyUser)
+  .route("/user/modify/:id")
+  .put(
+    passport.authenticate("jwt", {session: false}),
+    userController.modifyUser
+  )
+  .get(userController.getUser)
+
+router.route("/user/getUserLimited").get(userController.getUsersLimited)
 
 const {
   obtenerProductos,
@@ -147,5 +154,7 @@ router
     passport.authenticate("jwt", {session: false}),
     userController.checkAddress
   )
+
+router.route("/address/:address").get(userController.getAddress)
 
 module.exports = router

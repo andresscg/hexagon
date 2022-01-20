@@ -1,8 +1,7 @@
 import {Link} from "react-router-dom"
 import "./AdminProducts.css"
 import {useEffect, useState} from "react"
-import {connect, useDispatch} from "react-redux"
-import {productRows} from "./dummyData"
+import {connect} from "react-redux"
 
 import authAction from "../../../../redux/actions/authAction"
 import {Table} from "react-bootstrap"

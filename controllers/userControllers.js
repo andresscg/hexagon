@@ -146,18 +146,55 @@ const userController = {
       console.error(e)
     }
   },
-  modifyUser: async (req, res) => {
-    const {id} = req.body
+  getUser: async (req, res) => {
+    let id = req.params.id
     try {
-      let editedUser = await User.findOneAndUpdate(
-        {_id: id},
-        {...req.body},
-        {new: true}
-      )
-      res.json({success: true, error: null, response: editedUser})
+      let user = await User.findOne({_id: id})
+      res.json({success: true, error: null, response: user})
     } catch (e) {
       res.json({success: false, error: e, response: null})
       console.error(e)
+    }
+  },
+  modifyUser: async (req, res) => {
+    const id = req.params.id
+    console.log(id)
+    User.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        $set: req.body.modifierData,
+      },
+      {
+        new: true,
+      }
+    )
+      .then((response) => {
+        console.log(response)
+        res.json({success: true, response: response})
+      })
+      .catch((err) => {
+        res.json({success: false, response: err})
+      })
+  },
+  getUsersLimited: async (req, res) => {
+    let limit = req.body.limit
+    try {
+      const usersList = await User.find().sort({_id: -1}).limit(limit)
+      res.json({success: true, response: usersList})
+    } catch (error) {
+      console.log(error)
+      res.json({success: false, response: error.message})
+    }
+  },
+  getAddresses: async (req, res) => {
+    try {
+      const usersList = await Address.find().populate("users")
+      res.json({success: true, response: usersList})
+    } catch (error) {
+      console.log(error)
+      res.json({success: false, response: error.message})
     }
   },
   deleteUser: async (req, res) => {
@@ -248,6 +285,35 @@ const userController = {
       errors: null,
     })
   },
+  getAddress: async (req, res) => {
+    const address = req.params.address
+    Address.findOne({user: address})
+      .then((address) =>
+        res.json({
+          success: true,
+          response: address,
+          errors: null,
+        })
+      )
+      .catch((err) =>
+        res.json({
+          success: false,
+          response: null,
+          errors: err.message,
+        })
+      )
+  },
 }
 
 module.exports = userController
+
+/* 
+  const firstName = useRef()
+  const lastName = useRef()
+  const password = useRef()
+  const emailVerified = useRef()
+  const email = useRef()
+  const photo = useRef()
+  const country = useRef()
+  const admin = useRef()
+  const google = useRef() */
