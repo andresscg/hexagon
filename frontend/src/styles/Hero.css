@@ -1,3 +1,7 @@
+.videoRandom{
+  z-index: 1000000;
+}
+
 .hero-container {
   width: 100%;
   min-height: 100vh;
