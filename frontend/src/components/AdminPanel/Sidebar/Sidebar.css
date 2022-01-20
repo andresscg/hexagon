@@ -1,14 +1,15 @@
 .sidebar {
-  flex: 1;
-  height: calc(100vh - 50px);
+  height: 100%;
   background-color: rgb(251, 251, 255);
   position: sticky;
   top: 50px;
+  box-shadow: 1px 1px 5px rgba(76, 76, 76, 0.741);
 }
+
 
 .sidebar-wrapper {
   padding: 20px;
-  color: #555;
+  color: rgb(35, 35, 35);
 }
 
 .sidebar-menu {
@@ -17,7 +18,7 @@
 
 .sidebar-title {
   font-size: 13px;
-  color: rgb(187, 186, 186);
+  color: #8d237e;
 }
 
 .sidebar-list {
@@ -31,6 +32,7 @@
   display: flex;
   align-items: center;
   border-radius: 10px;
+  
 }
 
 .sidebar-list__item--active,
@@ -41,4 +43,25 @@
 .sidebarIcon {
   margin-right: 5px;
   font-size: 20px !important;
+}
+
+
+
+@media screen and (max-width: 768px){
+
+  .sidebar {
+    height: 100%;
+    background-color: rgb(251, 251, 255);
+    position: sticky;
+    top: unset;
+    box-shadow: 1px 1px 5px rgba(76, 76, 76, 0.741);
+  }
+
+  .sidebar-wrapper{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+  }
 }

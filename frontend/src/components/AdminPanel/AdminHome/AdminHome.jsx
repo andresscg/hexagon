@@ -19,7 +19,7 @@ function AdminHome(props) {
         grid
         dataKey="usersThisDay"
       />
-      <div style={{display: "flex"}}>
+      <div className="user-lgsm__container">
         <UsersLG />
         <UsersSM />
       </div>

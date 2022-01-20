@@ -65,10 +65,29 @@ a {
 }
 
 .adminPanel__container {
-  /*   background-image: url(../public/assets/bg3.webp);
- */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+
+@media screen and (max-width: 768px){
+  
+.adminPanel__container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.user-lgsm__container{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 }
