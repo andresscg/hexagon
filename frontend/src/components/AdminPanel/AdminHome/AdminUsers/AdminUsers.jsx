@@ -1,6 +1,5 @@
-import {Link} from "react-router-dom"
 import "./AdminUsers.css"
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import {connect} from "react-redux"
 
 import authAction from "../../../../redux/actions/authAction"
@@ -8,12 +7,8 @@ import {Table} from "react-bootstrap"
 import ListProduct from "./ListUser"
 
 function AdminUsers(props) {
-  const [data, setData] = useState([])
   useEffect(() => {
-    props
-      .getUsers()
-      .then((res) => setData(res.data.response))
-      .catch((error) => console.log(error))
+    props.getUsers()
   }, [])
 
   return (

@@ -2,7 +2,6 @@ import {
   CalendarToday,
   LocationSearching,
   MailOutline,
-  PermIdentity,
   PhoneAndroid,
   Publish,
 } from "@material-ui/icons"
@@ -102,7 +101,11 @@ export default function User() {
             <>
               <div className="user__show-top">
                 <img
-                  src={userData.response?.photo}
+                  src={
+                    userData.response?.photo.indexOf("googleusercontent") >= 0
+                      ? userData.response?.photo
+                      : "https://i.imgur.com/o2bJt64.png"
+                  }
                   alt={
                     userData.response?.firstName +
                     " " +

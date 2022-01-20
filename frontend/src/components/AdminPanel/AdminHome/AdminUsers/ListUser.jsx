@@ -13,8 +13,8 @@ export default function ListProduct({user, index}) {
   const toShow = content ? content.substring(0, 50) : ""
   return (
     <tr>
-      <Link to={`/admin/users/${user._id}`}>
-        <td>
+      <td>
+        <Link to={`/admin/users/${user._id}`}>
           <img
             width={100}
             src={
@@ -24,30 +24,30 @@ export default function ListProduct({user, index}) {
             }
             alt={user.firstName}
           />
-        </td>
-        <td>{user.firstName}</td>
-        <td>{user.lastName}</td>
-        <td>{user.email}</td>
-        <td>
-          <p>{!show ? toShow : content}</p>
-          {content?.length > 50 && (
-            <Button onClick={() => setShow(!show)}>
-              {!show ? <BiShow /> : <BiHide />}
-            </Button>
-          )}
-        </td>
-        <td>
-          <Button variant="warning">
-            <FaEdit />
+        </Link>
+      </td>{" "}
+      <td>{user.firstName}</td>
+      <td>{user.lastName}</td>
+      <td>{user.email}</td>
+      <td>
+        <p>{!show ? toShow : content}</p>
+        {content?.length > 50 && (
+          <Button onClick={() => setShow(!show)}>
+            {!show ? <BiShow /> : <BiHide />}
           </Button>
-          <Button variant="dark">
-            <MdOutlineHideSource />
-          </Button>
-          <Button variant="danger">
-            <RiDeleteBin5Fill />
-          </Button>
-        </td>
-      </Link>
+        )}
+      </td>
+      <td>
+        <Button variant="warning">
+          <FaEdit />
+        </Button>
+        <Button variant="dark">
+          <MdOutlineHideSource />
+        </Button>
+        <Button variant="danger">
+          <RiDeleteBin5Fill />
+        </Button>
+      </td>
     </tr>
   )
 }
