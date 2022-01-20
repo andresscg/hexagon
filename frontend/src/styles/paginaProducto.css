@@ -123,7 +123,7 @@
 @media screen and (min-width: 760px) {
   .producto-informacion__container {
     margin-top: 8vh;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .producto-imagen__container {
