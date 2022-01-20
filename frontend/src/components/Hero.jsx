@@ -14,15 +14,15 @@ const Hero = () => {
           Thanks to Hexagon, you can find yourself a brand new phone or give to your current one new looks and accessories.
         </p>
         </div>
-        <button class='button button__2' data-text='GO SHOPPING!'>
+        <button class='button button__2' data-text='Go Shopping!'>
           <span>E</span>
-          <span>N</span>
-          <span>J</span>
-          <span>O</span>
-          <span>Y</span>
+          <span>n</span>
+          <span>j</span>
+          <span>o</span>
+          <span>y</span>
           <span></span>
           <span>I</span>
-          <span>T</span>
+          <span>t</span>
           <span> </span>
           <span>😉</span>
         </button>
