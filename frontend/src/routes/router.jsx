@@ -14,6 +14,7 @@ import NewProduct from "../components/AdminPanel/AdminHome/AdminProducts/NewProd
 import CartScreen from "../pages/CartScreen"
 import Filters from "../components/Filters/Filters"
 import UserPage from "../components/AdminPanel/AdminHome/AdminUsers/UserPage/UserPage"
+import ProductPage from "../components/AdminPanel/AdminHome/AdminProducts/ProductPage/ProductPage"
 import AdminUsers from "../components/AdminPanel/AdminHome/AdminUsers/AdminUsers"
 
 function router(props) {
@@ -36,9 +37,8 @@ function router(props) {
             <Route element={<AdminPanel />}>
               <Route exact path="admin" element={<AdminHome />} />
               <Route path="admin/products" element={<AdminProducts />} />
+              <Route path="admin/products/:product" element={<ProductPage />} />
 
-              {/*               <Route path="admin/users" element={<AdminUsers />} />
-               */}
               <Route
                 path="admin/products/newproduct"
                 element={<NewProduct />}

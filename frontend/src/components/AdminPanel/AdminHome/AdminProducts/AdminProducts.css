@@ -75,10 +75,6 @@
   border-top: 30px;
 }
 
-.table__head{
-  color: var(--white)
-}
-
 .productBottom {
   padding: 20px;
   margin: 20px;
