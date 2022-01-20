@@ -1,7 +1,21 @@
 import "./UsersSM.css"
 import {Visibility} from "@material-ui/icons"
+import {useEffect} from "react"
+import axios from "axios"
+import {useState} from "react"
 
 export default function UsersSM() {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios
+      .post("https://hexagon-techstore.herokuapp.com/api/user/getUserLimited", {
+        limit: 5,
+      })
+      .then((res) => setData(res))
+  }, [])
+
+  console.log(data)
+
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>

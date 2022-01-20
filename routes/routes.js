@@ -58,7 +58,7 @@ router
   )
   .get(userController.getUser)
 
-router.route("/user/getUserLimited").get(userController.getUsersLimited)
+router.route("/user/getUserLimited").post(userController.getUsersLimited)
 
 const {
   obtenerProductos,
