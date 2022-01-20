@@ -14,6 +14,7 @@ const Hero = () => {
           Thanks to Hexagon, you can find yourself a brand new phone or give to your current one new looks and accessories.
         </p>
         </div>
+        <Link to="/shop">
         <button class='button button__2' data-text='GO SHOPPING!'>
           <span>E</span>
           <span>N</span>
@@ -26,6 +27,7 @@ const Hero = () => {
           <span> </span>
           <span>😉</span>
         </button>
+        </Link>
       </div>
       <img src="/assets/hero-img.svg" alt="Phone Image" className='heroImg'/>
     </div>
