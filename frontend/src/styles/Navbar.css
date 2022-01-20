@@ -44,6 +44,10 @@
   line-height: 40px;
 }
 
+.nav__title:hover{
+  color: rgb(187, 187, 187);
+}
+
 .nav__subtitle {
   font-family: var(--logo-font);
   color: var(--secondary-light);
