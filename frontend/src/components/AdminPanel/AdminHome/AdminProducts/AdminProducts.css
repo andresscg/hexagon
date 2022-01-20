@@ -67,6 +67,18 @@
   font-weight: 300;
 }
 
+.newProduct__btn {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 10px 15px;
+  border-radius: 10px;
+  border-top: 30px;
+}
+
+.table__head{
+  color: var(--white)
+}
+
 .productBottom {
   padding: 20px;
   margin: 20px;
@@ -86,14 +98,14 @@
 
 .productFormLeft > label {
   margin-bottom: 10px;
-  color: gray;
+  color: white;
 }
 
 .productFormLeft > input {
   margin-bottom: 10px;
   border: none;
   padding: 5px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid white;
 }
 
 .productFormLeft > select {

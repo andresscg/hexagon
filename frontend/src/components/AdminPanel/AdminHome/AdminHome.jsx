@@ -11,7 +11,7 @@ function AdminHome(props) {
     props.getUsersByDate()
   }, [])
   return (
-    <div style={{flex: 4, paddingTop: "15vh", backgroundColor: "gray"}}>
+    <div style={{flex: 4}}>
       <AdminContent />
       <Chart
         data={props.usersByDate}

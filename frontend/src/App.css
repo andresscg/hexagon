@@ -41,13 +41,14 @@ a {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 
 .addcart-container button {
+  text-align: start;
   min-width: 15rem;
   border-radius: 5px;
-  margin: 5px 0;
 }
 
 .reseña-container {
@@ -61,4 +62,13 @@ a {
   background-color: var(--white);
   margin: 2px 0;
   border-radius: 5px;
+}
+
+.adminPanel__container {
+  /*   background-image: url(../public/assets/bg3.webp);
+ */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }

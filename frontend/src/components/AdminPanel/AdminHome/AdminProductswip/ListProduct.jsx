@@ -12,6 +12,7 @@ export default function ListProduct({user, index}) {
   const toShow = content ? content.substring(0, 50) : ""
   return (
     <tr>
+<<<<<<< HEAD:frontend/src/components/AdminPanel/AdminHome/AdminUsers/ListUser.jsx
       <td>
         <Link to={`/admin/users/${user._id}`}>
           <img
@@ -24,6 +25,25 @@ export default function ListProduct({user, index}) {
             alt={user.firstName}
           />
         </Link>
+=======
+      <td>
+        <img
+          width={100}
+          style={{objectFit: "cover"}}
+          src={user.imagen}
+          alt={`producto ${user.nombre}`}
+        />
+      </td>
+      <td>{user.nombre}</td>
+      <td>{user.categoria}</td>
+      <td>
+        <p>{!show ? toShow : content}</p>
+        {content?.length > 70 && (
+          <Button onClick={() => setShow(!show)}>
+            {!show ? <BiShow /> : <BiHide />}
+          </Button>
+        )}
+>>>>>>> fda4e8a3f0890056f038016da963b0cfddd7fdfe:frontend/src/components/AdminPanel/AdminHome/AdminProductswip/ListProduct.jsx
       </td>
       <td>{user.firstName}</td>
       <td>{user.lastName}</td>

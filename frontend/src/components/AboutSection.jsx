@@ -9,10 +9,7 @@ const AboutSection = () => {
         <div className="about__info">
           <h3 className="info__title">About Us</h3>
           <p className="info__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            harum, repellendus eos iure illum magnam tempora, tempore dolore
-            iusto modi totam sunt maxime ipsum est numquam! Asperiores eveniet
-            laboriosam necessitatibus?
+          Hexagon is a young company dedicated to the sale of cell phones and accessories. Started as an online store, Hexagon quickly became a benchmark for specialized cell phones inside and outside Atlanta, thanks not only to its competitive prices but also through careful attention, its extensive knowledge about the latest market launches and a daily effort that generates community through Facebook, Instagram, Twitter, Twitch and Youtube.
           </p>
         </div>
         <div className="about__features">
