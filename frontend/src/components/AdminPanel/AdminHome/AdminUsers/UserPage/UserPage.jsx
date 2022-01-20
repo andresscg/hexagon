@@ -38,7 +38,8 @@ export default function User() {
     const token = localStorage.getItem("token")
     axios
       .put(
-        "http://localhost:4000/api/user/modify/" + params.user,
+        "https://hexagon-techstore.herokuapp.com/api/user/modify/" +
+          params.user,
         {
           modifierData,
         },
@@ -72,13 +73,15 @@ export default function User() {
   useEffect(() => {
     setLoading(true)
     axios
-      .get("http://localhost:4000/api/user/modify/" + params.user)
+      .get(
+        "https://hexagon-techstore.herokuapp.com/api/user/modify/" + params.user
+      )
       .then((res) => {
         setLoading(false)
         setUserData(res.data)
       })
     axios
-      .get("http://localhost:4000/api/address/" + params.user)
+      .get("https://hexagon-techstore.herokuapp.com/api/address/" + params.user)
       .then((res) => {
         setLoading(false)
         setUserAddress(res.data)

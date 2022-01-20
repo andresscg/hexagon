@@ -1,3 +1,4 @@
+import {Description} from "@material-ui/icons"
 import React, {useState} from "react"
 import {Button} from "react-bootstrap"
 import {BiShow, BiHide} from "react-icons/bi"
@@ -12,18 +13,13 @@ export default function ListProduct({user, index}) {
   return (
     <tr>
       <td>
-        <img
-          width={100}
-          style={{objectFit: "cover"}}
-          src={user.imagen}
-          alt={`producto ${user.nombre}`}
-        />
+        <img src={user.imagen} width={200} />
       </td>
       <td>{user.nombre}</td>
       <td>{user.categoria}</td>
       <td>
         <p>{!show ? toShow : content}</p>
-        {content?.length > 70 && (
+        {content?.length > 50 && (
           <Button onClick={() => setShow(!show)}>
             {!show ? <BiShow /> : <BiHide />}
           </Button>

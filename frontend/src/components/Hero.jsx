@@ -17,13 +17,13 @@ const Hero = () => {
         <Link to="/shop">
         <button class='button button__2' data-text='GO SHOPPING!'>
           <span>E</span>
-          <span>N</span>
-          <span>J</span>
-          <span>O</span>
-          <span>Y</span>
+          <span>n</span>
+          <span>j</span>
+          <span>o</span>
+          <span>y</span>
           <span></span>
           <span>I</span>
-          <span>T</span>
+          <span>t</span>
           <span> </span>
           <span>😉</span>
         </button>

@@ -382,9 +382,9 @@
   box-shadow: 0 0 0 1px var(--secondary-dark);
 }
 
-.producto-container {
+/* .producto-container {
   padding-top: 15vh;
-}
+} */
 
 @media screen and (max-width: 768px) {
   .container-all__filtros {
